@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cheng.consult.ui.view.MyQuestionDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/card_margin"
+        android:layout_marginRight="@dimen/card_margin"
+        android:id="@+id/question"
+        android:orientation="horizontal">
+        <com.cheng.consult.widget.CircularImage
+            android:id="@+id/ivSubject"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginBottom="7dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_question"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_margin"
+                android:layout_marginLeft="@dimen/card_margin"
+                android:layout_marginRight="@dimen/card_margin"
+                android:textColor="@color/secondary_text"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="@dimen/sn_16sp" />
+
+            <TextView
+                android:id="@+id/tvDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/secondary_text"
+                android:maxLines="5"
+                android:scrollbars="vertical"
+                android:textSize="@dimen/sn_16sp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--<ListView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@id/question"-->
+        <!--android:id="@+id/list_view">-->
+
+    <!--</ListView>-->
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/question"
+        android:id="@+id/recycle_view">
+
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>

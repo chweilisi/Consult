@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loveshare_listitem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/list_selector">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.cheng.consult.widget.CircularImage
+                android:id="@+id/category_item_icon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="14dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/category_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:text="专业领域"
+                android:layout_marginTop="15dp"
+                android:textColor="#FF526373"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="17dp">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/qa_orange_circle_button_selector"/>
+
+            <TextView
+                android:id="@+id/focus_button"
+                android:layout_width="83dp"
+                android:layout_height="27dp"
+                android:gravity="center"
+                android:text="进入领域"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="5dp"/>
+
+</LinearLayout>
+

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="107dp"
+        android:background="@drawable/mypage_headbj_img">
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/menufragment_menu_avator_container"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:background="@null">-->
+        <!--</LinearLayout>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/myfragment_user_nikename"-->
+            <!--style="@style/TextNormalTheme"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/menufragment_menu_avator_container"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:text="@string/defult_user_name"-->
+            <!--android:visibility="gone"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:textSize="14sp" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/myfragment_user_lexue_id"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/myfragment_user_nikename"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:textColor="#fff"-->
+            <!--android:visibility="gone"-->
+            <!--android:textSize="12sp" />-->
+
+
+    </RelativeLayout>
+
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:fillViewport="true"-->
+        <!--android:overScrollMode="never"-->
+        <!--android:persistentDrawingCache="scrolling"-->
+        <!--android:scrollbarStyle="insideOverlay"-->
+        <!--android:scrollbarThumbVertical="@drawable/list_scrollbar"-->
+        <!--android:smoothScrollbar="true">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <!--<include layout="@layout/view_my_operation" />-->
+
+            <!--<include layout="@layout/user_class_info" />-->
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1px"-->
+            <!--android:background="@color/common_line_bg" />-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="10dp" />
+
+            <LinearLayout
+                android:id="@+id/my_profile_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_selector">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/mypage_concerned_balance_icon" />
+
+                <com.cheng.consult.widget.LeftRightView
+                    android:id="@+id/my_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_leftright_item_height"
+                    custom:leftText="@string/myfragment_my_profile_tip"
+                    custom:leftTextTranslationX="-15dp"
+                    custom:showDivider="true"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/my_expert_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_selector">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/mypage_concerned_balance_icon" />
+
+                <com.cheng.consult.widget.LeftRightView
+                    android:id="@+id/my_export"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_leftright_item_height"
+                    custom:leftText="@string/myfragment_my_expert_tip"
+                    custom:leftTextTranslationX="-15dp"
+                    custom:showDivider="true"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/my_question_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_selector">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/mypage_concerned_coupon_icon" />
+
+                <com.cheng.consult.widget.LeftRightView
+                    android:id="@+id/my_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_leftright_item_height"
+                    custom:leftText="@string/myfragment_my_question_tip"
+                    custom:leftTextTranslationX="-15dp"
+                    custom:showDivider="true" />
+
+            </LinearLayout>
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1px"-->
+            <!--android:background="@color/common_line_bg" />-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/my_focus_area_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_selector"
+                android:clickable="false">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/mypage_school_icon" />
+
+                <com.cheng.consult.widget.LeftRightView
+                    android:id="@+id/my_favorite_college"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_leftright_item_height"
+                    custom:leftText="@string/myfragment_my_area_tip"
+                    custom:leftTextTranslationX="-15dp"
+                    custom:showDivider="true" />
+            </LinearLayout>
+
+
+
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1px"-->
+            <!--android:background="@color/common_line_bg" />-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="10dp" />
+
+
+            <LinearLayout
+                android:id="@+id/my_feed_back_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_selector">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@drawable/mypage_feedback_icon" />
+
+                <com.cheng.consult.widget.LeftRightView
+                    android:id="@+id/my_feed_back_teacher"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_leftright_item_height"
+                    custom:leftText="@string/myfragment_my_feedback_tip"
+                    custom:leftTextTranslationX="-15dp"
+                    custom:showDivider="false" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/common_line_bg" />
+
+        </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="退出登录"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/home_page_consult_button"
+        android:id="@+id/logout"/>
+
+
+    <!--</ScrollView>-->
+
+</LinearLayout>

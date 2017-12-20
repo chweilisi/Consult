@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">问策谷</string>
+    <string name="title_home">首页</string>
+    <string name="title_consult">问诊</string>
+    <string name="title_info">我的</string>
+
+    <string-array name="consult_category">
+        <item>战略咨询</item>
+        <item>转型升级</item>
+        <item>资本运作</item>
+        <item>系统管理</item>
+        <item>市场营销</item>
+        <item>精细生产</item>
+        <item>品质改善</item>
+        <item>成本管控</item>
+        <item>财务运做</item>
+        <item>薪酬绩效</item>
+        <item>团队建设</item>
+        <item>企业文化</item>
+        <item>阿米巴模式</item>
+    </string-array>
+
+    <string name="defult_user_name">用户名</string>
+    <string name="myfragment_my_expert_tip">我关注的专家</string>
+    <string name="myfragment_my_profile_tip">我的资料</string>
+    <string name="myfragment_my_question_tip">我的问题</string>
+    <string name="myfragment_my_vip_report_tip">我的VIP报告</string>
+    <string name="myfragment_my_unlock_tip">功能全解锁</string>
+    <string name="myfragment_my_order_tip">我的订单</string>
+    <string name="myfragment_my_server">购买的服务</string>
+    <string name="myfragment_my_unlock_nodate">未激活</string>
+    <string name="myfragment_my_teacher_tip">我关注的老师</string>
+    <string name="myfragment_my_area_tip">我关注的领域</string>
+    <string name="myfragment_my_major_tip">我关注的专家</string>
+    <string name="myfragment_my_feedback_tip">意见反馈</string>
+    <string name="home_page_slogan_tip">在线专家200+，已解答1000+企业疑问</string>
+    <string name="title_activity_expert_list">ExpertListActivity</string>
+    <string name="title_activity_expert_detail">专家详情</string>
+    <string name="expert_detail_page_des">北京大学研究生导师，战略问题专家，注明咨询人。北京大学研究生导师，战略问题专家，注明咨询人。北京大学研究生导师，战略问题专家，注明咨询人。北京大学研究生导师，战略问题专家，注明咨询人。北京大学研究生导师，战略问题专家，注明咨询人。北京大学研究生导师，战略问题专家，注明咨询人。北京大学研究生导师，战略问题专家，注明咨询人。</string>
+    <string name="expert_detail_page_goodat">经营管理，战略咨询，阿米巴模式，人力资源，员工激励</string>
+    <string name="title_activity_ask_expert">AskExpertActivity</string>
+
+    <string name="sign_in">登录</string>
+    <string name="sign_in_account">账号</string>
+    <string name="sign_in_password">密码</string>
+    <string name="sign_in_account_hint">请输入手机号</string>
+    <string name="sign_in_password_hint">6到20位，区分大小写</string>
+    <string name="sign_in_fast_registration">快速注册</string>
+    <string name="sign_in_forget_password">忘记密码</string>
+    <string name="dlg_waiting_text">正在%1$s中，请稍候…</string>
+    <string name="dlg_waiting_login">登录</string>
+    <string name="sign_in_other">其他登录方式</string>
+
+    <string name="login_hint_phonenumber">请输入手机号码</string>
+    <string name="register_tip_password">请输入正确的密码，6-20位</string>
+
+    <string name="reset_password_title">"重置"</string>
+    <string name="home_page_quick_ask">"快速问诊"</string>
+
+    <string name="my_profile_error_toast">"请填写完整"</string>
+
+
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="title_activity_expert_category">ExpertCategoryActivity</string>
+</resources>

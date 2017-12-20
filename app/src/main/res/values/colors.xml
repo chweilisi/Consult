@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="ltgray">#787878</color>
+    <color name="blue">#0000FF</color>
+    <color name="red">#FF0000</color>
+    <!--<color name="colorPrimary">#3F51B5</color>-->
+    <color name="colorPrimary">#cc3333</color>
+    <!--<color name="colorPrimaryDark">#303F9F</color>-->
+    <color name="colorPrimaryDark">#cc3333</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="transparent">#00000000</color>
+    <color name="searchbar_text_color">#131313</color>
+
+    <drawable name="list_item_pressed_bg_color">#FFEAEAEA</drawable>
+    <drawable name="list_item_normal_bg_color">#ffffff</drawable>
+
+    <color name="orange_color">#ff6c00</color>
+    <color name="cafe_house_praise_text_color">#b2b2b2</color>
+    <color name="common_f0f0f0">#f0f0f0</color>
+    <color name="background_color">#FFF0F0F0</color>
+
+    <color name="common_line_bg">#FFCDCDCD</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+
+    <color name="color_title_explanation">#b30e1a3e</color>
+    <color name="edittext_input_text">#4A4A4A</color>
+    <color name="edittext_hint_text">#9B9B9B</color>
+    <color name="caution_textview">#fffd3f6d</color>
+    <color name="color_text_link">#2BD69F</color>
+</resources>

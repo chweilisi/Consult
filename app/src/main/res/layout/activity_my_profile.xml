@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme2.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?actionBarSize"
+        android:scrollbars="vertical"
+        android:fadingEdge="vertical">
+        <LinearLayout
+            android:id="@+id/myscrollLinearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="#EEEEEE"
+            android:scrollbars="vertical"
+            android:clickable="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="企业名称:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <EditText
+                    android:id="@+id/user_name"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="@dimen/sn_16sp"
+                    android:hint="企业名称"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="联系电话:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <EditText
+                    android:id="@+id/user_phonenum"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="@dimen/sn_16sp"
+                    android:inputType="phone|number"
+                    android:hint="请输入电话号码"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="所属行业:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <EditText
+                    android:id="@+id/user_industry"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="@dimen/sn_16sp"
+                    android:hint="所属行业"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="所在区域:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <EditText
+                    android:id="@+id/user_area"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="@dimen/sn_16sp"
+                    android:hint="所在区域"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+
+            <LinearLayout
+                android:id="@+id/user_establish_time_parent"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="成立时间:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/establish_year"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:hint="成立年份" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="年"/>
+                    <EditText
+                        android:id="@+id/establish_mouth"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:inputType="number"
+                        android:hint="成立月份" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="月"/>
+
+                </LinearLayout>
+                <!--<DatePicker-->
+                    <!--android:id="@+id/user_establish_time"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:datePickerMode="spinner"-->
+                    <!--android:calendarViewShown="false">-->
+
+                <!--</DatePicker>-->
+                <!--<EditText-->
+                    <!--android:id="@+id/user_establish_time"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@null"-->
+                    <!--android:layout_marginLeft="4dp"-->
+                    <!--android:textSize="@dimen/sn_16sp"-->
+                    <!--android:hint="成立时间"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent" />-->
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="注册资金:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <EditText
+                    android:id="@+id/user_capital"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="@dimen/sn_16sp"
+                    android:inputType="number"
+                    android:digits="1234567890"
+                    android:hint="注册资金，单位万元"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="雇员人数:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <EditText
+                    android:id="@+id/user_employeenum"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="@dimen/sn_16sp"
+                    android:inputType="number"
+                    android:hint="雇员数量，单位人"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="主要产品:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <EditText
+                    android:id="@+id/user_production"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="@dimen/sn_16sp"
+                    android:hint="主要产品"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="是否有咨询经历:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <RadioGroup
+                    android:id="@+id/isconslut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/consulted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="有"
+                        />
+                    <RadioButton
+                        android:id="@+id/noconsulted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="无"/>
+                </RadioGroup>
+                <!--<EditText-->
+                    <!--android:id="@+id/user_isconsulted"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@null"-->
+                    <!--android:layout_marginLeft="4dp"-->
+                    <!--android:textSize="@dimen/sn_16sp"-->
+                    <!--android:hint="有，无"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent" />-->
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="销售区域"
+                    android:textSize="@dimen/sn_14sp"/>
+
+                <RadioGroup
+                    android:id="@+id/user_salearea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/salenative"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="内销"
+                        />
+                    <RadioButton
+                        android:id="@+id/saleoversea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="外销"/>
+                </RadioGroup>
+                <!--<EditText-->
+                    <!--android:id="@+id/user_salearea"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@null"-->
+                    <!--android:layout_marginLeft="4dp"-->
+                    <!--android:textSize="@dimen/sn_16sp"-->
+                    <!--android:hint="外销,内销"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent" />-->
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="销售模式"
+                    android:textSize="@dimen/sn_14sp"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/agency"
+                        android:text="代理商/经销商"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/terminal"
+                            android:text="终端客户"/>
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/online"
+                            android:text="电商"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!--<EditText-->
+                    <!--android:id="@+id/user_salemode"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@null"-->
+                    <!--android:layout_marginLeft="4dp"-->
+                    <!--android:textSize="@dimen/sn_16sp"-->
+                    <!--android:hint="代理商/经销商、终端客户、电商"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent" />-->
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提交"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/home_page_consult_button"
+                android:id="@+id/submit"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+
+</android.support.design.widget.CoordinatorLayout>

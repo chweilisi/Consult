@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/search_all_bg">
+
+    <RelativeLayout
+        android:id="@+id/search_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="29dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="48dp"
+        android:background="@drawable/search_white_corner_shape">
+
+        <TextView
+            android:id="@+id/search_type_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="专家"
+            android:textColor="#808080"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:id="@+id/search_arrow_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@+id/search_type_name"
+            android:src="@drawable/search_arrow_down" />
+
+        <View
+            android:id="@+id/search_divider"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="55dp"
+            android:background="#D6D6D6" />
+
+        <RelativeLayout
+            android:id="@+id/search_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="55dp">
+
+            <com.cheng.consult.widget.EditTextWithDel
+                android:id="@+id/search_bar_input"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="7dp"
+                android:background="@null"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="搜专家/领域"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:textColor="@color/searchbar_text_color"
+                android:textColorHint="#AFAFAF"
+                android:textSize="12sp" />
+
+            <!--<ImageButton-->
+                <!--android:id="@+id/search_bar_del_imageBtn"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:background="@drawable/search_delete_btn_selector"-->
+                <!--android:visibility="gone" />-->
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/search_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-40dp"
+        android:text="取消"
+        android:textColor="#FFF"
+        android:textSize="13sp" />
+
+
+</LinearLayout>
