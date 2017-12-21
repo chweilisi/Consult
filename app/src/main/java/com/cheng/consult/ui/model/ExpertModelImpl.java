@@ -6,6 +6,10 @@ import com.cheng.consult.utils.ExpertJsonUtils;
 import com.cheng.consult.utils.OkHttpUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,7 +36,7 @@ public class ExpertModelImpl implements ExpertModel {
     }
     */
     public void loadExpertList(String url, int userId, final int cateId, final OnLoadExpertsListListener listener) {
-        OkHttpUtils.ResultCallback<String> loadNewsCallback = new OkHttpUtils.ResultCallback<String>() {
+        OkHttpUtils.ResultCallback<String> loadExpertCallback = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(String response) {
                 Gson gson = new Gson();
@@ -47,7 +51,20 @@ public class ExpertModelImpl implements ExpertModel {
                 listener.onFailure("load news list failure.", e);
             }
         };
-        OkHttpUtils.get(url, loadNewsCallback);
+
+        List<OkHttpUtils.Param> params = new ArrayList<>();
+        try {
+            OkHttpUtils.Param user = new OkHttpUtils.Param("userId", URLEncoder.encode(Integer.toString(userId), "UTF-8"));
+            OkHttpUtils.Param expertCategory = new OkHttpUtils.Param("cateId", URLEncoder.encode(Integer.toString(cateId), "UTF-8"));
+
+            params.add(user);
+            params.add(expertCategory);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        OkHttpUtils.post(url, loadExpertCallback, params);
+        //OkHttpUtils.get(url, loadExpertCallback);
     }
 
     private String getID(int type) {

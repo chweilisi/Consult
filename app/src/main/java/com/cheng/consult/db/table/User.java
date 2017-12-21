@@ -11,6 +11,8 @@ public class User implements Serializable {
     //@Id(autoincrement = true)
     private Long Id;//会员id
 
+    private String LoginName;
+
     private String Password;//登录密码
 
     private String Name;//企业名称
@@ -41,6 +43,14 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         Id = id;
+    }
+
+    public String getLoginName() {
+        return LoginName;
+    }
+
+    public void setLoginName(String loginName) {
+        LoginName = loginName;
     }
 
     public String getPassword() {

@@ -9,6 +9,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +21,7 @@ import java.util.List;
 public class MyQuestionModelImpl implements MyQuestionModel {
     @Override
     public void loadMyQuestion(String url, int pageIndex, final OnLoadMyQuestionsListener listener) {
-        OkHttpUtils.ResultCallback<String> loadNewsCallback = new OkHttpUtils.ResultCallback<String>() {
+        OkHttpUtils.ResultCallback<String> loadMyQuestionCallback = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(String response) {
                 //List<Subject> newsBeanList = ExpertJsonUtils.readJsonNewsBeans(response, getID(type));
@@ -34,7 +37,17 @@ public class MyQuestionModelImpl implements MyQuestionModel {
                 listener.onFailed("load news list failure.", e);
             }
         };
-        OkHttpUtils.get(url, loadNewsCallback);
+
+        List<OkHttpUtils.Param> params = new ArrayList<>();
+        try {
+            OkHttpUtils.Param page = new OkHttpUtils.Param("userId", URLEncoder.encode(Integer.toString(pageIndex), "UTF-8"));
+            params.add(page);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        OkHttpUtils.post(url, loadMyQuestionCallback, params);
+        //OkHttpUtils.get(url, loadMyQuestionCallback);
     }
 
     private String getID(int type) {
