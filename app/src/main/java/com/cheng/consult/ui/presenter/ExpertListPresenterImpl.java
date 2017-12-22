@@ -23,10 +23,10 @@ public class ExpertListPresenterImpl implements ExpertListPresenter {
         mModel = new ExpertModelImpl();
     }
 
-    //根据userId expertCate来区别是查询什么专家，两者必有一个为-1，谁不是-1就是查询什么专家
+    //每次必传userid，根据expertCate来区别是查询什么专家，如果expertCate为-1，就是查询对应领域专家
     @Override
     public void loadExpertList(int userId, int expertCate, int pageIndex) {
-        String url = (-1 == userId) ? (getCategoryExpUrl(1)) : (getLoveExpUrl(1));
+        String url = (-1 == expertCate) ? (getLoveExpUrl(userId)) : (getCategoryExpUrl(expertCate));
 
         //只有第一页的或者刷新的时候才显示刷新进度条
         if(pageIndex == 0) {
@@ -35,7 +35,7 @@ public class ExpertListPresenterImpl implements ExpertListPresenter {
         //other method to implement
         //mNewsModel.loadNews(url, type, this);
         //replace implement class interface
-        mModel.loadExpertList(url, userId, expertCate, loadNewsListener);
+        mModel.loadExpertList(url, pageIndex, Urls.PAZE_SIZE, userId, expertCate, loadNewsListener);
     }
 
     OnLoadExpertsListListener loadNewsListener = new OnLoadExpertsListListener(){
@@ -54,12 +54,12 @@ public class ExpertListPresenterImpl implements ExpertListPresenter {
 
     //如果userId不为-1，则为查询我关注的专家url
     private String getLoveExpUrl(int userId){
-        return "http://101.200.40.228:8080/public/api/expert/gz";//"http://172.31.84.124:8081/api/expert/gz/";
+        return Urls.HOST_TEST + Urls.LOVEEXPERT;
     }
 
     //如果expertCate不为-1，则为查询领域专家url
     private String getCategoryExpUrl(int CateId){
-        return "http://101.200.40.228:8080/public/api/expert/";//"http://172.31.84.124:8081/api/expert/";
+        return Urls.HOST_TEST + Urls.EXPERT;
     }
     /**
      * 根据类别和页面索引创建url

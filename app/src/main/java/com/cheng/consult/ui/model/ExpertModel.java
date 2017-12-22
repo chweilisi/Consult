@@ -5,6 +5,6 @@ package com.cheng.consult.ui.model;
  */
 
 public interface ExpertModel {
-    void loadExpertList(String url, int userId, int cateId, OnLoadExpertsListListener listener);
+    void loadExpertList(String url, int userId, int pageNum, int pageSize, int cateId, OnLoadExpertsListListener listener);
 
 }

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.cheng.consult.R;
+import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.utils.OkHttpUtils;
 
 import java.util.ArrayList;
@@ -50,6 +51,10 @@ public class AskExpertActivity extends BaseActivity {
         mSubmit = (Button)findViewById(R.id.submit);
 
         paramList = new ArrayList<>();
+        //add user id
+        String id = String.valueOf(mApplication.mUserInfo.getUserId());
+        OkHttpUtils.Param userId = new OkHttpUtils.Param("userId", id);
+        paramList.add(userId);
         //add post parameter question title
         qTitle = mQuestionTitle.getText().toString();
         OkHttpUtils.Param param = new OkHttpUtils.Param("questionTitle", qTitle);
@@ -63,7 +68,8 @@ public class AskExpertActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //TODO submit question
-                OkHttpUtils.post("http://101.200.40.228:8080/public/api/case", null, paramList);
+                String url = Urls.HOST_TEST + Urls.QUESTION;
+                OkHttpUtils.post(url, null, paramList);
                 //finish self
                 finish();
             }

@@ -256,6 +256,13 @@ public class PreUtils {
         return mPre.getInt("islogined", -1);
     }
 
+    public void setUserType(String userType){
+        mPre.edit().putString("usertype", userType).commit();
+    }
+    public String getUserType(){
+        return mPre.getString("usertype", "");
+    }
+
     public void clearUserInfo(){
         mPre.edit().clear().commit();
     }

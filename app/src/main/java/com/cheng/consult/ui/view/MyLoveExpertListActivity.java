@@ -32,7 +32,8 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
     private SwipeRefreshLayout mSwipe;
 
     //应该从登陆信息中读取，临时赋值
-    private int mUserId = 1;
+    private int mUserId = -1;
+    private int mExpertCat = -1;
     private int mPageIndex = 0;
 
     @Override
@@ -43,6 +44,7 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
     @Override
     protected void initViews(Bundle savedInstanceState) {
 
+        mUserId = new Long(mApplication.mUserInfo.getUserId()).intValue();
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mSwipe   = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
@@ -86,8 +88,9 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
             super.onScrollStateChanged(recyclerView, newState);
             if (newState == RecyclerView.SCROLL_STATE_IDLE
                     && lastVisibleItem + 1 == mAdapter.getItemCount()) {
-
-                mPresenter.loadExpertList(mUserId, -1, mPageIndex + Urls.PAZE_SIZE);
+                //关注的专家，expertCate 要传-1
+                mPageIndex = mPageIndex + 1;
+                mPresenter.loadExpertList(mUserId, mExpertCat, mPageIndex);
             }
         }
     };
@@ -131,7 +134,7 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
             mAdapter.notifyDataSetChanged();
         }
 
-        mPageIndex += Urls.PAZE_SIZE;
+        //mPageIndex += Urls.PAZE_SIZE;
     }
 
     @Override
@@ -149,7 +152,7 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
         if(mData != null) {
             mData.clear();
         }
-        //TODO http or db to query data
-        mPresenter.loadExpertList(mUserId, -1, mPageIndex);
+        //关注的专家，expertCate 要传-1
+        mPresenter.loadExpertList(mUserId, mExpertCat, mPageIndex);
     }
 }

@@ -5,6 +5,7 @@ import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.utils.ExpertJsonUtils;
 import com.cheng.consult.utils.OkHttpUtils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.UnsupportedEncodingException;
@@ -35,14 +36,12 @@ public class ExpertModelImpl implements ExpertModel {
         OkHttpUtils.get(url, loadNewsCallback);
     }
     */
-    public void loadExpertList(String url, int userId, final int cateId, final OnLoadExpertsListListener listener) {
+    public void loadExpertList(String url, int userId, int pageNum, int pageSize, int cateId, final OnLoadExpertsListListener listener) {
         OkHttpUtils.ResultCallback<String> loadExpertCallback = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(String response) {
-                Gson gson = new Gson();
+                Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
                 List<Expert> experts = gson.fromJson(response, new TypeToken<List<Expert>>() {}.getType());
-                //List<Expert> newsBeanList = ExpertJsonUtils.readJsonNewsBeans(response, getID(type));
-
                 listener.onSuccess(experts);
             }
 
@@ -54,17 +53,22 @@ public class ExpertModelImpl implements ExpertModel {
 
         List<OkHttpUtils.Param> params = new ArrayList<>();
         try {
-            OkHttpUtils.Param user = new OkHttpUtils.Param("userId", URLEncoder.encode(Integer.toString(userId), "UTF-8"));
-            OkHttpUtils.Param expertCategory = new OkHttpUtils.Param("cateId", URLEncoder.encode(Integer.toString(cateId), "UTF-8"));
+            OkHttpUtils.Param user = new OkHttpUtils.Param("userId", Integer.toString(userId));
+            OkHttpUtils.Param expertCategory = new OkHttpUtils.Param("cateId", Integer.toString(cateId));
+            OkHttpUtils.Param pagenum = new OkHttpUtils.Param("pagenum", Integer.toString(pageNum));
+            OkHttpUtils.Param pagesize = new OkHttpUtils.Param("pagesize", Integer.toString(pageSize));
+            OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","list");
 
             params.add(user);
             params.add(expertCategory);
-        } catch (UnsupportedEncodingException e) {
+            params.add(pagenum);
+            params.add(pagesize);
+            params.add(mothed);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         OkHttpUtils.post(url, loadExpertCallback, params);
-        //OkHttpUtils.get(url, loadExpertCallback);
     }
 
     private String getID(int type) {

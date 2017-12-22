@@ -21,6 +21,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cheng.consult.R;
+import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.utils.LogUtils;
 import com.cheng.consult.utils.OkHttpUtils;
 import com.cheng.consult.utils.PreUtils;
@@ -215,9 +216,13 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 } else {
-                    addParams();
+                    addParams();//include user id
                     saveUserProfile();
-                    OkHttpUtils.post("http://101.200.40.228:8080/public/api/case", null, mPostParams);
+                    String url = Urls.HOST_TEST + Urls.USER;
+                    OkHttpUtils.Param method = new OkHttpUtils.Param("method", "save");
+                    mPostParams.add(method);
+
+                    OkHttpUtils.post(url, null, mPostParams);
                     finish();
                 }
             }
@@ -328,6 +333,8 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
         mPostParams.add(param10);
         OkHttpUtils.Param param11 = new OkHttpUtils.Param("saleMode", Integer.toString(saleMode));
         mPostParams.add(param11);
+        OkHttpUtils.Param param12 = new OkHttpUtils.Param("Id", String.valueOf(mPreUtils.getUserId()));
+        mPostParams.add(param12);
 
     }
 

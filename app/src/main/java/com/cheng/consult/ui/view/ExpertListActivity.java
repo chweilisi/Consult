@@ -16,6 +16,7 @@ import com.cheng.consult.db.table.Expert;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.ui.presenter.ExpertListPresenter;
 import com.cheng.consult.ui.presenter.ExpertListPresenterImpl;
+import com.cheng.consult.utils.PreUtils;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -34,6 +35,8 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
     private List<Expert> mData;
     private int mPageIndex = 0;
     private ExpertListPresenter mPresenter;
+    private PreUtils pre;
+    private int mUserId;
 
     @Override
     protected int getContentViewLayoutId() {
@@ -42,6 +45,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
+        mUserId = new Long(mApplication.mUserInfo.getUserId()).intValue();
         mToolbarTitle = getIntent().getStringExtra("cat");
         mExpertCategory     = getIntent().getIntExtra("position", 0);
 
@@ -84,8 +88,8 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
             super.onScrollStateChanged(recyclerView, newState);
             if (newState == RecyclerView.SCROLL_STATE_IDLE
                     && lastVisibleItem + 1 == mAdapter.getItemCount()) {
-
-                mPresenter.loadExpertList(-1, mExpertCategory, mPageIndex + Urls.PAZE_SIZE);
+                mPageIndex = mPageIndex + 1;
+                mPresenter.loadExpertList(mUserId, mExpertCategory, mPageIndex);
             }
         }
     };
@@ -118,7 +122,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
         if(mData != null) {
             mData.clear();
         }
-        mPresenter.loadExpertList(-1,mExpertCategory, mPageIndex);
+        mPresenter.loadExpertList(mUserId, mExpertCategory, mPageIndex);
     }
 
     @Override
@@ -138,7 +142,8 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
             mAdapter.notifyDataSetChanged();
         }
 
-        mPageIndex += Urls.PAZE_SIZE;
+        //mPageIndex += Urls.PAZE_SIZE;
+        //mPageIndex++;
     }
 
     @Override

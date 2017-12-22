@@ -26,9 +26,9 @@ public class MyConsultQuestionPresenterImpl implements MyConsultQuestionPresente
 
     @Override
     public void loadMyQuestion(int userId, int pageIndex) {
-        //String url = "http://172.31.84.124:8081/api/?expertCategory=" + userId + "?pageNumber=" + pageIndex;//getUrl(userId, pageIndex);
-        String url = "http://101.200.40.228:8080/public/api/case";///?expertCategory=" + userId + "?pageNumber=" + pageIndex;
-        model.loadMyQuestion(url, pageIndex, listener);
+        String url = Urls.HOST_TEST + Urls.QUESTION;
+
+        model.loadMyQuestion(userId, url, pageIndex, Urls.PAZE_SIZE, listener);
     }
 
     private OnLoadMyQuestionsListener listener = new OnLoadMyQuestionsListener() {

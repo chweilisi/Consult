@@ -5,5 +5,5 @@ package com.cheng.consult.ui.model;
  */
 
 public interface MyQuestionModel {
-    public void loadMyQuestion(String url, int pageIndex, OnLoadMyQuestionsListener listener);
+    public void loadMyQuestion(int userId, String url, int pageNum, int pageSize, OnLoadMyQuestionsListener listener);
 }

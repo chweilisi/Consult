@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ import com.cheng.consult.widget.PwdShowLayout;
 import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +49,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initViews(Bundle savedInstanceState) {
         pre = PreUtils.getInstance(mContext);
-        if(1 == pre.getUserIsLogin()){
+        if(false/*1 == pre.getUserIsLogin()*/){
+            strUserName = pre.getUserLoginName();
+            strPassword = pre.getUserLoginPsw();
             loginPassport();
         } else {
             mLoginBtn = (Button)findViewById(R.id.sign_in_btn);
@@ -91,23 +95,45 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
     }
 
+    String userType = "";
+    boolean isLoginSuccess = false;
     private void loginPassport(){
         //TODO: 暂时不做网络登录，直接打开mainactivity
-/*
+
         OkHttpUtils.ResultCallback<String> loginCallback = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(String response) {
                 Gson gson = new Gson();
-                User user = gson.fromJson(response, User.class);
+                loginResultBean user = gson.fromJson(response, loginResultBean.class);
+
+                userType = user.getUserType();
+                isLoginSuccess = user.isLoginSuccess();
                 if(null != user){
-                    pre.setUserLoginName(user.getName());
-                    pre.setUserLoginPsw(user.getPassword());
-                    pre.setUserId(user.getId());
-                    pre.setUserIsLogin(1);
+                    //TODO: for tmp use, login directlly
+                    if(100 != Integer.parseInt(userType) || !isLoginSuccess){
+                        Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.login_hint_errorusertype), Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    } else {
+                        //save login user info
+                        pre.setUserLoginName(user.getLoginName());
+                        pre.setUserLoginPsw(user.getPassword());
+                        pre.setUserId(Long.parseLong(user.getId()));
+                        pre.setUserIsLogin(1);
+                        pre.setUserType(userType);
+
+                        //start mainactivity
+                        Intent intent = new Intent();//new Intent(this, MainActivity.class);
+                        intent.setClass(mContext, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+
 
                 } else {
                     Toast.makeText(mContext, "Error", Toast.LENGTH_LONG).show();
                 }
+
             }
 
             @Override
@@ -115,23 +141,31 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 Toast.makeText(mContext, "Error", Toast.LENGTH_LONG).show();
             }
         };
-        //Map<String, Object> params = new HashMap<String, Object>();
+        //Map<String, Object> params1 = new HashMap<String, Object>();
         List<OkHttpUtils.Param> params = new ArrayList<>();
         try {
+
+            //params1.put("username", URLEncoder.encode(strUserName, "UTF-8"));
+            //params1.put("password", URLEncoder.encode(strPassword, "UTF-8"));
+            //params1.put("format", "json");
+
             OkHttpUtils.Param userName = new OkHttpUtils.Param("username", URLEncoder.encode(strUserName, "UTF-8"));
             OkHttpUtils.Param passWord = new OkHttpUtils.Param("password", URLEncoder.encode(strPassword, "UTF-8"));
+            OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","login");
+            //OkHttpUtils.Param id = new OkHttpUtils.Param("id","");
 
             params.add(userName);
             params.add(passWord);
+            params.add(mothed);
+            //params.add(id);
+
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        OkHttpUtils.post(Urls.HOST + Urls.LOGIN, loginCallback, params);
-*/
-        //TODO: for tmp use, login directlly
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        OkHttpUtils.post(Urls.HOST_TEST + Urls.USER, loginCallback, params);
+
+
+
     }
 
     private void updateStateTV(int strID) {
@@ -149,6 +183,54 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else {
             mToastTip.setVisibility(View.VISIBLE);
             mToastTip.setText(str);
+        }
+    }
+
+    class loginResultBean{
+        String LoginName;
+        String Password;
+        String Id;
+        boolean LoginSuccess;
+        String UserType;
+
+        public String getLoginName() {
+            return LoginName;
+        }
+
+        public void setLoginName(String loginName) {
+            LoginName = loginName;
+        }
+
+        public String getPassword() {
+            return Password;
+        }
+
+        public void setPassword(String password) {
+            Password = password;
+        }
+
+        public String getId() {
+            return Id;
+        }
+
+        public void setId(String id) {
+            Id = id;
+        }
+
+        public boolean isLoginSuccess() {
+            return LoginSuccess;
+        }
+
+        public void setLoginSuccess(boolean loginSuccess) {
+            LoginSuccess = loginSuccess;
+        }
+
+        public String getUserType() {
+            return UserType;
+        }
+
+        public void setUserType(String userType) {
+            UserType = userType;
         }
     }
 }

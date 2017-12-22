@@ -11,6 +11,8 @@ public class Expert implements Serializable {
     //@Id(autoincrement = true)
     private Long Id;//专家id
 
+    private String LoginName;//登录用户名
+    private String LoginPsw;//登录密码
     private String Name;//专家名字
     private String Sex;//专家性别
     private int    Age;//专家年龄
@@ -26,6 +28,8 @@ public class Expert implements Serializable {
     private String PhoneNum;//电话
     private String Weixin;//微信
     private String Qq;//qq
+    private List<User> MyLoveUser;//我关注的企业
+    private List<Subject> Subjects;//我回答的问题
 
     public Long getId() {
         return Id;
@@ -33,6 +37,22 @@ public class Expert implements Serializable {
 
     public void setId(Long id) {
         Id = id;
+    }
+
+    public String getLoginName() {
+        return LoginName;
+    }
+
+    public void setLoginName(String loginName) {
+        LoginName = loginName;
+    }
+
+    public String getLoginPsw() {
+        return LoginPsw;
+    }
+
+    public void setLoginPsw(String loginPsw) {
+        LoginPsw = loginPsw;
     }
 
     public String getName() {
@@ -83,14 +103,6 @@ public class Expert implements Serializable {
         GoodField = goodField;
     }
 
-//    public int getAnswerCount() {
-//        return AnswerCount;
-//    }
-//
-//    public void setAnswerCount(int answerCount) {
-//        AnswerCount = answerCount;
-//    }
-
     public List<Case> getCases() {
         return Cases;
     }
@@ -137,5 +149,21 @@ public class Expert implements Serializable {
 
     public void setQq(String qq) {
         Qq = qq;
+    }
+
+    public List<User> getMyLoveUser() {
+        return MyLoveUser;
+    }
+
+    public void setMyLoveUser(List<User> myLoveUser) {
+        MyLoveUser = myLoveUser;
+    }
+
+    public List<Subject> getSubjects() {
+        return Subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        Subjects = subjects;
     }
 }

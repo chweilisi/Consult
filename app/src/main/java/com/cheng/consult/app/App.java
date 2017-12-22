@@ -7,6 +7,8 @@ import android.support.multidex.MultiDexApplication;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.cheng.consult.utils.PreUtils;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,6 +25,7 @@ public class App extends MultiDexApplication {
     private static float mScaledDensity;
     private static int mWidth;
     private static int mHeight;
+    public static PreUtils mUserInfo;
     /**
      * 主线程ID
      */
@@ -72,6 +75,7 @@ public class App extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         mApp = this;
+        mUserInfo = PreUtils.getInstance(getApplication());
         runningActivity = new ArrayList<WeakReference<Activity>>();
         activityList = new ArrayList<>();
         mMainThreadId = android.os.Process.myTid();

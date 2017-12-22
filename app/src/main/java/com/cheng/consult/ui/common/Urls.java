@@ -26,8 +26,13 @@ public class Urls {
 
     public static final int PAZE_SIZE = 20;
 
-    public static final String HOST = "http://101.200.40.228:8080/public/api/";//"http://172.31.84.124:8081/api/";//http://c.m.163.com/";
-    public static final String LOGIN = "login/ex_login.do";
+    public static final String HOST_TEST = "http://172.31.84.124:8081/api";
+    public static final String HOST = "http://101.200.40.228:8080/public/api";
+    public static final String USER = "/user";
+    public static final String QUESTION = "/case";
+    public static final String EXPERT = "/expert";
+    public static final String LOVEEXPERT = "/expert/gz";
+
     public static final String END_URL = "-" + PAZE_SIZE + ".html";
     public static final String END_DETAIL_URL = "/full.html";
     // 头条
