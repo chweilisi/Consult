@@ -18,6 +18,7 @@ public class Subject implements Serializable {
     private String Content;//问题正文
     private Date date;//问题日期
     private boolean IsAnswered;//是否已回答
+    private int QuestionCate;//问题所属领域
 
     //@ToMany(referencedJoinProperty = "OwnerSubjectId")
     private List<SubjectItem> Items;//问题内容
@@ -86,6 +87,14 @@ public class Subject implements Serializable {
 
     public void setAnswered(boolean answered) {
         IsAnswered = answered;
+    }
+
+    public int getQuestionCate() {
+        return QuestionCate;
+    }
+
+    public void setQuestionCate(int questionCate) {
+        QuestionCate = questionCate;
     }
 
     public List<SubjectItem> getItems() {

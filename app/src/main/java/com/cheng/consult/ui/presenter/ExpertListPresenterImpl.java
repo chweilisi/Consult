@@ -35,7 +35,7 @@ public class ExpertListPresenterImpl implements ExpertListPresenter {
         //other method to implement
         //mNewsModel.loadNews(url, type, this);
         //replace implement class interface
-        mModel.loadExpertList(url, pageIndex, Urls.PAZE_SIZE, userId, expertCate, loadNewsListener);
+        mModel.loadExpertList(url, userId, pageIndex, Urls.PAZE_SIZE, expertCate, loadNewsListener);
     }
 
     OnLoadExpertsListListener loadNewsListener = new OnLoadExpertsListListener(){
