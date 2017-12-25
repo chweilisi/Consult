@@ -23,27 +23,29 @@ import com.cheng.consult.ui.view.SearchActivity;
  */
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
+    private LinearLayout searchView;
     private LinearLayout mQueryExp;
     private LinearLayout mQueryField;
     private LinearLayout mHistoryQuestion;
     private LinearLayout mEssense;
     private Button mQuickAskBtn;
+    private LinearLayout mMyLoveExperts;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.homefrag_layout, null, false);
-        LinearLayout searchView = (LinearLayout)view.findViewById(R.id.homeFragment_search);
+        searchView = (LinearLayout)view.findViewById(R.id.homeFragment_search);
         searchView.setOnClickListener(this);
-        LinearLayout mQueryExp = (LinearLayout)view.findViewById(R.id.home_expert_icon);
+        mQueryExp = (LinearLayout)view.findViewById(R.id.home_expert_icon);
         mQueryExp.setOnClickListener(this);
-        LinearLayout mQueryField = (LinearLayout)view.findViewById(R.id.home_field_icon);
+        mQueryField = (LinearLayout)view.findViewById(R.id.home_field_icon);
         mQueryField.setOnClickListener(this);
-        LinearLayout mHistoryQuestion = (LinearLayout)view.findViewById(R.id.home_historyquest_icon);
+        mHistoryQuestion = (LinearLayout)view.findViewById(R.id.home_historyquest_icon);
         mHistoryQuestion.setOnClickListener(this);
-        LinearLayout mEssense = (LinearLayout)view.findViewById(R.id.essence_question_icon);
+        mEssense = (LinearLayout)view.findViewById(R.id.essence_question_icon);
         mEssense.setOnClickListener(this);
-        LinearLayout mMyLoveExperts = (LinearLayout)view.findViewById(R.id.home_my_expert_icon);
+        mMyLoveExperts = (LinearLayout)view.findViewById(R.id.home_my_expert_icon);
         mMyLoveExperts.setOnClickListener(this);
         mQuickAskBtn = (Button)view.findViewById(R.id.expert_detail_ask_button);
         mQuickAskBtn.setOnClickListener(this);

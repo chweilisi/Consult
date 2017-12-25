@@ -49,7 +49,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initViews(Bundle savedInstanceState) {
         pre = PreUtils.getInstance(mContext);
-        if(false/*1 == pre.getUserIsLogin()*/){
+        if(1 == pre.getUserIsLogin()){
             strUserName = pre.getUserLoginName();
             strPassword = pre.getUserLoginPsw();
             loginPassport();
