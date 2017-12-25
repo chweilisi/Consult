@@ -20,6 +20,23 @@
         <item>阿米巴模式</item>
     </string-array>
 
+    <string-array name="spinner_consult_category">
+        <item>请选择领域</item>
+        <item>战略咨询</item>
+        <item>转型升级</item>
+        <item>资本运作</item>
+        <item>系统管理</item>
+        <item>市场营销</item>
+        <item>精细生产</item>
+        <item>品质改善</item>
+        <item>成本管控</item>
+        <item>财务运做</item>
+        <item>薪酬绩效</item>
+        <item>团队建设</item>
+        <item>企业文化</item>
+        <item>阿米巴模式</item>
+    </string-array>
+
     <string name="defult_user_name">用户名</string>
     <string name="myfragment_my_expert_tip">我关注的专家</string>
     <string name="myfragment_my_profile_tip">我的资料</string>
@@ -58,6 +75,8 @@
     <string name="home_page_quick_ask">"快速问诊"</string>
 
     <string name="my_profile_error_toast">"请填写完整"</string>
+    <string name="my_question_cate_error_toast">"请选择问题领域"</string>
+    <string name="my_question_des_error_toast">"请填写问题内容"</string>
     <string name="login_hint_errorusertype">"请输入正确的用户名密码"</string>
 
 

@@ -26,6 +26,7 @@ public class App extends MultiDexApplication {
     private static int mWidth;
     private static int mHeight;
     public static PreUtils mUserInfo;
+    public static int mUserId;
     /**
      * 主线程ID
      */
@@ -76,6 +77,7 @@ public class App extends MultiDexApplication {
         super.onCreate();
         mApp = this;
         mUserInfo = PreUtils.getInstance(getApplication());
+        mUserId = new Long(mUserInfo.getUserId()).intValue();
         runningActivity = new ArrayList<WeakReference<Activity>>();
         activityList = new ArrayList<>();
         mMainThreadId = android.os.Process.myTid();

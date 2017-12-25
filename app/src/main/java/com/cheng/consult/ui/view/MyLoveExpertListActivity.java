@@ -44,7 +44,7 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
     @Override
     protected void initViews(Bundle savedInstanceState) {
 
-        mUserId = new Long(mApplication.mUserInfo.getUserId()).intValue();
+        mUserId = new Long(mApplication.mUserId).intValue();
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mSwipe   = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);

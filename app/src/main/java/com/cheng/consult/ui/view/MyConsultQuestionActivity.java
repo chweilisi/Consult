@@ -39,7 +39,7 @@ public class MyConsultQuestionActivity extends BaseActivity implements IMyQuesti
         mRecyclerView = (RecyclerView)findViewById(R.id.recycle_view);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mAdapter = new MyConsultQuestionAdapter(this);
-        mUserId = new Long(mApplication.mUserInfo.getUserId()).intValue();
+        mUserId = new Long(mApplication.mUserId).intValue();
 
         initView();
     }

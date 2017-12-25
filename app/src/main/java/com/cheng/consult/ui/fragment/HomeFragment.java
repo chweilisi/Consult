@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.cheng.consult.R;
+import com.cheng.consult.ui.view.AskExpertActivity;
 import com.cheng.consult.ui.view.ExpertCategoryActivity;
 import com.cheng.consult.ui.view.MyConsultQuestionActivity;
 import com.cheng.consult.ui.view.MyLoveExpertListActivity;
@@ -44,6 +45,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         mEssense.setOnClickListener(this);
         LinearLayout mMyLoveExperts = (LinearLayout)view.findViewById(R.id.home_my_expert_icon);
         mMyLoveExperts.setOnClickListener(this);
+        mQuickAskBtn = (Button)view.findViewById(R.id.expert_detail_ask_button);
+        mQuickAskBtn.setOnClickListener(this);
 
 
         return view;
@@ -95,6 +98,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             {
                 //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content, new ConsultFragment()).commit();
                 Intent intent = new Intent(getActivity(), MyLoveExpertListActivity.class);
+                startActivity(intent);
+                if (getContext() instanceof Activity) {
+                    ((Activity) getContext()).overridePendingTransition(R.anim.slide_alpha_in, R.anim.slide_alpha_out);
+                }
+                break;
+            }
+            case R.id.expert_detail_ask_button:
+            {
+                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content, new ConsultFragment()).commit();
+                Intent intent = new Intent(getActivity(), AskExpertActivity.class);
                 startActivity(intent);
                 if (getContext() instanceof Activity) {
                     ((Activity) getContext()).overridePendingTransition(R.anim.slide_alpha_in, R.anim.slide_alpha_out);

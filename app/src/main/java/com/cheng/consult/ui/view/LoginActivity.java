@@ -121,6 +121,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         pre.setUserId(Long.parseLong(user.getId()));
                         pre.setUserIsLogin(1);
                         pre.setUserType(userType);
+                        //set userid
+                        mApplication.mUserId = Integer.parseInt(user.getId());
 
                         //start mainactivity
                         Intent intent = new Intent();//new Intent(this, MainActivity.class);

@@ -45,7 +45,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        mUserId = new Long(mApplication.mUserInfo.getUserId()).intValue();
+        mUserId = new Long(mApplication.mUserId).intValue();
         mToolbarTitle = getIntent().getStringExtra("cat");
         mExpertCategory     = getIntent().getIntExtra("position", 0);
 
