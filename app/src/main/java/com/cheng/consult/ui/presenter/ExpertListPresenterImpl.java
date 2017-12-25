@@ -23,7 +23,7 @@ public class ExpertListPresenterImpl implements ExpertListPresenter {
         mModel = new ExpertModelImpl();
     }
 
-    //每次必传userid，根据expertCate来区别是查询什么专家，如果expertCate为-1，就是查询对应领域专家
+    //每次必传userid，根据expertCate来区别是查询什么专家，如果expertCate不为-1，就是查询对应领域专家
     @Override
     public void loadExpertList(int userId, int expertCate, int pageIndex) {
         String url = (-1 == expertCate) ? (getLoveExpUrl(userId)) : (getCategoryExpUrl(expertCate));

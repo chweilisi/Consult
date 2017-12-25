@@ -46,6 +46,13 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:text="小大豆"/>
+            <ImageButton
+                android:id="@+id/button_focus"
+                android:layout_gravity="center_horizontal"
+                android:background="#00000000"
+                android:src="@drawable/follow_btn_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

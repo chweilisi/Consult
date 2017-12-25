@@ -79,7 +79,8 @@
     <string name="my_question_des_error_toast">"请填写问题内容"</string>
     <string name="login_hint_errorusertype">"请输入正确的用户名密码"</string>
 
-
+    <string name="my_focus_expert_toast">"已关注"</string>
+    <string name="my_cancel_focus_expert_toast">"已取消关注"</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_expert_category">ExpertCategoryActivity</string>
 </resources>

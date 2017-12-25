@@ -8,14 +8,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
+import com.cheng.consult.MainActivity;
 import com.cheng.consult.R;
 import com.cheng.consult.ui.adapter.ExpertListAdapter;
 import com.cheng.consult.db.table.Expert;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.ui.presenter.ExpertListPresenter;
 import com.cheng.consult.ui.presenter.ExpertListPresenterImpl;
+import com.cheng.consult.utils.OkHttpUtils;
 import com.cheng.consult.utils.PreUtils;
 import com.google.gson.Gson;
 
@@ -37,6 +41,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
     private ExpertListPresenter mPresenter;
     private PreUtils pre;
     private int mUserId;
+    private int isFocused = -1;
 
     @Override
     protected int getContentViewLayoutId() {
@@ -100,22 +105,77 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
             if (mData.size() <= 0) {
                 return;
             }
-            Expert expert = mAdapter.getExpItem(position);
-            //String id = expert.getId();
-            Intent intent = new Intent(ExpertListActivity.this, ExpertDetailActivity.class);
-            Gson gson = new Gson();
-            String data = gson.toJson(mData.get(position));
-            intent.putExtra("expert", data);
 
-            startActivity(intent);
-//            View transitionView = view.findViewById(R.id.ivExpert);
-//            ActivityOptionsCompat options =
-//                    ActivityOptionsCompat.makeSceneTransitionAnimation(ExpertListActivity.this,
-//                            transitionView, getString(R.string.transition_news_img));
+            final int pos = position;
+            OkHttpUtils.ResultCallback<String> checkCallback = new OkHttpUtils.ResultCallback<String>() {
+                @Override
+                public void onSuccess(String response) {
+                    Gson gson = new Gson();
+                    QueryFocusExpert user = gson.fromJson(response, QueryFocusExpert.class);
+
+                    isFocused = user.getIsFocused();
+
+                    Expert expert = mAdapter.getExpItem(pos);
+                    //String id = expert.getId();
+                    Intent intent = new Intent(ExpertListActivity.this, ExpertDetailActivity.class);
+                    Gson gson2 = new Gson();
+                    String data = gson2.toJson(mData.get(pos));
+                    intent.putExtra("expert", data);
+                    intent.putExtra("isFocused", isFocused);
+
+                    startActivity(intent);
+
+                }
+
+                @Override
+                public void onFailure(Exception e) {
+                    Toast.makeText(mContext, "查询专家详情失败", Toast.LENGTH_LONG).show();
+                }
+            };
+
+            List<OkHttpUtils.Param> params = new ArrayList<>();
+            try {
+                Long expId = mData.get(position).getId();
+
+                OkHttpUtils.Param expid = new OkHttpUtils.Param("focusExpertId", String.valueOf(expId));
+                OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","list");
+                OkHttpUtils.Param userid = new OkHttpUtils.Param("userid",String.valueOf(mUserId));
+
+                params.add(userid);
+                params.add(expid);
+                params.add(mothed);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            //查询是否关注专家
+            String checkFocusUrl = Urls.HOST_TEST + Urls.USER;
+            OkHttpUtils.post(checkFocusUrl, checkCallback, params);
+
+
+
+//            Expert expert = mAdapter.getExpItem(position);
+//            //String id = expert.getId();
+//            Intent intent = new Intent(ExpertListActivity.this, ExpertDetailActivity.class);
+//            Gson gson = new Gson();
+//            String data = gson.toJson(mData.get(position));
+//            intent.putExtra("expert", data);
 //
-//            ActivityCompat.startActivity(getApplicationContext(), intent, options.toBundle());
+//            startActivity(intent);
+
         }
     };
+
+    class QueryFocusExpert{
+        int isFocused;//0，1
+
+        public int getIsFocused() {
+            return isFocused;
+        }
+
+        public void setIsFocused(int isFocused) {
+            this.isFocused = isFocused;
+        }
+    }
 
     @Override
     public void onRefresh() {
