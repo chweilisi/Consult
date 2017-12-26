@@ -103,7 +103,7 @@ public class AskExpertActivity extends BaseActivity {
                     OkHttpUtils.Param des = new OkHttpUtils.Param("questionDes", qDes);
                     OkHttpUtils.Param qesCate = new OkHttpUtils.Param("questionCate", String.valueOf(questionCate));
                     OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","save");
-                    
+
                     paramList.add(userId);
                     paramList.add(title);
                     paramList.add(des);

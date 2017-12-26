@@ -26,7 +26,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExpertListActivity extends BaseActivity implements IExpertListView/*, SwipeRefreshLayout.OnRefreshListener*/ {
+public class ExpertListActivity extends BaseActivity implements IExpertListView, SwipeRefreshLayout.OnRefreshListener {
 
     private String mToolbarTitle;
     private int    mExpertCategory;
@@ -57,8 +57,8 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView/
         mPresenter = new ExpertListPresenterImpl(this);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        mSwipe   = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
-//        mSwipe.setOnRefreshListener(this);
+        mSwipe   = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
+        mSwipe.setOnRefreshListener(this);
 
         setSupportActionBar(mToolbar);
 
@@ -179,13 +179,13 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView/
         }
     }
 
-//    @Override
-//    public void onRefresh() {
+    @Override
+    public void onRefresh() {
 //        if(mData != null) {
 //            mData.clear();
 //        }
-//        mPresenter.loadExpertList(mUserId, mExpertCategory, mPageIndex);
-//    }
+        mPresenter.loadExpertList(mUserId, mExpertCategory, mPageIndex);
+    }
 
     private void initRecycler(){
         if(mData != null) {
@@ -196,7 +196,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView/
 
     @Override
     public void showProgress() {
-//        mSwipe.setRefreshing(true);
+        mSwipe.setRefreshing(true);
     }
 
     @Override
@@ -217,7 +217,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView/
 
     @Override
     public void hideProgress() {
-//        mSwipe.setRefreshing(false);
+        mSwipe.setRefreshing(false);
     }
 
     @Override

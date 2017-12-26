@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyLoveExpertListActivity extends BaseActivity implements IExpertListView/*, SwipeRefreshLayout.OnRefreshListener*/ {
+public class MyLoveExpertListActivity extends BaseActivity implements IExpertListView, SwipeRefreshLayout.OnRefreshListener {
 
     private RecyclerView mRecyclerView;
     private LinearLayoutManager layoutManager;
@@ -31,7 +31,7 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
     private ExpertListPresenter mPresenter;
 
     private Toolbar mToolbar;
-//    private SwipeRefreshLayout mSwipe;
+    private SwipeRefreshLayout mSwipe;
 
     //应该从登陆信息中读取，临时赋值
     private int mUserId = -1;
@@ -50,8 +50,8 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
         mUserId = new Long(mApplication.mUserId).intValue();
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        mSwipe   = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
-//        mSwipe.setOnRefreshListener(this);
+        mSwipe   = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
+        mSwipe.setOnRefreshListener(this);
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.myfragment_my_expert_tip));
@@ -168,7 +168,7 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
 
     @Override
     public void showProgress() {
-//        mSwipe.setRefreshing(true);
+        mSwipe.setRefreshing(true);
     }
 
     @Override
@@ -188,7 +188,7 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
 
     @Override
     public void hideProgress() {
-//        mSwipe.setRefreshing(false);
+        mSwipe.setRefreshing(false);
     }
 
     @Override
@@ -201,14 +201,14 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
         super.onResume();
         //initRecycler();
     }
-//    @Override
-//    public void onRefresh() {
+    @Override
+    public void onRefresh() {
 //        if(mData != null) {
 //            mData.clear();
 //        }
-//        //关注的专家，expertCate 要传-1
-//        mPresenter.loadExpertList(mUserId, mExpertCat, mPageIndex);
-//    }
+        //关注的专家，expertCate 要传-1
+        mPresenter.loadExpertList(mUserId, mExpertCat, mPageIndex);
+    }
 
     public void initRecycler() {
         if(mData != null) {
