@@ -54,7 +54,7 @@ public class ExpertListPresenterImpl implements ExpertListPresenter {
 
     //如果userId不为-1，则为查询我关注的专家url
     private String getLoveExpUrl(int userId){
-        return Urls.HOST_TEST + Urls.LOVEEXPERT;
+        return Urls.HOST_TEST + Urls.EXPERT;
     }
 
     //如果expertCate不为-1，则为查询领域专家url

@@ -26,7 +26,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExpertListActivity extends BaseActivity implements IExpertListView, SwipeRefreshLayout.OnRefreshListener {
+public class ExpertListActivity extends BaseActivity implements IExpertListView/*, SwipeRefreshLayout.OnRefreshListener*/ {
 
     private String mToolbarTitle;
     private int    mExpertCategory;
@@ -57,8 +57,8 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
         mPresenter = new ExpertListPresenterImpl(this);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mSwipe   = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
-        mSwipe.setOnRefreshListener(this);
+//        mSwipe   = (SwipeRefreshLayout)findViewById(R.id.swipe_refresh_layout);
+//        mSwipe.setOnRefreshListener(this);
 
         setSupportActionBar(mToolbar);
 
@@ -75,7 +75,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
 
         mRecycleView.addOnScrollListener(mOnScrollListener);
 
-        onRefresh();
+        initRecycler();
     }
 
     private RecyclerView.OnScrollListener mOnScrollListener = new RecyclerView.OnScrollListener() {
@@ -111,11 +111,11 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
                 @Override
                 public void onSuccess(String response) {
                     Gson gson = new Gson();
-                    QueryFocusExpert user = gson.fromJson(response, QueryFocusExpert.class);
+                    Expert user = gson.fromJson(response, Expert.class);
 
                     isFocused = user.getIsFocused();
 
-                    Expert expert = mAdapter.getExpItem(pos);
+                    //Expert expert = mAdapter.getExpItem(pos);
                     //String id = expert.getId();
                     Intent intent = new Intent(ExpertListActivity.this, ExpertDetailActivity.class);
                     Gson gson2 = new Gson();
@@ -138,7 +138,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
                 Long expId = mData.get(position).getId();
 
                 OkHttpUtils.Param expid = new OkHttpUtils.Param("focusExpertId", String.valueOf(expId));
-                OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","list");
+                OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","detail");
                 OkHttpUtils.Param userid = new OkHttpUtils.Param("userid",String.valueOf(mUserId));
 
                 params.add(userid);
@@ -148,17 +148,19 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
                 e.printStackTrace();
             }
             //查询是否关注专家
-            String checkFocusUrl = Urls.HOST_TEST + Urls.USER;
+            String checkFocusUrl = Urls.HOST_TEST + Urls.EXPERT;
             OkHttpUtils.post(checkFocusUrl, checkCallback, params);
 
 
 
-//            Expert expert = mAdapter.getExpItem(position);
-//            //String id = expert.getId();
+            //Expert expert = mAdapter.getExpItem(position);
+            //String id = expert.getId();
 //            Intent intent = new Intent(ExpertListActivity.this, ExpertDetailActivity.class);
 //            Gson gson = new Gson();
 //            String data = gson.toJson(mData.get(position));
+//            int isFocused = mData.get(position).getIsFocused();
 //            intent.putExtra("expert", data);
+//            intent.putExtra("isFocused", isFocused);
 //
 //            startActivity(intent);
 
@@ -166,7 +168,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
     };
 
     class QueryFocusExpert{
-        int isFocused;//0，1
+        int isFocused;//0：没有关注，1：已关注
 
         public int getIsFocused() {
             return isFocused;
@@ -177,8 +179,15 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
         }
     }
 
-    @Override
-    public void onRefresh() {
+//    @Override
+//    public void onRefresh() {
+//        if(mData != null) {
+//            mData.clear();
+//        }
+//        mPresenter.loadExpertList(mUserId, mExpertCategory, mPageIndex);
+//    }
+
+    private void initRecycler(){
         if(mData != null) {
             mData.clear();
         }
@@ -187,7 +196,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
 
     @Override
     public void showProgress() {
-        mSwipe.setRefreshing(true);
+//        mSwipe.setRefreshing(true);
     }
 
     @Override
@@ -208,7 +217,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
 
     @Override
     public void hideProgress() {
-        mSwipe.setRefreshing(false);
+//        mSwipe.setRefreshing(false);
     }
 
     @Override

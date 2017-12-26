@@ -63,6 +63,7 @@ public class ExpertDetailActivity extends BaseActivity {
         String data = getIntent().getStringExtra("expert");
         isFocused = getIntent().getIntExtra("isFocused", 0);
 
+        mFocusBtn = (ImageButton)findViewById(R.id.button_focus);
         //初始化是否关注图标
         if(isFocused == 0){//没有关注
             mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_normal));
@@ -75,32 +76,53 @@ public class ExpertDetailActivity extends BaseActivity {
         mExpert = gson.fromJson(data, Expert.class);
 
         //上传关注专家id
-        mFocusBtn = (ImageButton)findViewById(R.id.button_focus);
         mFocusBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                OkHttpUtils.ResultCallback<String> focusCallback = new OkHttpUtils.ResultCallback<String>() {
+                    @Override
+                    public void onSuccess(String response) {
+                        if(isFocused == 0){
+                            mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_normal));
+                            Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_cancel_focus_expert_toast), Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                        }else {
+                            mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_pressed));
+                            Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_focus_expert_toast), Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+
+                    }
+                };
                 //mclickNum = mclickNum + 1;
                 if(isFocused == 0){//点击前没有关注，则点击为加关注
                     //isFocusExpert = false;
                     isFocused = 1;
-                    mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_pressed));
-                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_focus_expert_toast), Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
+//                    mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_pressed));
+//                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_focus_expert_toast), Toast.LENGTH_SHORT);
+//                    toast.setGravity(Gravity.CENTER, 0, 0);
+//                    toast.show();
                 }else {//点击前已关注，则点击为取消关注
                     //isFocusExpert = true;
                     isFocused = 0;
-                    mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_normal));
-                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_cancel_focus_expert_toast), Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
+//                    mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_normal));
+//                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_cancel_focus_expert_toast), Toast.LENGTH_SHORT);
+//                    toast.setGravity(Gravity.CENTER, 0, 0);
+//                    toast.show();
                 }
 
                 List<OkHttpUtils.Param> params = new ArrayList<>();
                 try {
                     Long expId = mExpert.getId();
                     OkHttpUtils.Param expid = new OkHttpUtils.Param("focusExpertId", String.valueOf(expId));
-                    OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","save");
+                    OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","relation");
                     OkHttpUtils.Param userid = new OkHttpUtils.Param("userid",String.valueOf(mUserId));
 
                     if(isFocused == 1){
@@ -117,8 +139,8 @@ public class ExpertDetailActivity extends BaseActivity {
                     e.printStackTrace();
                 }
                 //更新关注状态
-                String sUrl = Urls.HOST_TEST + Urls.USER;
-                OkHttpUtils.post(sUrl, null, params);
+                String sUrl = Urls.HOST_TEST + Urls.EXPERT;
+                OkHttpUtils.post(sUrl, focusCallback, params);
             }
         });
 

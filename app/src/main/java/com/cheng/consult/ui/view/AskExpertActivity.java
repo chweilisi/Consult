@@ -68,18 +68,18 @@ public class AskExpertActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 paramList = new ArrayList<>();
-                //add user id
-                String id = String.valueOf(mApplication.mUserId);
-                OkHttpUtils.Param userId = new OkHttpUtils.Param("userId", id);
-                paramList.add(userId);
+//                //add user id
+//                String id = String.valueOf(mApplication.mUserId);
+//                OkHttpUtils.Param userId = new OkHttpUtils.Param("userId", id);
+//                paramList.add(userId);
                 //add post parameter question title
                 qTitle = mQuestionTitle.getText().toString().trim();
-                OkHttpUtils.Param param = new OkHttpUtils.Param("questionTitle", qTitle);
-                paramList.add(param);
+//                OkHttpUtils.Param param = new OkHttpUtils.Param("questionTitle", qTitle);
+//                paramList.add(param);
                 //add post parameter question des
                 qDes = mQuestionDes.getText().toString().trim();
-                OkHttpUtils.Param param1 = new OkHttpUtils.Param("questionDes", qDes);
-                paramList.add(param1);
+//                OkHttpUtils.Param param1 = new OkHttpUtils.Param("questionDes", qDes);
+//                paramList.add(param1);
 
                 if(-1 == questionCate || 0 == questionCate){
                     Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_question_cate_error_toast), Toast.LENGTH_SHORT);
@@ -89,11 +89,24 @@ public class AskExpertActivity extends BaseActivity {
                     Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_question_des_error_toast), Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
-                }else {
+                } else if(qTitle.isEmpty()){
+                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_question_title_error_toast), Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                } else{
                     //TODO submit question
                     String url = Urls.HOST_TEST + Urls.QUESTION;
+                    //add user id
+                    String id = String.valueOf(mApplication.mUserId);
+                    OkHttpUtils.Param userId = new OkHttpUtils.Param("userId", id);
+                    OkHttpUtils.Param title = new OkHttpUtils.Param("questionTitle", qTitle);
+                    OkHttpUtils.Param des = new OkHttpUtils.Param("questionDes", qDes);
                     OkHttpUtils.Param qesCate = new OkHttpUtils.Param("questionCate", String.valueOf(questionCate));
                     OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","save");
+                    
+                    paramList.add(userId);
+                    paramList.add(title);
+                    paramList.add(des);
                     paramList.add(qesCate);
                     paramList.add(mothed);
                     OkHttpUtils.post(url, null, paramList);

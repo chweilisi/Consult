@@ -30,6 +30,7 @@ public class Expert implements Serializable {
     private String Qq;//qq
     private List<User> MyLoveUser;//我关注的企业
     private List<Subject> Subjects;//我回答的问题
+    private int isFocused;//是否关注该专家，0：未关注；1：已关注
 
     public Long getId() {
         return Id;
@@ -165,5 +166,13 @@ public class Expert implements Serializable {
 
     public void setSubjects(List<Subject> subjects) {
         Subjects = subjects;
+    }
+
+    public int getIsFocused() {
+        return isFocused;
+    }
+
+    public void setIsFocused(int isFocused) {
+        this.isFocused = isFocused;
     }
 }
