@@ -157,6 +157,7 @@ public class ExpertDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ExpertDetailActivity.this, AskExpertActivity.class);
+                intent.putExtra("expertid", mExpert.getId());
                 startActivity(intent);
             }
         });

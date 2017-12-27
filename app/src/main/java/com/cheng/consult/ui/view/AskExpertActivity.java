@@ -37,6 +37,7 @@ public class AskExpertActivity extends BaseActivity {
     private Spinner cateSpinner;
     private int questionCate = -1;
     private boolean isFirstSelect = true;
+    private Long mExpertId;
 
     @Override
     protected int getContentViewLayoutId() {
@@ -45,6 +46,7 @@ public class AskExpertActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
+        mExpertId = getIntent().getLongExtra("expertid", -1);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -81,7 +83,7 @@ public class AskExpertActivity extends BaseActivity {
 //                OkHttpUtils.Param param1 = new OkHttpUtils.Param("questionDes", qDes);
 //                paramList.add(param1);
 
-                if(-1 == questionCate || 0 == questionCate){
+                if(-1 == questionCate/* || 0 == questionCate*/){
                     Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_question_cate_error_toast), Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
@@ -99,12 +101,14 @@ public class AskExpertActivity extends BaseActivity {
                     //add user id
                     String id = String.valueOf(mApplication.mUserId);
                     OkHttpUtils.Param userId = new OkHttpUtils.Param("userId", id);
+                    OkHttpUtils.Param expertid = new OkHttpUtils.Param("expertId", String.valueOf(mExpertId));
                     OkHttpUtils.Param title = new OkHttpUtils.Param("questionTitle", qTitle);
                     OkHttpUtils.Param des = new OkHttpUtils.Param("questionDes", qDes);
                     OkHttpUtils.Param qesCate = new OkHttpUtils.Param("questionCate", String.valueOf(questionCate));
                     OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","save");
 
                     paramList.add(userId);
+                    paramList.add(expertid);
                     paramList.add(title);
                     paramList.add(des);
                     paramList.add(qesCate);

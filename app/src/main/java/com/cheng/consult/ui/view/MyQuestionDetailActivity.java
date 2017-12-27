@@ -62,13 +62,9 @@ public class MyQuestionDetailActivity extends BaseActivity {
         layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mSubject = gson.fromJson(data, Subject.class);
-
-        mSubjectTitle.setText(mSubject.getTitle());
-        mSubjectDes.setText(mSubject.getContent());
 
         mQContent = mSubject.getItems();
-        if(null != mQContent) {
+        if(null != mQContent && mQContent.size() != 0) {
             mAdapter = new MyQuestionDetailAdapter(this, mQContent);
             mRecyclerView.setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
