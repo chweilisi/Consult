@@ -57,7 +57,7 @@ public class ExpertModelImpl implements ExpertModel {
             OkHttpUtils.Param expertCategory = new OkHttpUtils.Param("cateId", Integer.toString(cateId));
             OkHttpUtils.Param pagenum = new OkHttpUtils.Param("pagenum", Integer.toString(pageNum));
             OkHttpUtils.Param pagesize = new OkHttpUtils.Param("pagesize", Integer.toString(pageSize));
-            OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","list");
+            OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","listUser");
 
             params.add(user);
             params.add(expertCategory);

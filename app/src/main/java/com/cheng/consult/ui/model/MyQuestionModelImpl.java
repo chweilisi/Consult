@@ -44,7 +44,7 @@ public class MyQuestionModelImpl implements MyQuestionModel {
             OkHttpUtils.Param ismy = new OkHttpUtils.Param("ismine", "1");
             OkHttpUtils.Param cateid = new OkHttpUtils.Param("cateId", "-1");
 
-            OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","list");
+            OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","listUser");
 
             params.add(userid);
             params.add(pagenum);
