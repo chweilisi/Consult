@@ -29,9 +29,10 @@
                 android:layout_marginLeft="10dp"
                 android:maxLines="2"
                 android:textSize="20sp"
+                android:maxLength="50"
                 android:ellipsize="end"
                 android:background="@drawable/search_white_corner_shape"
-                android:hint="问题标题……"/>
+                android:hint="问题标题，最多输入50字"/>
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +68,8 @@
             android:id="@+id/question_des"
             android:textSize="20sp"
             android:scrollbars="vertical"
-            android:hint="问题描述……"
+            android:maxLength="300"
+            android:hint="问题描述，最多输入300字"
             android:background="@drawable/search_white_corner_shape"/>
 
         <Button
