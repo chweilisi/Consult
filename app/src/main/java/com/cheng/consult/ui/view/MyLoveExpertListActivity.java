@@ -62,7 +62,7 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new LoveExpertListAdapter(this);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setOnScrollListener(mOnScrollListener);
+        mRecyclerView.addOnScrollListener(mOnScrollListener);
         mAdapter.setOnExpListItemClickListener(listener);
 
         initRecycler();
