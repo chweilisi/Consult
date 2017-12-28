@@ -43,6 +43,7 @@ public class MyQuestionModelImpl implements MyQuestionModel {
             OkHttpUtils.Param isanswer = new OkHttpUtils.Param("isAnswered", "");
             OkHttpUtils.Param ismy = new OkHttpUtils.Param("ismine", "1");
             OkHttpUtils.Param cateid = new OkHttpUtils.Param("cateId", "-1");
+            OkHttpUtils.Param expid = new OkHttpUtils.Param("expertId", "-1");
 
             OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","listUser");
 
@@ -52,6 +53,7 @@ public class MyQuestionModelImpl implements MyQuestionModel {
             params.add(isanswer);
             params.add(ismy);
             params.add(cateid);
+            params.add(expid);
             params.add(mothed);
         } catch (Exception e) {
             e.printStackTrace();
