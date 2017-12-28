@@ -37,15 +37,21 @@ public class MyQuestionModelImpl implements MyQuestionModel {
 
         List<OkHttpUtils.Param> params = new ArrayList<>();
         try {
-            OkHttpUtils.Param user = new OkHttpUtils.Param("userId", String.valueOf(userId));
-            params.add(user);
-
+            OkHttpUtils.Param userid = new OkHttpUtils.Param("userId", String.valueOf(userId));
             OkHttpUtils.Param pagenum = new OkHttpUtils.Param("pagenum", Integer.toString(pageNum));
-            params.add(pagenum);
             OkHttpUtils.Param pagesize = new OkHttpUtils.Param("pagesize", Integer.toString(pageSize));
-            params.add(pagesize);
+            OkHttpUtils.Param isanswer = new OkHttpUtils.Param("isAnswered", "");
+            OkHttpUtils.Param ismy = new OkHttpUtils.Param("ismine", "1");
+            OkHttpUtils.Param cateid = new OkHttpUtils.Param("cateId", "-1");
 
             OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","list");
+
+            params.add(userid);
+            params.add(pagenum);
+            params.add(pagesize);
+            params.add(isanswer);
+            params.add(ismy);
+            params.add(cateid);
             params.add(mothed);
         } catch (Exception e) {
             e.printStackTrace();
