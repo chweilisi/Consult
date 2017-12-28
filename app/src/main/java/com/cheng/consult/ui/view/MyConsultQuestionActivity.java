@@ -51,6 +51,7 @@ public class MyConsultQuestionActivity extends BaseActivity implements IMyQuesti
         mAdapter.setOnQuestionListItemClickListener(listener);
 
         mRecyclerView.addOnScrollListener(mOnScrollListener);
+        //mRecyclerView.setFocusableInTouchMode(false);
 
         //add data
         refreshView();

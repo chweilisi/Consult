@@ -69,6 +69,8 @@ public class MyQuestionDetailActivity extends BaseActivity {
             mRecyclerView.setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
         }
+        //mRecyclerView.setFocusableInTouchMode(false);
+        //mRecyclerView.setNestedScrollingEnabled(false);
     }
 
     private class AnswerAdapter extends BaseAdapter{
