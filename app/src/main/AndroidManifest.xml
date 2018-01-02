@@ -58,10 +58,11 @@
             android:name=".ui.view.ExpertCategoryActivity"
             android:label="@string/title_activity_expert_category"
             android:theme="@style/AppTheme2" />
+        <activity android:name=".ui.view.MyProfileActivity"></activity>
         <activity
-            android:name=".ui.view.MyProfileActivity">
-
-        </activity>
+            android:name=".ui.view.AnswerItemDetailActivity"
+            android:label="@string/title_activity_answer_item_detail"
+            android:theme="@style/AppTheme2"></activity>
     </application>
 
 </manifest>

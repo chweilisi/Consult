@@ -23,6 +23,7 @@ import java.util.List;
 public class MyQuestionDetailAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private List<SubjectItem> mData;
+    private onAnswerItemClickListener mItemClickListener;
 
     public MyQuestionDetailAdapter(Context context, List<SubjectItem> data) {
         this.mContext = context;
@@ -50,6 +51,14 @@ public class MyQuestionDetailAdapter extends RecyclerView.Adapter {
         }
     }
 
+    public interface onAnswerItemClickListener{
+        public void onItemClick(View view, int position);
+    }
+
+    public void setOnAnswerItemClickListener(onAnswerItemClickListener listener){
+        this.mItemClickListener = listener;
+    }
+
     @Override
     public int getItemCount() {
         return ((mData.size() == 0) ? 1 : mData.size());
@@ -59,11 +68,17 @@ public class MyQuestionDetailAdapter extends RecyclerView.Adapter {
         public ImageView mImg;
 //        public TextView mTitle;
         public TextView mDesc;
-        public ItemViewHolder(View itemView) {
+        public ItemViewHolder(final View itemView) {
             super(itemView);
             mImg = (ImageView)itemView.findViewById(R.id.ivSubject);
 //            mTitle = (TextView)itemView.findViewById(R.id.tvTitle);
             mDesc = (TextView)itemView.findViewById(R.id.tvDesc);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mItemClickListener.onItemClick(itemView, getAdapterPosition());
+                }
+            });
         }
     }
 }

@@ -1,5 +1,6 @@
 package com.cheng.consult.ui.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,7 +32,8 @@ public class MyQuestionDetailActivity extends BaseActivity {
     private TextView mSubjectTitle;
     private TextView mSubjectDes;
     private ListView mListView;
-    private AnswerAdapter mLvAdapter;
+    private String mSubjectData;
+    //private AnswerAdapter mLvAdapter;
 
     @Override
     protected int getContentViewLayoutId() {
@@ -46,9 +48,9 @@ public class MyQuestionDetailActivity extends BaseActivity {
         //mListView = (ListView)findViewById(R.id.list_view);
 
         //获取activity传递数据
-        String data = getIntent().getStringExtra("subject");
+        mSubjectData = getIntent().getStringExtra("subject");
         Gson gson = new Gson();
-        mSubject = gson.fromJson(data, Subject.class);
+        mSubject = gson.fromJson(mSubjectData, Subject.class);
         mQContent = mSubject.getItems();
 
         //设置问题标题 正文
@@ -67,12 +69,22 @@ public class MyQuestionDetailActivity extends BaseActivity {
         if(null != mQContent && mQContent.size() != 0) {
             mAdapter = new MyQuestionDetailAdapter(this, mQContent);
             mRecyclerView.setAdapter(mAdapter);
+            mAdapter.setOnAnswerItemClickListener(listener);
             mAdapter.notifyDataSetChanged();
         }
         //mRecyclerView.setFocusableInTouchMode(false);
         //mRecyclerView.setNestedScrollingEnabled(false);
     }
 
+    private MyQuestionDetailAdapter.onAnswerItemClickListener listener = new MyQuestionDetailAdapter.onAnswerItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            Intent intent = new Intent(mContext, AnswerItemDetailActivity.class);
+            intent.putExtra("answer_content", mSubject.getItems().get(position).getContent());
+            startActivity(intent);
+        }
+    };
+/*
     private class AnswerAdapter extends BaseAdapter{
         @Override
         public int getCount() {
@@ -113,5 +125,5 @@ public class MyQuestionDetailActivity extends BaseActivity {
             TextView tvAnswer;
         }
     }
-
+*/
 }
