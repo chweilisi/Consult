@@ -71,25 +71,4 @@ public class ExpertModelImpl implements ExpertModel {
         OkHttpUtils.post(url, loadExpertCallback, params);
     }
 
-    private String getID(int type) {
-        String id;
-        switch (type) {
-            case 0:
-                id = Urls.TOP_ID;
-                break;
-            case 1:
-                id = Urls.NBA_ID;
-                break;
-            case 2:
-                id = Urls.CAR_ID;
-                break;
-            case 3:
-                id = Urls.JOKE_ID;
-                break;
-            default:
-                id = Urls.TOP_ID;
-                break;
-        }
-        return id;
-    }
 }

@@ -2,6 +2,7 @@ package com.cheng.consult.ui.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cheng.consult.R;
 import com.cheng.consult.ui.view.AskExpertActivity;
@@ -17,6 +20,12 @@ import com.cheng.consult.ui.view.ExpertCategoryActivity;
 import com.cheng.consult.ui.view.MyConsultQuestionActivity;
 import com.cheng.consult.ui.view.MyLoveExpertListActivity;
 import com.cheng.consult.ui.view.SearchActivity;
+import com.cheng.consult.utils.LogUtils;
+import com.cheng.consult.utils.ToolsUtils;
+
+import java.net.URISyntaxException;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by cheng on 2017/11/13.
@@ -30,6 +39,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private LinearLayout mEssense;
     private Button mQuickAskBtn;
     private LinearLayout mMyLoveExperts;
+    private TextView mSearchBar;
 
     @Nullable
     @Override
@@ -49,6 +59,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         mMyLoveExperts.setOnClickListener(this);
         mQuickAskBtn = (Button)view.findViewById(R.id.expert_detail_ask_button);
         mQuickAskBtn.setOnClickListener(this);
+        mSearchBar = (TextView)view.findViewById(R.id.search_expert_question);
 
 
         return view;
@@ -108,12 +119,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             }
             case R.id.expert_detail_ask_button:
             {
-                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.content, new ConsultFragment()).commit();
-                Intent intent = new Intent(getActivity(), AskExpertActivity.class);
-                startActivity(intent);
-                if (getContext() instanceof Activity) {
-                    ((Activity) getContext()).overridePendingTransition(R.anim.slide_alpha_in, R.anim.slide_alpha_out);
-                }
+//                Intent intent = new Intent(getActivity(), AskExpertActivity.class);
+//                startActivity(intent);
+//                if (getContext() instanceof Activity) {
+//                    ((Activity) getContext()).overridePendingTransition(R.anim.slide_alpha_in, R.anim.slide_alpha_out);
+//                }
+
+                showFileChooser();
+
                 break;
             }
             default:
@@ -121,4 +134,59 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         }
 
     }
+
+    String filepath = "";
+    String filename = "";
+
+    private static final int FILE_SELECT_CODE = 0;
+
+    /** 调用文件选择软件来选择文件 **/
+    private void showFileChooser() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        try {
+            startActivityForResult(Intent.createChooser(intent, "请选择一个要上传的文件"),
+                    FILE_SELECT_CODE);
+        } catch (android.content.ActivityNotFoundException ex) {
+            // Potentially direct the user to the Market with a Dialog
+            Toast.makeText(getActivity(), "请安装文件管理器", Toast.LENGTH_SHORT)
+                    .show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case FILE_SELECT_CODE:
+                if (resultCode == RESULT_OK) {
+                    // Get the Uri of the selected file
+                    Uri uri = data.getData();
+                    //LogUtils.d(TAG, "File Uri: " + uri.toString());
+
+                    // Get the path
+                    String path = null;
+                    try {
+                        path = ToolsUtils.getPath(getContext(), uri);
+
+                        filename = path.substring(path.lastIndexOf("/") + 1);
+                        mSearchBar.setText(path);
+                    } catch (URISyntaxException e) {
+                        //Log.e("TAG", e.toString());
+                        //e.printStackTrace();
+                        path = "";
+                    }
+                    filepath = path;
+                    //Log.d(TAG, "File Path: " + path);
+                    // Get the file instance
+                    // File file = new File(path);
+                    // Initiate the upload
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+
 }

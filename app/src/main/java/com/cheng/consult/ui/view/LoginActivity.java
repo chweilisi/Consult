@@ -98,7 +98,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     String userType = "";
     boolean isLoginSuccess = false;
     private void loginPassport(){
-        //TODO: 暂时不做网络登录，直接打开mainactivity
 
         OkHttpUtils.ResultCallback<String> loginCallback = new OkHttpUtils.ResultCallback<String>() {
             @Override
