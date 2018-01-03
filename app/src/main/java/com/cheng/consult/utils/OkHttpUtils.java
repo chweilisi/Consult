@@ -55,12 +55,7 @@ public class OkHttpUtils {
                 .readTimeout(30, TimeUnit.SECONDS)
                 .cache(new Cache(sdcache.getAbsoluteFile(), cacheSize));
         mOkHttpClient=builder.build();
-//        mOkHttpClient = new OkHttpClient();
-//        mOkHttpClient.setConnectTimeout(10, TimeUnit.SECONDS);
-//        mOkHttpClient.setWriteTimeout(10, TimeUnit.SECONDS);
-//        mOkHttpClient.setReadTimeout(30, TimeUnit.SECONDS);
-//        //cookie enabled
-//        mOkHttpClient.setCookieHandler(new CookieManager(null, CookiePolicy.ACCEPT_ORIGINAL_SERVER));
+
         mDelivery = new Handler(Looper.getMainLooper());
     }
 
@@ -78,6 +73,16 @@ public class OkHttpUtils {
 
     private void postRequest(String url, final ResultCallback callback, List<Param> params) {
         Request request = buildPostRequest(url, params);
+        deliveryResult(callback, request);
+    }
+
+    private void postUpload(String url, final ResultCallback callback, HashMap<String, Object> paramsMap) {
+        Request request = buildUploadRequest(url, paramsMap);
+        deliveryResult(callback, request);
+    }
+
+    private void postDownload(String url, final ResultCallback callback, List<Param> params){
+        Request request = buildDownloadRequest(url, params);
         deliveryResult(callback, request);
     }
 
@@ -104,39 +109,10 @@ public class OkHttpUtils {
                 }
             }
         }
-        /*
-        new Callback() {
-               @Override
-               public void onFailure(Request request, IOException e) {
-                   sendFailCallback(callback, e);
-               }
 
-               @Override
-               public void onResponse(Response response) throws IOException {
-                   try {
-                       String str = response.body().string();
-                       if (callback.mType == String.class) {
-                           sendSuccessCallBack(callback, str);
-                       } else {
-                           Object object = JsonUtils.deserialize(str, callback.mType);
-                           sendSuccessCallBack(callback, object);
-                       }
-                   } catch (final Exception e) {
-                       LogUtils.e(TAG, "convert json failure", e);
-                       sendFailCallback(callback, e);
-                   }
-
-               }
-           }
-           */
         );
 
 
-    }
-
-    private void postUpload(String url, final ResultCallback callback, HashMap<String, Object> paramsMap) {
-        Request request = buildUploadRequest(url, paramsMap);
-        deliveryResult(callback, request);
     }
 
     private void sendFailCallback(final ResultCallback callback, final Exception e) {
@@ -166,10 +142,6 @@ public class OkHttpUtils {
         MultipartBody.Builder builder = new MultipartBody.Builder();
         //设置类型
         builder.setType(MultipartBody.FORM);
-        //追加参数
-//        for (Param param : params) {
-//            builder.addFormDataPart(param.key, param.value);
-//        }
 
         for (String key : paramsMap.keySet()) {
             Object object = paramsMap.get(key);
@@ -188,6 +160,18 @@ public class OkHttpUtils {
         return request;
     }
 
+    private Request buildDownloadRequest(String url, List<Param> params){
+
+        FormBody.Builder fbb = new FormBody.Builder();
+        //追加参数
+        for (Param param : params) {
+            fbb.add(param.key, param.value);
+        }
+
+        Request request = new Request.Builder().url(url).post(fbb.build()).build();
+        return request;
+    }
+
     private Request buildPostRequest(String url, List<Param> params) {
         FormBody.Builder formbodybuild = new FormBody.Builder();
 
@@ -197,8 +181,6 @@ public class OkHttpUtils {
 
         return new Request.Builder().url(url).post(formbodybuild.build()).build();
     }
-
-
 
     /**********************对外接口************************/
 
@@ -232,19 +214,14 @@ public class OkHttpUtils {
     }
 
     public static void downloadFile(String url, String fileUrl, final String destFileDir, final ResultCallback callback, List<Param> params){
+        //getmInstance().postDownload(url, callback, params);
 
         final File file = new File(destFileDir, fileUrl);
         if (file.exists()) {
-
             return;
         }
-        FormBody.Builder fbb = new FormBody.Builder();
-        //追加参数
-        for (Param param : params) {
-            fbb.add(param.key, param.value);
-        }
 
-        Request request = new Request.Builder().url(fileUrl).post(fbb.build()).build();
+        Request request = getmInstance().buildDownloadRequest(url, params);
 
         final Call call = mInstance.mOkHttpClient.newCall(request);
         call.enqueue(new Callback() {
