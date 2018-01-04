@@ -1,6 +1,7 @@
 package com.cheng.consult.ui.model;
 
 import com.cheng.consult.db.table.Expert;
+import com.cheng.consult.ui.common.PostCommonHead;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.utils.ExpertJsonUtils;
 import com.cheng.consult.utils.OkHttpUtils;
@@ -10,7 +11,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,6 +22,46 @@ import java.util.List;
  */
 
 public class ExpertModelImpl implements ExpertModel {
+
+    class ExpertListStatus{
+        String resultJson;
+        String resultMess;
+        String resultCode;
+        String resultDate;
+
+        public String getResultJson() {
+            return resultJson;
+        }
+
+        public void setResultJson(String resultJson) {
+            this.resultJson = resultJson;
+        }
+
+        public String getResultMess() {
+            return resultMess;
+        }
+
+        public void setResultMess(String resultMess) {
+            this.resultMess = resultMess;
+        }
+
+        public String getResultCode() {
+            return resultCode;
+        }
+
+        public void setResultCode(String resultCode) {
+            this.resultCode = resultCode;
+        }
+
+        public String getResultDate() {
+            return resultDate;
+        }
+
+        public void setResultDate(String resultDate) {
+            this.resultDate = resultDate;
+        }
+    }
+
     @Override
     /*
     public void loadExpertList(String url, final int type, final OnLoadExpertsListListener listener) {
@@ -41,7 +85,9 @@ public class ExpertModelImpl implements ExpertModel {
             @Override
             public void onSuccess(String response) {
                 Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
-                List<Expert> experts = gson.fromJson(response, new TypeToken<List<Expert>>() {}.getType());
+                //List<Expert> experts = gson.fromJson(response, new TypeToken<List<Expert>>() {}.getType());
+                ExpertListStatus result = gson.fromJson(response, ExpertListStatus.class);
+                List<Expert> experts = gson.fromJson(result.getResultJson(), new TypeToken<List<Expert>>() {}.getType());
                 listener.onSuccess(experts);
             }
 
@@ -51,6 +97,7 @@ public class ExpertModelImpl implements ExpertModel {
             }
         };
 
+/*
         List<OkHttpUtils.Param> params = new ArrayList<>();
         try {
             OkHttpUtils.Param user = new OkHttpUtils.Param("userId", Integer.toString(userId));
@@ -69,6 +116,42 @@ public class ExpertModelImpl implements ExpertModel {
         }
 
         OkHttpUtils.post(url, loadExpertCallback, params);
+*/
+        //json格式post参数测试
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateStr = dateFormat.format(date).toString();
+        ExpertListPostParam param = new ExpertListPostParam("1", "list", "jerry", dateStr, "9000",
+                Integer.toString(userId), Integer.toString(cateId), Integer.toString(pageNum), Integer.toString(pageSize)/*, "list"*/);
+        String postParamJsonStr = new Gson().toJson(param);
+        OkHttpUtils.postJson(url, loadExpertCallback, postParamJsonStr);
+    }
+
+    class ExpertListPostParam{
+        PostCommonHead.HEAD head;
+        BODY body;
+
+        public ExpertListPostParam(String signkey, String method, String signature, String requesttime, String appid,
+                                   String userid, String cateid, String pagenum, String pagesize/*, String bodymethod*/) {
+            this.head = new PostCommonHead.HEAD(signkey, method, signature, requesttime, appid);
+            this.body = new BODY(userid, cateid, pagenum, pagesize/*, bodymethod*/);
+        }
+
+        class BODY{
+            private String userId;
+            private String cateId;
+            private String pagenum;
+            private String pagesize;
+            //private String method;
+
+            public BODY(String userId, String cateId, String pagenum, String pagesize/*, String bodymethod*/) {
+                this.userId = userId;
+                this.cateId = cateId;
+                this.pagenum = pagenum;
+                this.pagesize = pagesize;
+                //this.method = bodymethod;
+            }
+        }
     }
 
 }

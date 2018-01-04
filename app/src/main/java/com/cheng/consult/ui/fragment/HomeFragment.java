@@ -15,15 +15,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cheng.consult.R;
-import com.cheng.consult.ui.view.AskExpertActivity;
+import com.cheng.consult.ui.common.PostCommonHead;
 import com.cheng.consult.ui.view.ExpertCategoryActivity;
 import com.cheng.consult.ui.view.MyConsultQuestionActivity;
 import com.cheng.consult.ui.view.MyLoveExpertListActivity;
 import com.cheng.consult.ui.view.SearchActivity;
-import com.cheng.consult.utils.LogUtils;
 import com.cheng.consult.utils.ToolsUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -126,7 +130,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 //                }
 
                 showFileChooser();
-
                 break;
             }
             default:

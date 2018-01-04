@@ -29,6 +29,7 @@ import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -76,6 +77,11 @@ public class OkHttpUtils {
         deliveryResult(callback, request);
     }
 
+    private void buildJsonPostRequest(String url, final ResultCallback callback, String json) {
+        Request request = buildJsonPostRequest(url, json);
+        deliveryResult(callback, request);
+    }
+
     private void postUpload(String url, final ResultCallback callback, HashMap<String, Object> paramsMap) {
         Request request = buildUploadRequest(url, paramsMap);
         deliveryResult(callback, request);
@@ -96,6 +102,12 @@ public class OkHttpUtils {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
+                    boolean is = response.isSuccessful();
+                    String mes = response.message();
+                    String he = response.headers().toString();
+                    int cod = response.code();
+                    String netResp = response.networkResponse().toString();
+
                     String str = response.body().string();
                     if (callback.mType == String.class) {
                         sendSuccessCallBack(callback, str);
@@ -182,6 +194,13 @@ public class OkHttpUtils {
         return new Request.Builder().url(url).post(formbodybuild.build()).build();
     }
 
+    private Request buildJsonPostRequest(String url, String json) {
+        final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody rb = RequestBody.create(JSON, json);
+
+        return new Request.Builder().url(url).post(rb).build();
+    }
+
     /**********************对外接口************************/
 
     /**
@@ -203,6 +222,11 @@ public class OkHttpUtils {
         getmInstance().postRequest(url, callback, params);
     }
 
+
+    public static void postJson(String url, final ResultCallback callback, String json) {
+        getmInstance().buildJsonPostRequest(url, callback, json);
+    }
+
     /**
      *
      * @param url 请求url
@@ -213,6 +237,14 @@ public class OkHttpUtils {
         getmInstance().postUpload(url, callback, paramsMap);
     }
 
+    /**
+     *
+     * @param url
+     * @param fileUrl
+     * @param destFileDir
+     * @param callback
+     * @param params
+     */
     public static void downloadFile(String url, String fileUrl, final String destFileDir, final ResultCallback callback, List<Param> params){
         //getmInstance().postDownload(url, callback, params);
 
