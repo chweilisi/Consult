@@ -2,6 +2,7 @@ package com.cheng.consult.ui.model;
 
 import com.cheng.consult.db.table.Expert;
 import com.cheng.consult.ui.common.PostCommonHead;
+import com.cheng.consult.ui.common.PostResponseBodyJson;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.utils.ExpertJsonUtils;
 import com.cheng.consult.utils.OkHttpUtils;
@@ -86,7 +87,7 @@ public class ExpertModelImpl implements ExpertModel {
             public void onSuccess(String response) {
                 Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
                 //List<Expert> experts = gson.fromJson(response, new TypeToken<List<Expert>>() {}.getType());
-                ExpertListStatus result = gson.fromJson(response, ExpertListStatus.class);
+                PostResponseBodyJson result = gson.fromJson(response, PostResponseBodyJson.class);
                 List<Expert> experts = gson.fromJson(result.getResultJson(), new TypeToken<List<Expert>>() {}.getType());
                 listener.onSuccess(experts);
             }
