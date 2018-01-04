@@ -87,12 +87,12 @@ public class AskExpertActivity extends BaseActivity {
                     Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_question_cate_error_toast), Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
-                } else if(qDes.isEmpty()){
-                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_question_des_error_toast), Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
                 } else if(qTitle.isEmpty()){
                     Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_question_title_error_toast), Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                } else if(qDes.isEmpty()){
+                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_question_des_error_toast), Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 } else{

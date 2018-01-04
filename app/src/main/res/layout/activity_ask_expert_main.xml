@@ -16,6 +16,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:text="选择领域"/>
+
+            <Spinner
+                android:id="@+id/cat_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dialog">
+
+            </Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -33,26 +53,6 @@
                 android:ellipsize="end"
                 android:background="@drawable/search_white_corner_shape"
                 android:hint="问题标题，最多输入50字"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="选择领域"/>
-
-            <Spinner
-                android:id="@+id/cat_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dialog">
-
-            </Spinner>
         </LinearLayout>
 
         <TextView
