@@ -9,11 +9,12 @@ import java.util.List;
 
 public class User implements Serializable {
     //@Id(autoincrement = true)
-    private Long Id;//会员id
+    private String UserId;//企业会员id
 
     private String LoginName;
-
     private String Password;//登录密码
+    private String LoginId;//用户登录id
+    private String PhoneNumber;//电话
 
     private String Name;//企业名称
     private int Industry;//所属行业
@@ -37,12 +38,12 @@ public class User implements Serializable {
     //@ToMany(referencedJoinProperty = "Id")
     private List<Expert> LoveExperts;//关注的专家
 
-    public Long getId() {
-        return Id;
+    public String getUserId() {
+        return UserId;
     }
 
-    public void setId(Long id) {
-        Id = id;
+    public void setUserId(String userId) {
+        UserId = userId;
     }
 
     public String getLoginName() {
@@ -59,6 +60,22 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         Password = password;
+    }
+
+    public String getLoginId() {
+        return LoginId;
+    }
+
+    public void setLoginId(String loginId) {
+        LoginId = loginId;
+    }
+
+    public String getPhoneNumber() {
+        return PhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        PhoneNumber = phoneNumber;
     }
 
     public String getName() {

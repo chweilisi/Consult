@@ -226,7 +226,7 @@ public class PreUtils {
         return mPre.getString("saleMode", "1");
     }
 
-    //login associated
+    //login & regist associated
     public void setUserLoginName(String id){
         mPre.edit().putString("loginusername", id).commit();
     }
@@ -234,19 +234,25 @@ public class PreUtils {
         return mPre.getString("loginusername", "");
     }
 
-    public void setUserId(Long id){
-        mPre.edit().putLong("userid", id).commit();
-    }
-
-    public Long getUserId(){
-        return mPre.getLong("userid", -1);
-    }
-
     public void setUserLoginPsw(String psw){
         mPre.edit().putString("userpsw", psw).commit();
     }
     public String getUserLoginPsw(){
         return mPre.getString("userpsw", "");
+    }
+
+    public void setLoginId(Long id){
+        mPre.edit().putLong("loginId", id).commit();
+    }
+    public Long getLoginId(){
+        return mPre.getLong("loginId", -1);
+    }
+
+    public void setUserId(Long id){
+        mPre.edit().putLong("userid", id).commit();
+    }
+    public Long getUserId(){
+        return mPre.getLong("userid", -1);
     }
 
     public void setUserIsLogin(int login){
@@ -261,6 +267,13 @@ public class PreUtils {
     }
     public String getUserType(){
         return mPre.getString("usertype", "");
+    }
+
+    public void setUserIsManager(String isManager){
+        mPre.edit().putString("isManager", isManager).commit();
+    }
+    public String getUserIsManager(){
+        return mPre.getString("isManager", "-1");
     }
 
     public void clearUserInfo(){

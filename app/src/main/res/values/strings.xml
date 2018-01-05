@@ -58,6 +58,7 @@
     <string name="title_activity_ask_expert">AskExpertActivity</string>
 
     <string name="sign_in">登录</string>
+    <string name="regist_user">注册</string>
     <string name="sign_in_account">账号</string>
     <string name="sign_in_password">密码</string>
     <string name="sign_in_account_hint">请输入手机号</string>
@@ -69,7 +70,8 @@
     <string name="sign_in_other">其他登录方式</string>
 
     <string name="login_hint_phonenumber">请输入手机号码</string>
-    <string name="register_tip_password">请输入正确的密码，6-20位</string>
+    <string name="login_tip_password">请输入正确的密码，6-12位</string>
+    <string name="register_tip_password">请输入注册用户密码，6-12位</string>
 
     <string name="reset_password_title">"重置"</string>
     <string name="home_page_quick_ask">"快速问诊"</string>
@@ -78,11 +80,26 @@
     <string name="my_question_cate_error_toast">"请选择问题领域"</string>
     <string name="my_question_des_error_toast">"请填写问题内容"</string>
     <string name="my_question_title_error_toast">"请填写问题标题"</string>
-    <string name="login_hint_errorusertype">"请输入正确的用户名密码"</string>
+    <string name="login_hint_error_user">"请输入正确的用户名密码，如果没有账号，请注册，谢谢！"</string>
+    <string name="login_hint_net_error">"登录失败，请检查网络！"</string>
 
     <string name="my_focus_expert_toast">"已关注"</string>
     <string name="my_cancel_focus_expert_toast">"已取消关注"</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_expert_category">ExpertCategoryActivity</string>
     <string name="title_activity_answer_item_detail">AnswerItemDetailActivity</string>
+    <string name="title_activity_regist_user">Regist</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 </resources>

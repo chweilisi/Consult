@@ -21,6 +21,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.cheng.consult.R;
+import com.cheng.consult.ui.common.PostCommonHead;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.utils.LogUtils;
 import com.cheng.consult.utils.OkHttpUtils;
@@ -230,6 +231,27 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
 
     }
 
+    class ProfilePostBean{
+        private PostCommonHead.HEAD head;
+        private ProfileBody body;
+
+        class ProfileBody{
+            private String loginId;//登录id
+            private String userId;//企业/用户id
+            private String name;//企业名称
+            private String phoneNum;//电话
+            private String industry;//所属行业
+            private String area;//所在区域
+            private String stablishDate;//成立日期
+            private String registCapital;//注册资金
+            private String employeNum;//雇员人数
+            private String Production;//主要产品
+            private String IsConsulted;//有无咨询经历,0:无；1：有
+            private String SalesArea;//销售区域 外销内销
+            private String SalesMode;//销售模式 代理商/经销商、终端客户、电商
+
+        }
+    }
     @Override
     protected void onStart() {
         super.onStart();

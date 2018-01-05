@@ -35,7 +35,7 @@
             android:text="@string/sign_in_account" />
 
         <EditText
-            android:id="@+id/login_username"
+            android:id="@+id/regist_username"
             style="@style/LoginEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +74,7 @@
             android:text="@string/sign_in_password" />
 
         <com.cheng.consult.widget.PwdShowLayout
-            android:id="@+id/login_password_layout"
+            android:id="@+id/regist_password_layout"
             style="@style/LoginEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,25 +104,15 @@
         android:textSize="@dimen/textsize_normal" />
 
     <Button
-        android:id="@+id/sign_in_btn"
+        android:id="@+id/regist_btn"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/search_all_bg"
-        android:text="@string/sign_in"
+        android:text="@string/regist_user"
         android:textColor="@android:color/white"
         android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tv_regist_user"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="@string/regist_user"
-        android:textColor="@color/blue"
-        android:textSize="@dimen/sn_16sp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

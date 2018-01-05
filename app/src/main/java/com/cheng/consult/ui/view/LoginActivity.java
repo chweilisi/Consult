@@ -15,17 +15,23 @@ import android.widget.Toast;
 import com.cheng.consult.MainActivity;
 import com.cheng.consult.R;
 import com.cheng.consult.db.table.User;
+import com.cheng.consult.ui.common.PostCommonHead;
+import com.cheng.consult.ui.common.PostResponseBodyJson;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.utils.OkHttpUtils;
 import com.cheng.consult.utils.PreUtils;
 import com.cheng.consult.utils.StringUtils;
 import com.cheng.consult.widget.PwdShowLayout;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +46,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private String strUserName;
     private String strPassword;
     private PreUtils pre;
+    private TextView mTvRegist;
 
     @Override
     protected int getContentViewLayoutId() {
@@ -54,6 +61,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             strPassword = pre.getUserLoginPsw();
             loginPassport();
         } else {
+            mTvRegist = (TextView)findViewById(R.id.tv_regist_user);
+            mTvRegist.setOnClickListener(this);
+
             mLoginBtn = (Button)findViewById(R.id.sign_in_btn);
             mToastTip = (TextView) findViewById(R.id.toast_tip);
 
@@ -80,6 +90,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         boolean cancel = false;
         switch (v.getId()){
             case R.id.sign_in_btn:
+            {
                 updateStateTV(-1);
                 //规范性检测
                 strUserName = mUserName.getText().toString();
@@ -88,10 +99,24 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     updateStateTV(R.string.login_hint_phonenumber);
                     focusView = mUserName;
                     cancel = true;
-                    break;
-                }
+                    return;
+                }/* else if(TextUtils.isEmpty(strPassword)){
+                    updateStateTV(R.string.login_tip_password);
+                    return;
+                }*/
                 //登录
                 loginPassport();
+                break;
+            }
+            case R.id.tv_regist_user:
+            {
+                Intent intent = new Intent();
+                intent.setClass(mContext, RegistActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            }
+
         }
     }
 
@@ -102,71 +127,103 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         OkHttpUtils.ResultCallback<String> loginCallback = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(String response) {
-                Gson gson = new Gson();
-                loginResultBean user = gson.fromJson(response, loginResultBean.class);
+                //format return json
+                PostResponseBodyJson result;
+                LoginResultJsonBean loginStatus;
+                Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+                if(null != response && !response.isEmpty()){
+                    result = gson.fromJson(response, PostResponseBodyJson.class);
+                    if((null != result.getResultJson()) && (!result.getResultJson().isEmpty())){
+                        loginStatus = gson.fromJson(result.getResultJson(), LoginResultJsonBean.class);
 
-                userType = user.getUserType();
-                isLoginSuccess = user.isLoginSuccess();
-                if(null != user){
-                    //TODO: for tmp use, login directlly
-                    if(100 != Integer.parseInt(userType) || !isLoginSuccess){
-                        Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.login_hint_errorusertype), Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                    } else {
-                        //save login user info
-                        pre.setUserLoginName(user.getLoginName());
-                        pre.setUserLoginPsw(user.getPassword());
-                        pre.setUserId(Long.parseLong(user.getId()));
-                        pre.setUserIsLogin(1);
-                        pre.setUserType(userType);
-                        //set userid
-                        mApplication.mUserId = Integer.parseInt(user.getId());
+                        userType = loginStatus.getUserType();
+                        isLoginSuccess = result.getResultCode().equalsIgnoreCase("200") ? true : false;
+                        if(100 != Integer.parseInt(userType) || !isLoginSuccess) {
+                            Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.login_hint_error_user), Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
+                        } else {
+                            //save login user info
+                            pre.setUserLoginName(loginStatus.getLoginName());
+                            pre.setUserLoginPsw(loginStatus.getLoginPsw());
+                            //pre.setUserId(Long.parseLong(loginStatus.getId()));
+                            pre.setUserIsManager(loginStatus.getIsManager());
+                            pre.setUserIsLogin(1);
+                            pre.setUserType(userType);
+                            //set userid to App, so, other activity can user it
+                            if(!loginStatus.getUserId().trim().isEmpty() && !loginStatus.getUserId().trim().equalsIgnoreCase("-1")){
+                                mApplication.mUserId = Integer.parseInt(loginStatus.getUserId());
+                            }
 
-                        //start mainactivity
-                        Intent intent = new Intent();//new Intent(this, MainActivity.class);
-                        intent.setClass(mContext, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                            //start mainactivity
+                            Intent intent = new Intent();
+                            intent.setClass(mContext, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
                     }
-
-
-                } else {
-                    Toast.makeText(mContext, "Error", Toast.LENGTH_LONG).show();
                 }
-
             }
 
             @Override
             public void onFailure(Exception e) {
-                Toast.makeText(mContext, "Error", Toast.LENGTH_LONG).show();
+                Toast.makeText(mContext, getResources().getText(R.string.login_hint_net_error), Toast.LENGTH_LONG).show();
             }
         };
         //Map<String, Object> params1 = new HashMap<String, Object>();
-        List<OkHttpUtils.Param> params = new ArrayList<>();
-        try {
+//        List<OkHttpUtils.Param> params = new ArrayList<>();
+//        try {
+//
+//            //params1.put("username", URLEncoder.encode(strUserName, "UTF-8"));
+//            //params1.put("password", URLEncoder.encode(strPassword, "UTF-8"));
+//            //params1.put("format", "json");
+//
+//            OkHttpUtils.Param userName = new OkHttpUtils.Param("username", URLEncoder.encode(strUserName, "UTF-8"));
+//            OkHttpUtils.Param passWord = new OkHttpUtils.Param("password", URLEncoder.encode(strPassword, "UTF-8"));
+//            OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","login");
+//            //OkHttpUtils.Param id = new OkHttpUtils.Param("id","");
+//
+//            params.add(userName);
+//            params.add(passWord);
+//            params.add(mothed);
+//            //params.add(id);
+//
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+        //OkHttpUtils.post(Urls.HOST_TEST + Urls.USER, loginCallback, params);
 
-            //params1.put("username", URLEncoder.encode(strUserName, "UTF-8"));
-            //params1.put("password", URLEncoder.encode(strPassword, "UTF-8"));
-            //params1.put("format", "json");
+        //json格式post参数
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateStr = dateFormat.format(date).toString();
+        LoginPostParam loginJson = new LoginPostParam("1", "login", mApplication.mAppSignature, dateStr, "9000",
+                String.valueOf(pre.getUserId()), strUserName, strPassword);
+        String loginParam = new Gson().toJson(loginJson);
+        //请求数据
+        OkHttpUtils.postJson(Urls.HOST_TEST + Urls.LOGIN, loginCallback, loginParam);
+    }
 
-            OkHttpUtils.Param userName = new OkHttpUtils.Param("username", URLEncoder.encode(strUserName, "UTF-8"));
-            OkHttpUtils.Param passWord = new OkHttpUtils.Param("password", URLEncoder.encode(strPassword, "UTF-8"));
-            OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","login");
-            //OkHttpUtils.Param id = new OkHttpUtils.Param("id","");
-
-            params.add(userName);
-            params.add(passWord);
-            params.add(mothed);
-            //params.add(id);
-
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+    class LoginPostParam{
+        private PostCommonHead.HEAD head;
+        private BODY body;
+        public LoginPostParam(String signkey, String method, String signature, String requesttime, String appid,
+                              String loginid, String loginname, String loginpass) {
+            this.head = new PostCommonHead.HEAD(signkey, method, signature, requesttime, appid);
+            this.body = new BODY(loginid, loginname, loginpass);
         }
-        OkHttpUtils.post(Urls.HOST_TEST + Urls.USER, loginCallback, params);
 
+        class BODY{
+            private String loginid;
+            private String loginname;
+            private String loginpass;
 
-
+            public BODY(String loginid, String loginname, String loginpass) {
+                this.loginid = loginid;
+                this.loginname = loginname;
+                this.loginpass = loginpass;
+            }
+        }
     }
 
     private void updateStateTV(int strID) {
@@ -184,6 +241,54 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         } else {
             mToastTip.setVisibility(View.VISIBLE);
             mToastTip.setText(str);
+        }
+    }
+
+    class LoginResultJsonBean{
+        private String isManager;
+        private String loginName;
+        private String loginPsw;
+        private String userType;
+        private String userId;
+
+        public String getIsManager() {
+            return isManager;
+        }
+
+        public void setIsManager(String isManager) {
+            this.isManager = isManager;
+        }
+
+        public String getLoginName() {
+            return loginName;
+        }
+
+        public void setLoginName(String loginName) {
+            this.loginName = loginName;
+        }
+
+        public String getLoginPsw() {
+            return loginPsw;
+        }
+
+        public void setLoginPsw(String loginPsw) {
+            this.loginPsw = loginPsw;
+        }
+
+        public String getUserType() {
+            return userType;
+        }
+
+        public void setUserType(String userType) {
+            this.userType = userType;
+        }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
         }
     }
 

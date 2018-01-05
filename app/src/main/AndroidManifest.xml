@@ -8,6 +8,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:name=".app.App"
         android:allowBackup="true"
@@ -58,11 +63,15 @@
             android:name=".ui.view.ExpertCategoryActivity"
             android:label="@string/title_activity_expert_category"
             android:theme="@style/AppTheme2" />
-        <activity android:name=".ui.view.MyProfileActivity"></activity>
+        <activity android:name=".ui.view.MyProfileActivity" />
         <activity
             android:name=".ui.view.AnswerItemDetailActivity"
             android:label="@string/title_activity_answer_item_detail"
-            android:theme="@style/AppTheme2"></activity>
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".RegistUserActivity"
+            android:label="@string/title_activity_regist_user" />
+        <activity android:name=".ui.view.RegistActivity"></activity>
     </application>
 
 </manifest>
