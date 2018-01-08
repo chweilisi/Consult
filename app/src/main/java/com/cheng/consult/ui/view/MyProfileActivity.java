@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cheng.consult.R;
@@ -26,24 +27,29 @@ import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.utils.LogUtils;
 import com.cheng.consult.utils.OkHttpUtils;
 import com.cheng.consult.utils.PreUtils;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MyProfileActivity extends BaseActivity implements View.OnTouchListener {
     private Toolbar mToolbar;
-    private EditText mUserName;
-    private EditText mPhoneNum;
-    private EditText mIndustry;
-    private EditText mArea;
+    private TextView mUserName;
+    private TextView mPhoneNum;
+    private TextView mIndustry;
+    private TextView mArea;
     private EditText mEstTime;
-    private EditText mCapital;
-    private EditText mEmployeeNum;
-    private EditText mProduction;
-    //private EditText mIsConsulted;
-    //private EditText mSaleArea;
-    //private EditText mSaleMode;
+    private TextView mCapital;
+    private TextView mEmployeeNum;
+    private TextView mProduction;
+    private TextView mUserCapitalTotal;
+    private TextView mUserLastYearSum;
+
     private RadioGroup mIsConslutedGroup;
     private RadioButton mConsulted;
     private RadioButton mNoConsulted;
@@ -60,13 +66,15 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
     private int saleMode = 0;
 
     //private DatePicker mDatePicker;
-    private EditText mEstYear;
-    private EditText mEstMonth;
+    private TextView mEstYear;
+    private TextView mEstMonth;
 
     private List<Integer> mEditTextLists;
     private List<OkHttpUtils.Param> mPostParams;
     private Button mSubmitBtn;
     private PreUtils mPreUtils;
+    private String mMyProfile;
+    private MyProfileBean mMyProfileBean;
 
     @Override
     protected int getContentViewLayoutId() {
@@ -75,40 +83,35 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
+        mMyProfile = getIntent().getStringExtra("myProfile");
+        Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+        mMyProfileBean = gson.fromJson(mMyProfile, MyProfileBean.class);
+
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.myfragment_my_profile_tip));
 
         mPreUtils = PreUtils.getInstance(mContext);
 
-        addEditTextIdToList();
+        //addEditTextIdToList();
 
-        mUserName = (EditText) findViewById(R.id.user_name);
-        //mUserName.setOnTouchListener(this);
-        mPhoneNum = (EditText)findViewById(R.id.user_phonenum);
-        //mPhoneNum.setOnTouchListener(this);
-        mIndustry = (EditText)findViewById(R.id.user_industry);
-        //mIndustry.setOnTouchListener(this);
-        mArea = (EditText)findViewById(R.id.user_area);
-        //mArea.setOnTouchListener(this);
-        //mEstTime = (EditText)findViewById(R.id.user_establish_time);
-        //mEstTime.setOnTouchListener(this);
-        mCapital = (EditText)findViewById(R.id.user_capital);
-        //mCapital.setOnTouchListener(this);
-        mEmployeeNum = (EditText)findViewById(R.id.user_employeenum);
-        //mEmployeeNum.setOnTouchListener(this);
-        mProduction = (EditText)findViewById(R.id.user_production);
-        //mProduction.setOnTouchListener(this);
-        //mIsConsulted = (EditText)findViewById(R.id.user_isconsulted);
-        //mIsConsulted.setOnTouchListener(this);
-        //mSaleArea = (EditText)findViewById(R.id.user_salearea);
-//        mSaleArea.setOnTouchListener(this);
-//        mSaleMode = (EditText)findViewById(R.id.user_salemode);
-//        mSaleMode.setOnTouchListener(this);
+        mUserName = (TextView) findViewById(R.id.user_name);
+        mPhoneNum = (TextView)findViewById(R.id.user_phonenum);
+        mIndustry = (TextView)findViewById(R.id.user_industry);
+        mArea = (TextView)findViewById(R.id.user_area);
+        mCapital = (TextView)findViewById(R.id.user_capital);
+        mEmployeeNum = (TextView)findViewById(R.id.user_employeenum);
+        mProduction = (TextView)findViewById(R.id.user_production);
+
+
+        mUserCapitalTotal = (TextView)findViewById(R.id.user_CapitalTotal);
+        mUserLastYearSum = (TextView)findViewById(R.id.user_LastYearSum);
+
+
 
         //成立时间
-        mEstYear = (EditText)findViewById(R.id.establish_year);
-        mEstMonth = (EditText)findViewById(R.id.establish_mouth);
+        mEstYear = (TextView)findViewById(R.id.establish_year);
+        mEstMonth = (TextView)findViewById(R.id.establish_mouth);
 //        mDatePicker = (DatePicker)findViewById(R.id.user_establish_time);
 //        resizePikcer(mDatePicker);//调整datepicker大小
 //        Calendar calendar = Calendar.getInstance();
@@ -126,153 +129,147 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
 
         //是否咨询过
         mIsConslutedGroup = (RadioGroup)findViewById(R.id.isconslut);
-        mIsConslutedGroup.setOnCheckedChangeListener(isConsultCheckListener);
+        //mIsConslutedGroup.setOnCheckedChangeListener(isConsultCheckListener);
         mConsulted = (RadioButton)findViewById(R.id.consulted);
         mNoConsulted = (RadioButton)findViewById(R.id.noconsulted);
 
         //销售区域
         mSaleArea = (RadioGroup)findViewById(R.id.user_salearea);
-        mSaleArea.setOnCheckedChangeListener(saleareaCheckListener);
+        //mSaleArea.setOnCheckedChangeListener(saleareaCheckListener);
         mSaleNative = (RadioButton)findViewById(R.id.salenative);
         mSaleOversea = (RadioButton)findViewById(R.id.saleoversea);
 
         //销售模式
         mSaleAgency = (CheckBox)findViewById(R.id.agency);
-        mSaleAgency.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    saleMode = 1;
-                    if(mSaleTerminal.isChecked()){
-                        saleMode += 2;
-                    }
-                    if(mSaleOnline.isChecked()){
-                        saleMode += 4;
-                    }
-                }else{
-                    saleMode = 0;
-                    if(mSaleTerminal.isChecked()){
-                        saleMode += 2;
-                    }
-                    if(mSaleOnline.isChecked()){
-                        saleMode += 4;
-                    }
-                }
-            }
-        });
+//        mSaleAgency.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if(isChecked){
+//                    saleMode = 1;
+//                    if(mSaleTerminal.isChecked()){
+//                        saleMode += 2;
+//                    }
+//                    if(mSaleOnline.isChecked()){
+//                        saleMode += 4;
+//                    }
+//                }else{
+//                    saleMode = 0;
+//                    if(mSaleTerminal.isChecked()){
+//                        saleMode += 2;
+//                    }
+//                    if(mSaleOnline.isChecked()){
+//                        saleMode += 4;
+//                    }
+//                }
+//            }
+//        });
         mSaleTerminal = (CheckBox)findViewById(R.id.terminal);
-        mSaleTerminal.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    saleMode = 2;
-                    if(mSaleAgency.isChecked()){
-                        saleMode += 1;
-                    }
-                    if(mSaleOnline.isChecked()){
-                        saleMode += 4;
-                    }
-                }else {
-                    saleMode = 0;
-                    if(mSaleAgency.isChecked()){
-                        saleMode += 1;
-                    }
-                    if(mSaleOnline.isChecked()){
-                        saleMode += 4;
-                    }
-                }
-            }
-        });
+//        mSaleTerminal.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if(isChecked){
+//                    saleMode = 2;
+//                    if(mSaleAgency.isChecked()){
+//                        saleMode += 1;
+//                    }
+//                    if(mSaleOnline.isChecked()){
+//                        saleMode += 4;
+//                    }
+//                }else {
+//                    saleMode = 0;
+//                    if(mSaleAgency.isChecked()){
+//                        saleMode += 1;
+//                    }
+//                    if(mSaleOnline.isChecked()){
+//                        saleMode += 4;
+//                    }
+//                }
+//            }
+//        });
         mSaleOnline = (CheckBox)findViewById(R.id.online);
-        mSaleOnline.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    saleMode = 4;
-                    if(mSaleAgency.isChecked()){
-                        saleMode += 1;
-                    }
-                    if(mSaleTerminal.isChecked()){
-                        saleMode += 2;
-                    }
-                }else {
-                    saleMode = 0;
-                    if(mSaleAgency.isChecked()){
-                        saleMode += 1;
-                    }
-                    if(mSaleTerminal.isChecked()){
-                        saleMode += 2;
-                    }
-                }
-            }
-        });
+//        mSaleOnline.setOnCheckedChangeListener(new CheckBox.OnCheckedChangeListener(){
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                if(isChecked){
+//                    saleMode = 4;
+//                    if(mSaleAgency.isChecked()){
+//                        saleMode += 1;
+//                    }
+//                    if(mSaleTerminal.isChecked()){
+//                        saleMode += 2;
+//                    }
+//                }else {
+//                    saleMode = 0;
+//                    if(mSaleAgency.isChecked()){
+//                        saleMode += 1;
+//                    }
+//                    if(mSaleTerminal.isChecked()){
+//                        saleMode += 2;
+//                    }
+//                }
+//            }
+//        });
 
         //submit user profiles
         mSubmitBtn = (Button)findViewById(R.id.submit);
-        mSubmitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!isProfileDone()){
-                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_profile_error_toast), Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
-                } else {
-                    addParams();//include user id
-                    saveUserProfile();
-                    String url = Urls.HOST_TEST + Urls.USER;
-                    OkHttpUtils.Param method = new OkHttpUtils.Param("method", "save");
-                    mPostParams.add(method);
+//        mSubmitBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(!isProfileDone()){
+//                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_profile_error_toast), Toast.LENGTH_SHORT);
+//                    toast.setGravity(Gravity.CENTER, 0, 0);
+//                    toast.show();
+//                } else {
+//                    addParams();//include user id
+//                    saveUserProfile();
+//                    String url = Urls.HOST_TEST + Urls.LOGIN;
+//                    OkHttpUtils.Param method = new OkHttpUtils.Param("method", "save");
+//                    mPostParams.add(method);
+//
+//                    //json格式post参数测试
+//                    Date date = new Date();
+//                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                    String dateStr = dateFormat.format(date).toString();
+//
+//                    PostCommonHead.HEAD beanHead = new PostCommonHead.HEAD("1", "updateCompany", "wisegoo", dateStr, "9000");
+//
+//                    ProfilePostBean bean = new ProfilePostBean(beanHead, mPreUtils.getUserLoginId(), "-1", mUserName.getText().toString().trim(),
+//                            mUserCapitalTotal.getText().toString().trim(), mPhoneNum.getText().toString().trim(), mIndustry.getText().toString().trim(),
+//                            mArea.getText().toString().trim(), mEstYear.getText().toString().trim() + "-" + mEstMonth.getText().toString().trim(),
+//                            mCapital.getText().toString().trim(), mEmployeeNum.getText().toString().trim(), mProduction.getText().toString().trim(),
+//                            mUserLastYearSum.getText().toString().trim(), mIsConsulted ? "true" : "false", saleArea, Integer.toString(saleMode));
+//                    String postParamJsonStr = new Gson().toJson(bean);
+//                    OkHttpUtils.postJson(url, null, postParamJsonStr);
+//                    OkHttpUtils.post(url, null, mPostParams);
+//                    finish();
+//                }
+//            }
+//        });
 
-                    OkHttpUtils.post(url, null, mPostParams);
-                    finish();
-                }
-            }
-        });
-
+        setMyProfileUi(mMyProfileBean);
     }
 
-    class ProfilePostBean{
-        private PostCommonHead.HEAD head;
-        private ProfileBody body;
-
-        class ProfileBody{
-            private String loginId;//登录id
-            private String userId;//企业/用户id
-            private String name;//企业名称
-            private String phoneNum;//电话
-            private String industry;//所属行业
-            private String area;//所在区域
-            private String stablishDate;//成立日期
-            private String registCapital;//注册资金
-            private String employeNum;//雇员人数
-            private String Production;//主要产品
-            private String IsConsulted;//有无咨询经历,0:无；1：有
-            private String SalesArea;//销售区域 外销内销
-            private String SalesMode;//销售模式 代理商/经销商、终端客户、电商
-
-        }
-    }
-    @Override
-    protected void onStart() {
-        super.onStart();
+    private void setMyProfileUi(MyProfileBean profile){
         //user profile
-        mUserName.setText(mPreUtils.getUserName());
-        mPhoneNum.setText(mPreUtils.getUserPhone());
-        mIndustry.setText(mPreUtils.getUserIndustry());
-        mArea.setText(mPreUtils.getUserArea());
+        mUserName.setText(profile.getName());
+        mPhoneNum.setText(profile.getPhoneNum());
+        mIndustry.setText(profile.getIndustry());
+        mArea.setText(profile.getArea());
 
-        String est = mPreUtils.getUserEstime();
+        String est = profile.getStablishDate();
         String estYear = est.substring(0, est.indexOf("-"));
         //LogUtils.v("MyProfileActivity", "indexof-=" + est.indexOf("-") + " estYear=" + estYear);
         String estMonth = est.substring(est.indexOf("-")+ 1);
         mEstYear.setText(estYear);
         mEstMonth.setText(estMonth);
 
-        mCapital.setText(mPreUtils.getUserCapital());
-        mEmployeeNum.setText(mPreUtils.getUserEmployeeNum());
-        mProduction.setText(mPreUtils.getUserProduction());
+        mCapital.setText(profile.getRegistCapital());
+        mEmployeeNum.setText(profile.getEmployeNum());
+        mProduction.setText(profile.getProduction());
+        mUserCapitalTotal.setText(profile.getCapitalTotal());
+        mUserLastYearSum.setText(profile.getLastYearSum());
 
-        String isConsult = mPreUtils.getUserIsConsulted();
+        String isConsult = profile.getIsConsulted();
         if(isConsult.equalsIgnoreCase("true")){
             mConsulted.setChecked(true);
             mNoConsulted.setChecked(false);
@@ -281,7 +278,7 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
             mNoConsulted.setChecked(true);
         }
 
-        String saleArea = mPreUtils.getUserSaleArea();
+        String saleArea = profile.getSalesArea();
         if(saleArea.equalsIgnoreCase("native")){
             mSaleNative.setChecked(true);
             mSaleOversea.setChecked(false);
@@ -289,11 +286,261 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
             mSaleNative.setChecked(false);
             mSaleOversea.setChecked(true);
         }
-        setSaleModeUi();
+        setSaleModeUi(profile);
     }
 
-    private void setSaleModeUi(){
-        int saleMode = Integer.parseInt(mPreUtils.getUserSaleMode());
+    class MyProfileBean{
+        private String loginId;//登录id
+        private String userId;//企业/用户id
+        private String name;//企业名称
+        private String capitalTotal;//资产总额
+        private String phoneNum;//电话
+        private String industry;//所属行业
+        private String area;//所在区域
+        private String stablishDate;//成立日期
+        private String registCapital;//注册资金
+        private String employeNum;//雇员人数
+        private String production;//主要产品
+        private String lastYearSum;//上年总产量
+        private String isConsulted;//有无咨询经历,0:无；1：有
+        private String salesArea;//销售区域 外销内销
+        private String salesMode;//销售模式 代理商/经销商、终端客户、电商
+
+        public MyProfileBean(String loginId, String userId, String name, String capitalTotal, String phoneNum, String industry, String area,
+                           String stablishDate, String registCapital, String employeNum, String production, String lastYearSum,
+                           String isConsulted, String salesArea, String salesMode) {
+            this.loginId = loginId;
+            this.userId = userId;
+            this.name = name;
+            this.capitalTotal = capitalTotal;
+            this.phoneNum = phoneNum;
+            this.industry = industry;
+            this.area = area;
+            this.stablishDate = stablishDate;
+            this.registCapital = registCapital;
+            this.employeNum = employeNum;
+            this.production = production;
+            this.lastYearSum = lastYearSum;
+            this.isConsulted = isConsulted;
+            this.salesArea = salesArea;
+            this.salesMode = salesMode;
+        }
+
+        public String getLoginId() {
+            return loginId;
+        }
+
+        public void setLoginId(String loginId) {
+            this.loginId = loginId;
+        }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public void setUserId(String userId) {
+            this.userId = userId;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getCapitalTotal() {
+            return capitalTotal;
+        }
+
+        public void setCapitalTotal(String capitalTotal) {
+            this.capitalTotal = capitalTotal;
+        }
+
+        public String getPhoneNum() {
+            return phoneNum;
+        }
+
+        public void setPhoneNum(String phoneNum) {
+            this.phoneNum = phoneNum;
+        }
+
+        public String getIndustry() {
+            return industry;
+        }
+
+        public void setIndustry(String industry) {
+            this.industry = industry;
+        }
+
+        public String getArea() {
+            return area;
+        }
+
+        public void setArea(String area) {
+            this.area = area;
+        }
+
+        public String getStablishDate() {
+            return stablishDate;
+        }
+
+        public void setStablishDate(String stablishDate) {
+            this.stablishDate = stablishDate;
+        }
+
+        public String getRegistCapital() {
+            return registCapital;
+        }
+
+        public void setRegistCapital(String registCapital) {
+            this.registCapital = registCapital;
+        }
+
+        public String getEmployeNum() {
+            return employeNum;
+        }
+
+        public void setEmployeNum(String employeNum) {
+            this.employeNum = employeNum;
+        }
+
+        public String getProduction() {
+            return production;
+        }
+
+        public void setProduction(String production) {
+            this.production = production;
+        }
+
+        public String getLastYearSum() {
+            return lastYearSum;
+        }
+
+        public void setLastYearSum(String lastYearSum) {
+            this.lastYearSum = lastYearSum;
+        }
+
+        public String getIsConsulted() {
+            return isConsulted;
+        }
+
+        public void setIsConsulted(String isConsulted) {
+            this.isConsulted = isConsulted;
+        }
+
+        public String getSalesArea() {
+            return salesArea;
+        }
+
+        public void setSalesArea(String salesArea) {
+            this.salesArea = salesArea;
+        }
+
+        public String getSalesMode() {
+            return salesMode;
+        }
+
+        public void setSalesMode(String salesMode) {
+            this.salesMode = salesMode;
+        }
+    }
+
+//    class ProfilePostBean{
+//        private PostCommonHead.HEAD head;
+//        private ProfileBody body;
+//
+//        public ProfilePostBean(PostCommonHead.HEAD head, String loginId, String userId, String name, String capitalTotal, String phoneNum,
+//                               String industry, String area, String stablishDate, String registCapital, String employeNum, String production,
+//                               String lastYearSum, String isConsulted, String salesArea, String salesMode) {
+//            this.head = head;
+//            this.body = new ProfileBody(loginId, userId, name, capitalTotal, phoneNum, industry, area, stablishDate, registCapital, employeNum, production,
+//                    lastYearSum, isConsulted, salesArea, salesMode);
+//        }
+//
+//        class ProfileBody{
+//            private String loginId;//登录id
+//            private String userId;//企业/用户id
+//            private String name;//企业名称
+//            private String capitalTotal;//资产总额
+//            private String phoneNum;//电话
+//            private String industry;//所属行业
+//            private String area;//所在区域
+//            private String stablishDate;//成立日期
+//            private String registCapital;//注册资金
+//            private String employeNum;//雇员人数
+//            private String production;//主要产品
+//            private String lastYearSum;//上年总产量
+//            private String isConsulted;//有无咨询经历,0:无；1：有
+//            private String salesArea;//销售区域 外销内销
+//            private String salesMode;//销售模式 代理商/经销商、终端客户、电商
+//
+//            public ProfileBody(String loginId, String userId, String name, String capitalTotal, String phoneNum, String industry, String area,
+//                               String stablishDate, String registCapital, String employeNum, String production, String lastYearSum,
+//                               String isConsulted, String salesArea, String salesMode) {
+//                this.loginId = loginId;
+//                this.userId = userId;
+//                this.name = name;
+//                this.capitalTotal = capitalTotal;
+//                this.phoneNum = phoneNum;
+//                this.industry = industry;
+//                this.area = area;
+//                this.stablishDate = stablishDate;
+//                this.registCapital = registCapital;
+//                this.employeNum = employeNum;
+//                this.production = production;
+//                this.lastYearSum = lastYearSum;
+//                this.isConsulted = isConsulted;
+//                this.salesArea = salesArea;
+//                this.salesMode = salesMode;
+//            }
+//        }
+//    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        //user profile
+//        mUserName.setText(mPreUtils.getUserName());
+//        mPhoneNum.setText(mPreUtils.getUserPhone());
+//        mIndustry.setText(mPreUtils.getUserIndustry());
+//        mArea.setText(mPreUtils.getUserArea());
+//
+//        String est = mPreUtils.getUserEstime();
+//        String estYear = est.substring(0, est.indexOf("-"));
+//        //LogUtils.v("MyProfileActivity", "indexof-=" + est.indexOf("-") + " estYear=" + estYear);
+//        String estMonth = est.substring(est.indexOf("-")+ 1);
+//        mEstYear.setText(estYear);
+//        mEstMonth.setText(estMonth);
+//
+//        mCapital.setText(mPreUtils.getUserCapital());
+//        mEmployeeNum.setText(mPreUtils.getUserEmployeeNum());
+//        mProduction.setText(mPreUtils.getUserProduction());
+//        mUserCapitalTotal.setText(mPreUtils.getUserCapitalTotal());
+//        mUserLastYearSum.setText(mPreUtils.getUserLastYearSum());
+//
+//        String isConsult = mPreUtils.getUserIsConsulted();
+//        if(isConsult.equalsIgnoreCase("true")){
+//            mConsulted.setChecked(true);
+//            mNoConsulted.setChecked(false);
+//        } else {
+//            mConsulted.setChecked(false);
+//            mNoConsulted.setChecked(true);
+//        }
+//
+//        String saleArea = mPreUtils.getUserSaleArea();
+//        if(saleArea.equalsIgnoreCase("native")){
+//            mSaleNative.setChecked(true);
+//            mSaleOversea.setChecked(false);
+//        }else {
+//            mSaleNative.setChecked(false);
+//            mSaleOversea.setChecked(true);
+//        }
+//        setSaleModeUi();
+//    }
+
+    private void setSaleModeUi(MyProfileBean profile){
+        int saleMode = Integer.parseInt(profile.getSalesMode());
         if(1 == saleMode){
             mSaleAgency.setChecked(true);
             mSaleTerminal.setChecked(false);
@@ -368,6 +615,8 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
         mPreUtils.setUserIndustry(mIndustry.getText().toString().trim());
         mPreUtils.setUserEmployeeNum(mEmployeeNum.getText().toString().trim());
         mPreUtils.setUserProduction(mProduction.getText().toString().trim());
+        mPreUtils.setUserCapitalTotal(mUserCapitalTotal.getText().toString().trim());
+        mPreUtils.setUserLastYearSum(mUserLastYearSum.getText().toString().trim());
         mPreUtils.setUserEstime(mEstYear.getText().toString().trim() + "-" + mEstMonth.getText().toString().trim());
         mPreUtils.setUserSaleArea(saleArea);
         mPreUtils.setUserIsConsulted((mIsConsulted ? "true" : "false"));
@@ -380,7 +629,7 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
         if((!mUserName.getText().toString().trim().equals("")) && (!mPhoneNum.getText().toString().trim().equals("")) && (!mArea.getText().toString().trim().equals("")) &&
                 (!mCapital.getText().toString().trim().equals("")) && (!mIndustry.getText().toString().trim().equals("")) && (!mEmployeeNum.getText().toString().trim().equals("")) &&
                 (!mProduction.getText().toString().trim().equals("")) && (!mEstYear.getText().toString().trim().equals("")) && (!mEstMonth.getText().toString().trim().equals("")) &&
-                (saleMode != 0)){
+                (!mUserCapitalTotal.getText().toString().trim().equals("")) && (!mUserLastYearSum.getText().toString().trim().equals("")) && (saleMode != 0)){
             result = true;
         }
         return result;

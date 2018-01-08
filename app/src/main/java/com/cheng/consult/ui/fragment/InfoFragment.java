@@ -12,11 +12,21 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.cheng.consult.R;
+import com.cheng.consult.ui.common.PostCommonHead;
+import com.cheng.consult.ui.common.PostResponseBodyJson;
+import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.ui.view.LoginActivity;
 import com.cheng.consult.ui.view.MyConsultQuestionActivity;
 import com.cheng.consult.ui.view.MyLoveExpertListActivity;
 import com.cheng.consult.ui.view.MyProfileActivity;
+import com.cheng.consult.utils.OkHttpUtils;
 import com.cheng.consult.utils.PreUtils;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static com.cheng.consult.app.App.mApp;
 
@@ -51,6 +61,7 @@ public class InfoFragment extends Fragment {
                 //pre.setUserIsLogin(-1);
                 mApp.rmAllActivity_();
                 //restoreUserInfo();
+
                 pre.clearUserInfo();
                 Intent intentLogin = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intentLogin);
@@ -80,11 +91,60 @@ public class InfoFragment extends Fragment {
         mMyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MyProfileActivity.class);
-                startActivity(intent);
+                OkHttpUtils.ResultCallback<String> myProfileResultCallback = new OkHttpUtils.ResultCallback<String>() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+                        PostResponseBodyJson result = gson.fromJson(response, PostResponseBodyJson.class);
+                        boolean issuccessed = result.getResultCode().equalsIgnoreCase("200");
+                        if(issuccessed && null != response && !response.isEmpty()){
+                            String myProfile = result.getResultJson();
+                            Intent intent = new Intent(getActivity(), MyProfileActivity.class);
+                            intent.putExtra("myProfile", myProfile);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+
+                    }
+                };
+
+                //json格式post参数测试
+                Date date = new Date();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String dateStr = dateFormat.format(date).toString();
+
+                String url = Urls.HOST_TEST + Urls.LOGIN;
+                PostCommonHead.HEAD beanHead = new PostCommonHead.HEAD("1", "getCompany", "wisegoo", dateStr, "9000");
+
+                ProfilePostBean bean = new ProfilePostBean(beanHead, pre.getUserLoginId(), String.valueOf(pre.getUserId()));
+                String postParamJsonStr = new Gson().toJson(bean);
+                OkHttpUtils.postJson(url, myProfileResultCallback, postParamJsonStr);
             }
         });
         return view;
+    }
+
+    class ProfilePostBean{
+        private PostCommonHead.HEAD head;
+        private ProfileBody body;
+        public ProfilePostBean(PostCommonHead.HEAD head, String loginId, String userId) {
+            this.head = head;
+            this.body = new ProfileBody(loginId, userId);
+        }
+
+        class ProfileBody{
+            private String loginId;//登录id
+            private String userId;//企业/用户id
+
+            public ProfileBody(String loginId, String userId) {
+                this.loginId = loginId;
+                this.userId = userId;
+            }
+
+        }
     }
 
     private void restoreUserInfo(){

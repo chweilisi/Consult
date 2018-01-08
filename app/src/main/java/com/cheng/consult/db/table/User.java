@@ -25,7 +25,7 @@ public class User implements Serializable {
     private Long CapitalTotal;//资产总额
     private String BussRange;//业务领域
     private String Production;//主要产品
-    private Long LastYearSum;//上年总产量
+    private Long LastYearSum;//去年销售额
     private String SalesArea;//销售区域 外销内销
     private String SalesMode;//销售模式 代理商/经销商、终端客户、电商
     private Long LastYearSaleCount;//上年销售额

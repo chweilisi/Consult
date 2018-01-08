@@ -92,13 +92,13 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                             //save regist user info to local
                             pre.setUserLoginName(registResult.getLoginName());
                             pre.setUserLoginPsw(registResult.getLoginPsw());
-                            pre.setLoginId(Long.parseLong(registResult.getLoginId()));
+                            pre.setUserLoginId(registResult.getLoginId());
                             pre.setUserType(userType);
                             pre.setUserIsLogin(1);
 
-                            //start mainactivity
+                            //start loginactivity
                             Intent intent = new Intent();
-                            intent.setClass(mContext, MainActivity.class);
+                            intent.setClass(mContext, LoginActivity.class);
                             startActivity(intent);
                             finish();
                         }

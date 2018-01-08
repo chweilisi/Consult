@@ -198,6 +198,20 @@ public class PreUtils {
         return mPre.getString("production", "");
     }
 
+    public void setUserCapitalTotal(String production){
+        mPre.edit().putString("usercapitaltotal", production).commit();
+    }
+    public String getUserCapitalTotal(){
+        return mPre.getString("usercapitaltotal", "0");
+    }
+
+    public void setUserLastYearSum(String production){
+        mPre.edit().putString("userlastyearsum", production).commit();
+    }
+    public String getUserLastYearSum(){
+        return mPre.getString("userlastyearsum", "0");
+    }
+
     public void setUserEstime(String time){
         mPre.edit().putString("estime", time).commit();
     }
@@ -241,11 +255,11 @@ public class PreUtils {
         return mPre.getString("userpsw", "");
     }
 
-    public void setLoginId(Long id){
-        mPre.edit().putLong("loginId", id).commit();
+    public void setUserLoginId(String id){
+        mPre.edit().putString("userloginid", id).commit();
     }
-    public Long getLoginId(){
-        return mPre.getLong("loginId", -1);
+    public String getUserLoginId(){
+        return mPre.getString("userloginid", "-1");
     }
 
     public void setUserId(Long id){

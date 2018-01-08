@@ -49,13 +49,14 @@
                     android:gravity="center_vertical"
                     android:text="企业名称:"
                     android:textSize="@dimen/sn_14sp"/>
-                <EditText
+                <TextView
                     android:id="@+id/user_name"
                     android:layout_weight="1"
                     android:background="@null"
                     android:layout_marginLeft="4dp"
                     android:textSize="@dimen/sn_16sp"
                     android:hint="企业名称"
+                    android:gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
 
@@ -83,10 +84,11 @@
                     android:gravity="center_vertical"
                     android:text="联系电话:"
                     android:textSize="@dimen/sn_14sp"/>
-                <EditText
+                <TextView
                     android:id="@+id/user_phonenum"
                     android:layout_weight="1"
                     android:background="@null"
+                    android:gravity="center_vertical"
                     android:layout_marginLeft="4dp"
                     android:textSize="@dimen/sn_16sp"
                     android:inputType="phone|number"
@@ -119,12 +121,13 @@
                     android:gravity="center_vertical"
                     android:text="所属行业:"
                     android:textSize="@dimen/sn_14sp"/>
-                <EditText
+                <TextView
                     android:id="@+id/user_industry"
                     android:layout_weight="1"
                     android:background="@null"
                     android:layout_marginLeft="4dp"
                     android:textSize="@dimen/sn_16sp"
+                    android:gravity="center_vertical"
                     android:hint="所属行业"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
@@ -153,12 +156,13 @@
                     android:gravity="center_vertical"
                     android:text="所在区域:"
                     android:textSize="@dimen/sn_14sp"/>
-                <EditText
+                <TextView
                     android:id="@+id/user_area"
                     android:layout_weight="1"
                     android:background="@null"
                     android:layout_marginLeft="4dp"
                     android:textSize="@dimen/sn_16sp"
+                    android:gravity="center_vertical"
                     android:hint="所在区域"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
@@ -193,7 +197,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:orientation="horizontal">
-                    <EditText
+                    <TextView
                         android:id="@+id/establish_year"
                         android:layout_marginLeft="20dp"
                         android:layout_width="wrap_content"
@@ -205,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="年"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/establish_mouth"
                         android:layout_marginLeft="20dp"
                         android:layout_width="wrap_content"
@@ -261,9 +265,10 @@
                     android:gravity="center_vertical"
                     android:text="注册资金:"
                     android:textSize="@dimen/sn_14sp"/>
-                <EditText
+                <TextView
                     android:id="@+id/user_capital"
                     android:layout_weight="1"
+                    android:gravity="center_vertical"
                     android:background="@null"
                     android:layout_marginLeft="4dp"
                     android:textSize="@dimen/sn_16sp"
@@ -272,6 +277,11 @@
                     android:hint="注册资金，单位万元"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:text="万元"/>
 
             </LinearLayout>
             <View
@@ -297,8 +307,9 @@
                     android:gravity="center_vertical"
                     android:text="雇员人数:"
                     android:textSize="@dimen/sn_14sp"/>
-                <EditText
+                <TextView
                     android:id="@+id/user_employeenum"
+                    android:gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@null"
                     android:layout_marginLeft="4dp"
@@ -332,8 +343,9 @@
                     android:gravity="center_vertical"
                     android:text="主要产品:"
                     android:textSize="@dimen/sn_14sp"/>
-                <EditText
+                <TextView
                     android:id="@+id/user_production"
+                    android:gravity="center_vertical"
                     android:layout_weight="1"
                     android:background="@null"
                     android:layout_marginLeft="4dp"
@@ -353,6 +365,83 @@
                 android:layout_marginTop="15dp"
                 android:background="#CCCCCC" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="资产总额:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <TextView
+                    android:id="@+id/user_CapitalTotal"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="@dimen/sn_16sp"
+                    android:hint="资产总额，单位万元"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:text="万元"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="去年销售额:"
+                    android:textSize="@dimen/sn_14sp"/>
+                <TextView
+                    android:id="@+id/user_LastYearSum"
+                    android:gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:layout_marginLeft="4dp"
+                    android:textSize="@dimen/sn_16sp"
+                    android:hint="去年销售额，单位万元"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:text="万元"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:background="#CCCCCC" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -384,15 +473,6 @@
                         android:checked="true"
                         android:text="无"/>
                 </RadioGroup>
-                <!--<EditText-->
-                    <!--android:id="@+id/user_isconsulted"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="@null"-->
-                    <!--android:layout_marginLeft="4dp"-->
-                    <!--android:textSize="@dimen/sn_16sp"-->
-                    <!--android:hint="有，无"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent" />-->
 
             </LinearLayout>
             <View
@@ -518,16 +598,16 @@
 
 
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="提交"
-                android:textColor="#ffffff"
-                android:textSize="20dp"
-                android:layout_marginBottom="10dp"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/home_page_consult_button"
-                android:id="@+id/submit"/>
+            <!--<Button-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="提交"-->
+                <!--android:textColor="#ffffff"-->
+                <!--android:textSize="20dp"-->
+                <!--android:layout_marginBottom="10dp"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:background="@drawable/home_page_consult_button"-->
+                <!--android:id="@+id/submit"/>-->
 
         </LinearLayout>
     </ScrollView>
