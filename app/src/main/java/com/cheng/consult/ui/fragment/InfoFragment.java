@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.cheng.consult.R;
 import com.cheng.consult.ui.common.Constants;
@@ -95,14 +97,30 @@ public class InfoFragment extends Fragment {
                 OkHttpUtils.ResultCallback<String> myProfileResultCallback = new OkHttpUtils.ResultCallback<String>() {
                     @Override
                     public void onSuccess(String response) {
-                        Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
-                        PostResponseBodyJson result = gson.fromJson(response, PostResponseBodyJson.class);
-                        boolean issuccessed = result.getResultCode().equalsIgnoreCase(Constants.LOGIN_OR_POST_SUCCESS);
-                        if(issuccessed && null != response && !response.isEmpty()){
-                            String myProfile = result.getResultJson();
-                            Intent intent = new Intent(getActivity(), MyProfileActivity.class);
-                            intent.putExtra("myProfile", myProfile);
-                            startActivity(intent);
+                        if(!response.isEmpty() && null != response){
+                            Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+                            PostResponseBodyJson result = gson.fromJson(response, PostResponseBodyJson.class);
+                            if(null != result){
+                                boolean issuccessed = result.getResultCode().equalsIgnoreCase(Constants.LOGIN_OR_POST_SUCCESS);
+                                if(issuccessed){
+                                    if(!result.getResultJson().trim().isEmpty() && null != result.getResultJson().trim()){
+                                        String myProfile = result.getResultJson();
+                                        Intent intent = new Intent(getActivity(), MyProfileActivity.class);
+                                        intent.putExtra("myProfile", myProfile);
+                                        startActivity(intent);
+                                    }
+                                }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_PROGRAM)){
+                                    Toast toast = Toast.makeText(getActivity(), "ErrorCode = "+ result.getResultCode() + " "
+                                            + getResources().getString(R.string.login_hint_app_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                                    toast.setGravity(Gravity.CENTER, 0, 0);
+                                    toast.show();
+                                }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_SERVER)){
+                                    Toast toast = Toast.makeText(getActivity(), "ErrorCode = "+ result.getResultCode() + " "
+                                            + getResources().getString(R.string.login_hint_server_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                                    toast.setGravity(Gravity.CENTER, 0, 0);
+                                    toast.show();
+                                }
+                            }
                         }
                     }
 
