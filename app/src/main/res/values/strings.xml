@@ -83,7 +83,7 @@
     <string name="login_hint_error_user">"请输入正确的用户名密码，如果没有账号，请注册，谢谢！"</string>
     <string name="login_hint_net_error">"登录失败，请检查网络！"</string>
     <string name="login_hint_server_error">"登录失败，服务器错误！"</string>
-    <string name="login_hint_app_error">"应用内部错误！"</string>
+    <string name="login_hint_app_error">"登录失败，应用内部错误！"</string>
 
     <string name="my_focus_expert_toast">"已关注"</string>
     <string name="my_cancel_focus_expert_toast">"已取消关注"</string>

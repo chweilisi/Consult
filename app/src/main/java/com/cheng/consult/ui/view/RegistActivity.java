@@ -103,11 +103,13 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                             startActivity(intent);
                             finish();
                         }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_PROGRAM)){
-                            Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " "
+                                    + getResources().getString(R.string.login_hint_app_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
                         }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_SERVER)){
-                            Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " "
+                                    + getResources().getString(R.string.login_hint_server_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
                         }

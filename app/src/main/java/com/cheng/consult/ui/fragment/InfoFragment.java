@@ -112,7 +112,7 @@ public class InfoFragment extends Fragment {
                     }
                 };
 
-                //json格式post参数测试
+                //json格式post参数
                 Date date = new Date();
                 DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String dateStr = dateFormat.format(date).toString();
