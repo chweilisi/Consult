@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.cheng.consult.MainActivity;
 import com.cheng.consult.R;
 import com.cheng.consult.db.table.User;
+import com.cheng.consult.ui.common.Constants;
 import com.cheng.consult.ui.common.PostCommonHead;
 import com.cheng.consult.ui.common.PostResponseBodyJson;
 import com.cheng.consult.ui.common.Urls;
@@ -122,54 +123,58 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     String userType = "";
     boolean isLoginSuccess = false;
+    PostResponseBodyJson result;
+    LoginResultJsonBean loginStatus;
     private void loginPassport(){
 
         OkHttpUtils.ResultCallback<String> loginCallback = new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(String response) {
                 //format return json
-                PostResponseBodyJson result;
-                LoginResultJsonBean loginStatus;
+
                 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
                 if(null != response && !response.isEmpty()){
                     result = gson.fromJson(response, PostResponseBodyJson.class);
-                    if((result.getResultCode().trim().equalsIgnoreCase("200") && null != result.getResultJson()) && (!result.getResultJson().isEmpty())){
-                        loginStatus = gson.fromJson(result.getResultJson(), LoginResultJsonBean.class);
+                    if(null != result){
+                        if(result.getResultCode().trim().equalsIgnoreCase(Constants.LOGIN_OR_POST_SUCCESS)){
+                            if(!result.getResultJson().trim().isEmpty() && null != result.getResultJson().trim()){
+                                loginStatus = gson.fromJson(result.getResultJson(), LoginResultJsonBean.class);
+                                userType = loginStatus.getUserType();
+                                if(Constants.USER_TYPE_COMPANY != Integer.parseInt(userType)){
+                                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.login_hint_error_user), Toast.LENGTH_SHORT);
+                                    toast.setGravity(Gravity.CENTER, 0, 0);
+                                    toast.show();
+                                } else {
+                                    //save login user info
+                                    pre.setUserLoginName(loginStatus.getLoginName());
+                                    pre.setUserLoginPsw(loginStatus.getLoginPsw());
+                                    pre.setUserLoginId(loginStatus.getLoginId());
+                                    pre.setUserIsManager(loginStatus.getIsManager());
+                                    pre.setUserIsLogin(1);
+                                    pre.setUserType(userType);
+                                    //set userid to App, so, other activity can user it
+                                    if(!loginStatus.getUserId().trim().isEmpty() && !loginStatus.getUserId().trim().equalsIgnoreCase("-1")){
+                                        mApplication.mUserId = Integer.parseInt(loginStatus.getUserId());
+                                        pre.setUserId(Long.parseLong(loginStatus.getUserId()));
+                                    }
 
-                        userType = loginStatus.getUserType();
-                        isLoginSuccess = result.getResultCode().trim().equalsIgnoreCase("200") ? true : false;
-                        if(100 != Integer.parseInt(userType) || !isLoginSuccess) {
-                            Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.login_hint_error_user), Toast.LENGTH_SHORT);
+                                    //start mainactivity
+                                    Intent intent = new Intent();
+                                    intent.setClass(mContext, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        } else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_PROGRAM)){
+                            Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " " + result.getResultMess(), Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
-                        } else {
-                            //save login user info
-                            pre.setUserLoginName(loginStatus.getLoginName());
-                            pre.setUserLoginPsw(loginStatus.getLoginPsw());
-                            pre.setUserLoginId(loginStatus.getLoginId());
-                            pre.setUserIsManager(loginStatus.getIsManager());
-                            pre.setUserIsLogin(1);
-                            pre.setUserType(userType);
-                            //set userid to App, so, other activity can user it
-                            if(!loginStatus.getUserId().trim().isEmpty() && !loginStatus.getUserId().trim().equalsIgnoreCase("-1")){
-                                mApplication.mUserId = Integer.parseInt(loginStatus.getUserId());
-                                pre.setUserId(Long.parseLong(loginStatus.getUserId()));
-                            }
-
-                            //start mainactivity
-                            Intent intent = new Intent();
-                            intent.setClass(mContext, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                        }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_SERVER)){
+                            Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
                         }
-                    } else if (result.getResultCode().trim().equalsIgnoreCase("100")){
-                        Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " " + result.getResultMess(), Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                    }else if (result.getResultCode().trim().equalsIgnoreCase("500")){
-                        Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " " + result.getResultMess(), Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
+
                     }
                 }
             }

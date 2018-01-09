@@ -5,6 +5,12 @@ package com.cheng.consult.ui.common;
  */
 
 public class Constants {
+    public static final int USER_TYPE_COMPANY = 100;
+    public static final int USER_TYPE_EXPERT = 200;
+    public static final String SYSTEM_ERROR_PROGRAM = "100";
+    public static final String SYSTEM_ERROR_SERVER = "500";
+    public static final String LOGIN_OR_POST_SUCCESS = "200";
+
     //13个领域
     public static final int CATEGORY_1  = 0x01;
     public static final int CATEGORY_2  = 0x02;

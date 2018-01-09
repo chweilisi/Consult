@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.cheng.consult.R;
+import com.cheng.consult.ui.common.Constants;
 import com.cheng.consult.ui.common.PostCommonHead;
 import com.cheng.consult.ui.common.PostResponseBodyJson;
 import com.cheng.consult.ui.common.Urls;
@@ -96,7 +97,7 @@ public class InfoFragment extends Fragment {
                     public void onSuccess(String response) {
                         Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
                         PostResponseBodyJson result = gson.fromJson(response, PostResponseBodyJson.class);
-                        boolean issuccessed = result.getResultCode().equalsIgnoreCase("200");
+                        boolean issuccessed = result.getResultCode().equalsIgnoreCase(Constants.LOGIN_OR_POST_SUCCESS);
                         if(issuccessed && null != response && !response.isEmpty()){
                             String myProfile = result.getResultJson();
                             Intent intent = new Intent(getActivity(), MyProfileActivity.class);
