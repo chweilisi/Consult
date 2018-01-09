@@ -126,7 +126,8 @@ public class InfoFragment extends Fragment {
 
                     @Override
                     public void onFailure(Exception e) {
-
+                        String serverMessage = e.getMessage();
+                        Toast.makeText(getActivity(), serverMessage + " " + getResources().getText(R.string.login_hint_net_error), Toast.LENGTH_LONG).show();
                     }
                 };
 
