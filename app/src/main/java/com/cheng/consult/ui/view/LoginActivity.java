@@ -213,7 +213,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateStr = dateFormat.format(date).toString();
         LoginPostParam loginJson = new LoginPostParam("1", "login", mApplication.mAppSignature, dateStr, "9000",
-                String.valueOf(pre.getUserId()), strUserName, strPassword);
+                String.valueOf(pre.getUserLoginId()), strUserName, strPassword);
         String loginParam = new Gson().toJson(loginJson);
         //请求数据
         OkHttpUtils.postJson(Urls.HOST_TEST + Urls.LOGIN, loginCallback, loginParam);

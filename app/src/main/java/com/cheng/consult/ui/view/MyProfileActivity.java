@@ -83,15 +83,22 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
+        mPreUtils = PreUtils.getInstance(mContext);
         mMyProfile = getIntent().getStringExtra("myProfile");
         Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
         mMyProfileBean = gson.fromJson(mMyProfile, MyProfileBean.class);
+
+        //认证后的userId是有意义的值，再次更新userId
+        if(!mMyProfileBean.getUserId().trim().isEmpty() && !mMyProfileBean.getUserId().trim().equalsIgnoreCase("-1")){
+            mApplication.mUserId = Integer.parseInt(mMyProfileBean.getUserId());
+            mPreUtils.setUserId(Long.parseLong(mMyProfileBean.getUserId()));
+        }
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.myfragment_my_profile_tip));
 
-        mPreUtils = PreUtils.getInstance(mContext);
+
 
         //addEditTextIdToList();
 
@@ -305,6 +312,7 @@ public class MyProfileActivity extends BaseActivity implements View.OnTouchListe
         private String isConsulted;//有无咨询经历,0:无；1：有
         private String salesArea;//销售区域 外销内销
         private String salesMode;//销售模式 代理商/经销商、终端客户、电商
+        private String status;//是否认证过，200标识已通过认证
 
         public MyProfileBean(String loginId, String userId, String name, String capitalTotal, String phoneNum, String industry, String area,
                            String stablishDate, String registCapital, String employeNum, String production, String lastYearSum,

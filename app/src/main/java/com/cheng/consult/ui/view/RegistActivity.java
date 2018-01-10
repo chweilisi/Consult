@@ -97,6 +97,12 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                             pre.setUserType(userType);
                             pre.setUserIsLogin(1);
 
+                            //set userid to App, so, other activity can user it
+                            if(!registResult.getUserId().trim().isEmpty() && !registResult.getUserId().trim().equalsIgnoreCase("-1")){
+                                mApplication.mUserId = Integer.parseInt(registResult.getUserId());
+                                pre.setUserId(Long.parseLong(registResult.getUserId()));
+                            }
+
                             //start loginactivity
                             Intent intent = new Intent();
                             intent.setClass(mContext, LoginActivity.class);
@@ -104,12 +110,12 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                             finish();
                         }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_PROGRAM)){
                             Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " "
-                                    + getResources().getString(R.string.login_hint_app_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                                    + getResources().getString(R.string.register_hint_app_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
                         }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_SERVER)){
                             Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " "
-                                    + getResources().getString(R.string.login_hint_server_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                                    + getResources().getString(R.string.register_hint_server_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
                         }

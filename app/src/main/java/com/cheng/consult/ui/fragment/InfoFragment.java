@@ -111,12 +111,12 @@ public class InfoFragment extends Fragment {
                                     }
                                 }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_PROGRAM)){
                                     Toast toast = Toast.makeText(getActivity(), "ErrorCode = "+ result.getResultCode() + " "
-                                            + getResources().getString(R.string.login_hint_app_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                                            + getResources().getString(R.string.profile_hint_getProfile_app_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.CENTER, 0, 0);
                                     toast.show();
                                 }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_SERVER)){
                                     Toast toast = Toast.makeText(getActivity(), "ErrorCode = "+ result.getResultCode() + " "
-                                            + getResources().getString(R.string.login_hint_server_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                                            + getResources().getString(R.string.profile_hint_getProfile_server_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
                                     toast.setGravity(Gravity.CENTER, 0, 0);
                                     toast.show();
                                 }

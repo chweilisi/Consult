@@ -122,7 +122,7 @@ public class ExpertModelImpl implements ExpertModel {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateStr = dateFormat.format(date).toString();
-        ExpertListPostParam param = new ExpertListPostParam("1", "list", "jerry", dateStr, "9000",
+        ExpertListPostParam param = new ExpertListPostParam("1", "list", "wisegoo", dateStr, "9000",
                 Integer.toString(userId), Integer.toString(cateId), Integer.toString(pageNum), Integer.toString(pageSize)/*, "list"*/);
         String postParamJsonStr = new Gson().toJson(param);
         OkHttpUtils.postJson(url, loadExpertCallback, postParamJsonStr);
