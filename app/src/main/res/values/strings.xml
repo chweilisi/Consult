@@ -88,6 +88,10 @@
     <string name="register_hint_app_error">"登录失败，应用内部错误！"</string>
     <string name="profile_hint_getProfile_app_error">"获取认证信息，应用内部错误！"</string>
     <string name="profile_hint_getProfile_server_error">"获取认证信息，服务器错误！"</string>
+    <string name="expert_detail_hint_app_error">"获取专家详情，应用内部错误！"</string>
+    <string name="expert_detail_hint_server_error">"获取专家详情，服务器错误！"</string>
+    <string name="expert_love_opertion_hint_app_error">"关注专家失败，应用内部错误！"</string>
+    <string name="expert_love_opertion_hint_server_error">"关注专家失败，服务器错误！"</string>
 
     <string name="my_focus_expert_toast">"已关注"</string>
     <string name="my_cancel_focus_expert_toast">"已取消关注"</string>

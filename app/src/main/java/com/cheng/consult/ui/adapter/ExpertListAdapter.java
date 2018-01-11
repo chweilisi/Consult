@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.cheng.consult.R;
 import com.cheng.consult.db.table.Expert;
+import com.cheng.consult.db.table.ExpertListItem;
 import com.cheng.consult.utils.ImageLoaderUtils;
 
 import java.util.List;
@@ -21,14 +22,14 @@ import java.util.List;
 public class ExpertListAdapter extends RecyclerView.Adapter {
 
     private onExpListItemClickListener mItemClickListener;
-    private List<Expert> mData;
+    private List<ExpertListItem> mData;
     private Context mContext;
 
     public ExpertListAdapter(Context context) {
         this.mContext = context;
     }
 
-    public void setData(List<Expert> data){
+    public void setData(List<ExpertListItem> data){
         this.mData = data;
         this.notifyDataSetChanged();
     }
@@ -43,11 +44,11 @@ public class ExpertListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof ItemViewHolder){
-            Expert exp = mData.get(position);
+            ExpertListItem exp = mData.get(position);
             if(exp == null) return;
 
-            ((ItemViewHolder) holder).mTitle.setText(exp.getName());
-            ((ItemViewHolder) holder).mDesc.setText(exp.getDes());
+            ((ItemViewHolder) holder).mTitle.setText(exp.getExpertName());
+            ((ItemViewHolder) holder).mDesc.setText(exp.getExpertDes());
             //ImageLoaderUtils.display(mContext, (((ItemViewHolder) holder).mImg), exp.getImgSrc());
         }
 
@@ -61,7 +62,7 @@ public class ExpertListAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
-    public Expert getExpItem(int position){
+    public ExpertListItem getExpItem(int position){
         return (null == mData) ? null : mData.get(position);
     }
 

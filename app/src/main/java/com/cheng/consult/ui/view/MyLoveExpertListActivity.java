@@ -7,19 +7,28 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
 import com.cheng.consult.R;
 import com.cheng.consult.db.table.Expert;
+import com.cheng.consult.db.table.ExpertListItem;
 import com.cheng.consult.ui.adapter.LoveExpertListAdapter;
+import com.cheng.consult.ui.common.Constants;
+import com.cheng.consult.ui.common.PostCommonHead;
+import com.cheng.consult.ui.common.PostResponseBodyJson;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.ui.presenter.ExpertListPresenter;
 import com.cheng.consult.ui.presenter.ExpertListPresenterImpl;
 import com.cheng.consult.utils.OkHttpUtils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MyLoveExpertListActivity extends BaseActivity implements IExpertListView, SwipeRefreshLayout.OnRefreshListener {
@@ -27,7 +36,7 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
     private RecyclerView mRecyclerView;
     private LinearLayoutManager layoutManager;
     private LoveExpertListAdapter mAdapter;
-    private List<Expert> mData;
+    private List<ExpertListItem> mData;
     private ExpertListPresenter mPresenter;
 
     private Toolbar mToolbar;
@@ -109,21 +118,31 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
             OkHttpUtils.ResultCallback<String> checkCallback = new OkHttpUtils.ResultCallback<String>() {
                 @Override
                 public void onSuccess(String response) {
-                    Gson gson = new Gson();
-                    Expert user = gson.fromJson(response, Expert.class);
+                    Gson gson=  new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+                    PostResponseBodyJson result = gson.fromJson(response, PostResponseBodyJson.class);
+                    boolean issuccessed = result.getResultCode().equalsIgnoreCase(Constants.LOGIN_OR_POST_SUCCESS);
+                    if(issuccessed){
+                        Intent intent = new Intent(MyLoveExpertListActivity.this, ExpertDetailActivity.class);
+                        String expertStr = result.getResultJson().trim();
+                        if(!expertStr.isEmpty() && null != expertStr){
+                            isFocused = new Gson().fromJson(expertStr, Expert.class).getIsFocused();
 
-                    isFocused = user.getIsFocused();
+                            intent.putExtra("expert", expertStr);
+                            intent.putExtra("isFocused", isFocused);
+                            startActivity(intent);
+                        }
 
-                    //Expert expert = mAdapter.getExpItem(pos);
-                    //String id = expert.getId();
-                    Intent intent = new Intent(MyLoveExpertListActivity.this, ExpertDetailActivity.class);
-                    Gson gson2 = new Gson();
-                    String data = gson2.toJson(mData.get(pos));
-                    intent.putExtra("expert", data);
-                    intent.putExtra("isFocused", isFocused);
-
-                    startActivity(intent);
-
+                    }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_PROGRAM)){
+                        Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " "
+                                + getResources().getString(R.string.expert_detail_hint_app_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_SERVER)){
+                        Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " "
+                                + getResources().getString(R.string.expert_detail_hint_server_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    }
                 }
 
                 @Override
@@ -132,39 +151,38 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
                 }
             };
 
-            List<OkHttpUtils.Param> params = new ArrayList<>();
-            try {
-                Long expId = mData.get(position).getId();
+            //json格式post参数
+            Date date = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateStr = dateFormat.format(date).toString();
 
-                OkHttpUtils.Param expid = new OkHttpUtils.Param("focusExpertId", String.valueOf(expId));
-                OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","detail");
-                OkHttpUtils.Param userid = new OkHttpUtils.Param("userid",String.valueOf(mUserId));
-
-                params.add(userid);
-                params.add(expid);
-                params.add(mothed);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            //查询是否关注专家
-            String checkFocusUrl = Urls.HOST_TEST + Urls.EXPERT;
-            OkHttpUtils.post(checkFocusUrl, checkCallback, params);
-
-
-//            Expert expert = mAdapter.getExpItem(position);
-//            Long id = expert.getId();
-//
-//            Intent intent = new Intent(MyLoveExpertListActivity.this, ExpertDetailActivity.class);
-//            //intent.putExtra("id", id);
-//
-//            Gson gson = new Gson();
-//            String data = gson.toJson(mData.get(position));
-//            intent.putExtra("expert", data);
-//            intent.putExtra("isFocused", 1);
-//
-//            startActivity(intent);
+            String url = Urls.HOST_TEST + Urls.EXPERT;
+            PostCommonHead.HEAD beanHead = new PostCommonHead.HEAD("1", "expertView", mApplication.mAppSignature, dateStr, "9000");
+            ExpertDetailPostBean postParam = new ExpertDetailPostBean(beanHead, String.valueOf(mApplication.mUserId), mData.get(pos).getExpertId());
+            String param = new Gson().toJson(postParam);
+            OkHttpUtils.postJson(url, checkCallback, param);
         }
     };
+
+    class ExpertDetailPostBean{
+        private PostCommonHead.HEAD head;
+        private detailBody body;
+
+        public ExpertDetailPostBean(PostCommonHead.HEAD head, String userId, String expertId) {
+            this.head = head;
+            this.body = new detailBody(userId, expertId);
+        }
+
+        class detailBody {
+            private String userId;
+            private String expertId;
+
+            public detailBody(String userId, String expertId) {
+                this.userId = userId;
+                this.expertId = expertId;
+            }
+        }
+    }
 
     @Override
     public void showProgress() {
@@ -172,9 +190,9 @@ public class MyLoveExpertListActivity extends BaseActivity implements IExpertLis
     }
 
     @Override
-    public void addExperts(List<Expert> experts) {
+    public void addExperts(List<ExpertListItem> experts) {
         if(mData == null) {
-            mData = new ArrayList<Expert>();
+            mData = new ArrayList<ExpertListItem>();
         }
         mData.addAll(experts);
         if(mPageIndex == 0) {

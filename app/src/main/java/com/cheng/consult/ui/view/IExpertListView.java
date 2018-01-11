@@ -1,6 +1,7 @@
 package com.cheng.consult.ui.view;
 
 import com.cheng.consult.db.table.Expert;
+import com.cheng.consult.db.table.ExpertListItem;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public interface IExpertListView {
     void showProgress();
 
-    void addExperts(List<Expert> newsList);
+    void addExperts(List<ExpertListItem> newsList);
 
     void hideProgress();
 

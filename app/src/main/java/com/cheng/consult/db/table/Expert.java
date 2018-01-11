@@ -9,163 +9,150 @@ import java.util.List;
 
 public class Expert implements Serializable {
     //@Id(autoincrement = true)
-    private Long Id;//专家id
-
-    private String LoginName;//登录用户名
-    private String LoginPsw;//登录密码
-    private String Name;//专家名字
-    private String Sex;//专家性别
-    private int    Age;//专家年龄
-    private String Area;//所在区域
-    private String ExpertTime;//从业时间
-    private String GoodField;//擅长领域
-    //private int AnswerCount;
-
-    //@ToMany(referencedJoinProperty = "CaseId")
-    private List<Case> Cases;//经典案例
-    private String Des;//简介
-    private String ImgSrc;//头像ip
-    private String PhoneNum;//电话
-    private String Weixin;//微信
-    private String Qq;//qq
-    private List<User> MyLoveUser;//我关注的企业
-    private List<Subject> Subjects;//我回答的问题
+    private String loginId;//登录id
+    private String loginName;//登录名
+    private String name;//专家名字
+    private String userId;//
+    private String userType;//用户类型
+    private String status;//是否认证过，200标识已通过认证
+    private String imgSrc;
+    private String sex;//性别
+    private String qq;
+    private String phoneNum;
+    private String weixin;
+    private String age;
+    private String area;
+    private String expertTime;
+    private String goodField;
+    private String des;
     private int isFocused;//是否关注该专家，0：未关注；1：已关注
 
-    public Long getId() {
-        return Id;
+    public String getLoginId() {
+        return loginId;
     }
 
-    public void setId(Long id) {
-        Id = id;
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
     }
 
     public String getLoginName() {
-        return LoginName;
+        return loginName;
     }
 
     public void setLoginName(String loginName) {
-        LoginName = loginName;
-    }
-
-    public String getLoginPsw() {
-        return LoginPsw;
-    }
-
-    public void setLoginPsw(String loginPsw) {
-        LoginPsw = loginPsw;
+        this.loginName = loginName;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
-    public String getSex() {
-        return Sex;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setSex(String sex) {
-        Sex = sex;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public int getAge() {
-        return Age;
+    public String getUserType() {
+        return userType;
     }
 
-    public void setAge(int age) {
-        Age = age;
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
-    public String getArea() {
-        return Area;
+    public String getStatus() {
+        return status;
     }
 
-    public void setArea(String area) {
-        Area = area;
-    }
-
-    public String getExpertTime() {
-        return ExpertTime;
-    }
-
-    public void setExpertTime(String expertTime) {
-        ExpertTime = expertTime;
-    }
-
-    public String getGoodField() {
-        return GoodField;
-    }
-
-    public void setGoodField(String goodField) {
-        GoodField = goodField;
-    }
-
-    public List<Case> getCases() {
-        return Cases;
-    }
-
-    public void setCases(List<Case> cases) {
-        Cases = cases;
-    }
-
-    public String getDes() {
-        return Des;
-    }
-
-    public void setDes(String des) {
-        Des = des;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getImgSrc() {
-        return ImgSrc;
+        return imgSrc;
     }
 
     public void setImgSrc(String imgSrc) {
-        ImgSrc = imgSrc;
+        this.imgSrc = imgSrc;
     }
 
-    public String getPhoneNum() {
-        return PhoneNum;
+    public String getSex() {
+        return sex;
     }
 
-    public void setPhoneNum(String phoneNum) {
-        PhoneNum = phoneNum;
-    }
-
-    public String getWeixin() {
-        return Weixin;
-    }
-
-    public void setWeixin(String weixin) {
-        Weixin = weixin;
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getQq() {
-        return Qq;
+        return qq;
     }
 
     public void setQq(String qq) {
-        Qq = qq;
+        this.qq = qq;
     }
 
-    public List<User> getMyLoveUser() {
-        return MyLoveUser;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
-    public void setMyLoveUser(List<User> myLoveUser) {
-        MyLoveUser = myLoveUser;
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
     }
 
-    public List<Subject> getSubjects() {
-        return Subjects;
+    public String getWeixin() {
+        return weixin;
     }
 
-    public void setSubjects(List<Subject> subjects) {
-        Subjects = subjects;
+    public void setWeixin(String weixin) {
+        this.weixin = weixin;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getExpertTime() {
+        return expertTime;
+    }
+
+    public void setExpertTime(String expertTime) {
+        this.expertTime = expertTime;
+    }
+
+    public String getGoodField() {
+        return goodField;
+    }
+
+    public void setGoodField(String goodField) {
+        this.goodField = goodField;
+    }
+
+    public String getDes() {
+        return des;
+    }
+
+    public void setDes(String des) {
+        this.des = des;
     }
 
     public int getIsFocused() {

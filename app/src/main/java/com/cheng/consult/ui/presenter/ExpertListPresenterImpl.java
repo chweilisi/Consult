@@ -1,6 +1,7 @@
 package com.cheng.consult.ui.presenter;
 
 import com.cheng.consult.db.table.Expert;
+import com.cheng.consult.db.table.ExpertListItem;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.ui.model.ExpertModel;
 import com.cheng.consult.ui.model.ExpertModelImpl;
@@ -40,7 +41,7 @@ public class ExpertListPresenterImpl implements ExpertListPresenter {
 
     OnLoadExpertsListListener loadNewsListener = new OnLoadExpertsListListener(){
         @Override
-        public void onSuccess(List<Expert> list) {
+        public void onSuccess(List<ExpertListItem> list) {
             mIExpView.hideProgress();
             mIExpView.addExperts(list);
         }

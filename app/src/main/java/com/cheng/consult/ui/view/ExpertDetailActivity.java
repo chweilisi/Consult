@@ -16,13 +16,20 @@ import android.widget.Toast;
 
 import com.cheng.consult.R;
 import com.cheng.consult.db.table.Expert;
+import com.cheng.consult.ui.common.Constants;
+import com.cheng.consult.ui.common.PostCommonHead;
+import com.cheng.consult.ui.common.PostResponseBodyJson;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.utils.OkHttpUtils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ExpertDetailActivity extends BaseActivity {
@@ -66,13 +73,13 @@ public class ExpertDetailActivity extends BaseActivity {
         mFocusBtn = (ImageButton)findViewById(R.id.button_focus);
         //初始化是否关注图标
         if(isFocused == 0){//没有关注
-            mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_normal));
+            mFocusBtn.setImageDrawable(getDrawable(R.drawable.btn_love_n));
         }else {//关注
-            mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_pressed));
+            mFocusBtn.setImageDrawable(getDrawable(R.drawable.btn_love_d));
         }
 
 
-        Gson gson = new Gson();
+        final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
         mExpert = gson.fromJson(data, Expert.class);
 
         //上传关注专家id
@@ -83,47 +90,63 @@ public class ExpertDetailActivity extends BaseActivity {
                 OkHttpUtils.ResultCallback<String> focusCallback = new OkHttpUtils.ResultCallback<String>() {
                     @Override
                     public void onSuccess(String response) {
-                        if(isFocused == 0){
-                            mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_normal));
-                            Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_cancel_focus_expert_toast), Toast.LENGTH_SHORT);
+                        PostResponseBodyJson result = gson.fromJson(response, PostResponseBodyJson.class);
+                        if(result.getResultCode().trim().equalsIgnoreCase(Constants.LOGIN_OR_POST_SUCCESS)){
+                            if(isFocused == 0){
+                                mFocusBtn.setImageDrawable(getDrawable(R.drawable.btn_love_n));
+                                Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_cancel_focus_expert_toast), Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                            }else {
+                                mFocusBtn.setImageDrawable(getDrawable(R.drawable.btn_love_d));
+                                Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_focus_expert_toast), Toast.LENGTH_SHORT);
+                                toast.setGravity(Gravity.CENTER, 0, 0);
+                                toast.show();
+                            }
+                        }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_PROGRAM)){
+                            Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " "
+                                    + getResources().getString(R.string.expert_love_opertion_hint_app_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
-                        }else {
-                            mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_pressed));
-                            Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_focus_expert_toast), Toast.LENGTH_SHORT);
+                        }else if (result.getResultCode().trim().equalsIgnoreCase(Constants.SYSTEM_ERROR_SERVER)){
+                            Toast toast = Toast.makeText(mContext, "ErrorCode = "+ result.getResultCode() + " "
+                                    + getResources().getString(R.string.expert_love_opertion_hint_server_error) + " " + result.getResultMess(), Toast.LENGTH_SHORT);
                             toast.setGravity(Gravity.CENTER, 0, 0);
                             toast.show();
                         }
+
                     }
 
                     @Override
                     public void onFailure(Exception e) {
-
+                        Toast.makeText(mContext, "关注专家失败，请检查网络。", Toast.LENGTH_LONG).show();
                     }
                 };
-                //mclickNum = mclickNum + 1;
+
                 if(isFocused == 0){//点击前没有关注，则点击为加关注
-                    //isFocusExpert = false;
                     isFocused = 1;
-//                    mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_pressed));
-//                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_focus_expert_toast), Toast.LENGTH_SHORT);
-//                    toast.setGravity(Gravity.CENTER, 0, 0);
-//                    toast.show();
                 }else {//点击前已关注，则点击为取消关注
-                    //isFocusExpert = true;
                     isFocused = 0;
-//                    mFocusBtn.setImageDrawable(getDrawable(R.drawable.follow_btn_normal));
-//                    Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_cancel_focus_expert_toast), Toast.LENGTH_SHORT);
-//                    toast.setGravity(Gravity.CENTER, 0, 0);
-//                    toast.show();
                 }
 
+                //json格式post参数
+                Date date = new Date();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String dateStr = dateFormat.format(date).toString();
+
+                PostCommonHead.HEAD postHead = new PostCommonHead.HEAD("1", "relation", mApplication.mAppSignature, dateStr, "9000");
+                LoveOperationPostParam postParam = new LoveOperationPostParam(postHead, mExpert.getUserId(), String.valueOf(mUserId), String.valueOf(isFocused));
+                String strParam = gson.toJson(postParam);
+
+                String sUrl = Urls.HOST_TEST + Urls.EXPERT;
+                OkHttpUtils.postJson(sUrl, focusCallback, strParam);
+/*
                 List<OkHttpUtils.Param> params = new ArrayList<>();
                 try {
-                    Long expId = mExpert.getId();
+                    Long expId = Long.parseLong(mExpert.getUserId());
                     OkHttpUtils.Param expid = new OkHttpUtils.Param("focusExpertId", String.valueOf(expId));
-                    OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","relation");
-                    OkHttpUtils.Param userid = new OkHttpUtils.Param("userid",String.valueOf(mUserId));
+                    OkHttpUtils.Param mothed = new OkHttpUtils.Param("method", "relation");
+                    OkHttpUtils.Param userid = new OkHttpUtils.Param("userid", String.valueOf(mUserId));
 
                     if(isFocused == 1){
                         OkHttpUtils.Param isfocus = new OkHttpUtils.Param("isfocused", "1");
@@ -141,13 +164,25 @@ public class ExpertDetailActivity extends BaseActivity {
                 //更新关注状态
                 String sUrl = Urls.HOST_TEST + Urls.EXPERT;
                 OkHttpUtils.post(sUrl, focusCallback, params);
+*/
             }
         });
 
         //set data
         mExpertName.setText(mExpert.getName());
         mExpDetailDes.setText(mExpert.getDes());
-        mExpDetailGoodAt.setText(mExpert.getGoodField());
+
+        String[] good = getResources().getStringArray(R.array.consult_category);
+        StringBuilder sb = new StringBuilder();
+        String expertGoodat = mExpert.getGoodField();
+
+        for (int i = 0; i < good.length; i++){
+            if(expertGoodat.indexOf(String.valueOf(i)) > 0){
+                sb.append(good[i]).append("  ");
+            }
+        }
+
+        mExpDetailGoodAt.setText(sb.toString());
         mWorkYear.setText(mExpert.getExpertTime() + "年");
         mAnswerCount.setText("10个");
 
@@ -157,10 +192,32 @@ public class ExpertDetailActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ExpertDetailActivity.this, AskExpertActivity.class);
-                intent.putExtra("expertid", mExpert.getId());
+                intent.putExtra("expertid", mExpert.getUserId());
                 startActivity(intent);
             }
         });
+    }
+
+    class LoveOperationPostParam{
+        private PostCommonHead.HEAD head;
+        PostBody body;
+
+        public LoveOperationPostParam(PostCommonHead.HEAD head, String expertId, String userId, String isFocused) {
+            this.head = head;
+            this.body = new PostBody(expertId, userId, isFocused);
+        }
+
+        class PostBody{
+            private String expertId;
+            private String userId;
+            private String isFocused;
+
+            public PostBody(String expertId, String userId, String isFocused) {
+                this.expertId = expertId;
+                this.userId = userId;
+                this.isFocused = isFocused;
+            }
+        }
     }
 
 }

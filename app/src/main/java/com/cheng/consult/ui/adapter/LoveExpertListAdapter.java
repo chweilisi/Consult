@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.cheng.consult.R;
 import com.cheng.consult.db.table.Expert;
+import com.cheng.consult.db.table.ExpertListItem;
 import com.cheng.consult.utils.ImageLoaderUtils;
 
 import java.util.List;
@@ -20,14 +21,14 @@ import java.util.List;
 
 public class LoveExpertListAdapter extends RecyclerView.Adapter {
     private Context mContext;
-    private List<Expert> mDatas;
+    private List<ExpertListItem> mDatas;
     private onExpListItemClickListener mItemClickListener;
 
     public LoveExpertListAdapter(Context context) {
         mContext = context;
     }
 
-    public void setData(List<Expert> experts){
+    public void setData(List<ExpertListItem> experts){
         this.mDatas = experts;
         this.notifyDataSetChanged();
     }
@@ -41,11 +42,11 @@ public class LoveExpertListAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof ItemViewHolder){
-            Expert exp = mDatas.get(position);
+            ExpertListItem exp = mDatas.get(position);
             if(exp == null) return;
 
-            ((ItemViewHolder) holder).mTitle.setText(exp.getName());
-            ((ItemViewHolder) holder).mDesc.setText(exp.getDes());
+            ((ItemViewHolder) holder).mTitle.setText(exp.getExpertName());
+            ((ItemViewHolder) holder).mDesc.setText(exp.getExpertDes());
             //((ItemViewHolder) holder).mImg.setImageDrawable(mContext.getDrawable(R.drawable.mypage_concerned_teacher_icon));
             //ImageLoaderUtils.display(mContext, (((ItemViewHolder) holder).mImg), exp.getImgSrc());
         }
@@ -60,7 +61,7 @@ public class LoveExpertListAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
-    public Expert getExpItem(int position){
+    public ExpertListItem getExpItem(int position){
         return (null == mDatas) ? null : mDatas.get(position);
     }
 
