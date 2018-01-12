@@ -85,7 +85,9 @@ public class MyQuestionDetailActivity extends BaseActivity {
         mBtnAskAgain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MyQuestionDetailActivity.this, AskExpertActivity.class);
+                intent.putExtra("expertid", mSubject.getExpertId());
+                startActivity(intent);
             }
         });
     }
