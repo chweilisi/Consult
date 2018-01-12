@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -34,6 +35,7 @@ public class MyQuestionDetailActivity extends BaseActivity {
     private TextView mSubjectDes;
     private ListView mListView;
     private String mSubjectData;
+    private Button mBtnAskAgain;
     //private AnswerAdapter mLvAdapter;
 
     @Override
@@ -74,8 +76,18 @@ public class MyQuestionDetailActivity extends BaseActivity {
             mAdapter.setOnAnswerItemClickListener(listener);
             mAdapter.notifyDataSetChanged();
         }
-        //mRecyclerView.setFocusableInTouchMode(false);
-        //mRecyclerView.setNestedScrollingEnabled(false);
+
+        //set footerview
+        View footer = LayoutInflater.from(mContext).inflate(R.layout.question_detail_page_ask_again_layout, mRecyclerView, false);
+        mBtnAskAgain = (Button)footer.findViewById(R.id.btn_question_detail_answer_again);
+        mAdapter.setFooterView(footer);
+        mAdapter.setHeaderView(null);
+        mBtnAskAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     private MyQuestionDetailAdapter.onAnswerItemClickListener listener = new MyQuestionDetailAdapter.onAnswerItemClickListener() {
