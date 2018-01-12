@@ -16,6 +16,7 @@ public class AnswerItemDetailActivity extends BaseActivity {
 
     private TextView mAnswerDetail;
     private String mAnswer;
+    private int mItemType;
     private Subject mSubject;
     @Override
     protected int getContentViewLayoutId() {
@@ -27,13 +28,15 @@ public class AnswerItemDetailActivity extends BaseActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         mAnswerDetail = (TextView)findViewById(R.id.tv_answer_item_detail_page);
         mAnswer = getIntent().getStringExtra("answer_content");
-//        Gson gson = new Gson();
-//        mSubject = gson.fromJson(mAnswer, Subject.class);
-//        String cont = mSubject.getItems().
+        mItemType = getIntent().getIntExtra("item_type", -1);
+
         mAnswerDetail.setText(mAnswer);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("回答详情");
-
+        if(0 == mItemType){
+            getSupportActionBar().setTitle("问题详情");
+        } else {
+            getSupportActionBar().setTitle("回答详情");
+        }
     }
 
 }

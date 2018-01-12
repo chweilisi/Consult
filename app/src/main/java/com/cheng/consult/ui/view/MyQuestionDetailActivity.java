@@ -18,6 +18,7 @@ import com.cheng.consult.db.table.Subject;
 import com.cheng.consult.db.table.SubjectItem;
 import com.cheng.consult.ui.adapter.MyQuestionDetailAdapter;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
@@ -48,8 +49,9 @@ public class MyQuestionDetailActivity extends BaseActivity {
         //mListView = (ListView)findViewById(R.id.list_view);
 
         //获取activity传递数据
-        mSubjectData = getIntent().getStringExtra("subject");
-        Gson gson = new Gson();
+        mSubjectData = getIntent().getStringExtra("questiondetail");
+        //int indexAnsweredBegin = mSubjectData.indexOf()
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
         mSubject = gson.fromJson(mSubjectData, Subject.class);
         mQContent = mSubject.getItems();
 
@@ -81,6 +83,7 @@ public class MyQuestionDetailActivity extends BaseActivity {
         public void onItemClick(View view, int position) {
             Intent intent = new Intent(mContext, AnswerItemDetailActivity.class);
             intent.putExtra("answer_content", mSubject.getItems().get(position).getContent());
+            intent.putExtra("item_type", mSubject.getItems().get(position).getItemType());
             startActivity(intent);
         }
     };

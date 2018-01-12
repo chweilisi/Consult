@@ -1,6 +1,7 @@
 package com.cheng.consult.ui.model;
 
 import com.cheng.consult.db.table.Subject;
+import com.cheng.consult.db.table.SubjectListItem;
 
 import java.util.List;
 
@@ -9,6 +10,6 @@ import java.util.List;
  */
 
 public interface OnLoadMyQuestionsListener {
-    public void onSuccess(List<Subject> subjects);
+    public void onSuccess(List<SubjectListItem> subjects);
     public void onFailed(String msg, Exception e);
 }

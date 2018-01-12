@@ -1,6 +1,7 @@
 package com.cheng.consult.ui.presenter;
 
 import com.cheng.consult.db.table.Subject;
+import com.cheng.consult.db.table.SubjectListItem;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.ui.model.MyQuestionModel;
 import com.cheng.consult.ui.model.MyQuestionModelImpl;
@@ -26,14 +27,15 @@ public class MyConsultQuestionPresenterImpl implements MyConsultQuestionPresente
 
     @Override
     public void loadMyQuestion(int userId, int pageIndex) {
-        String url = Urls.HOST_TEST + Urls.QUESTION;
+        //String url = Urls.HOST_TEST + Urls.QUESTION;
+        String url = Urls.HOST_TEST + Urls.FORUM;
 
         model.loadMyQuestion(userId, url, pageIndex, Urls.PAZE_SIZE, listener);
     }
 
     private OnLoadMyQuestionsListener listener = new OnLoadMyQuestionsListener() {
         @Override
-        public void onSuccess(List<Subject> subjects) {
+        public void onSuccess(List<SubjectListItem> subjects) {
             questionListView.addData(subjects);
         }
 

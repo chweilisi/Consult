@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.cheng.consult.R;
 import com.cheng.consult.ui.common.PostCommonHead;
+import com.cheng.consult.ui.view.AskExpertActivity;
 import com.cheng.consult.ui.view.ExpertCategoryActivity;
 import com.cheng.consult.ui.view.MyConsultQuestionActivity;
 import com.cheng.consult.ui.view.MyLoveExpertListActivity;
@@ -123,13 +124,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             }
             case R.id.expert_detail_ask_button:
             {
-//                Intent intent = new Intent(getActivity(), AskExpertActivity.class);
-//                startActivity(intent);
-//                if (getContext() instanceof Activity) {
-//                    ((Activity) getContext()).overridePendingTransition(R.anim.slide_alpha_in, R.anim.slide_alpha_out);
-//                }
+                Intent intent = new Intent(getActivity(), AskExpertActivity.class);
+                startActivity(intent);
+                if (getContext() instanceof Activity) {
+                    ((Activity) getContext()).overridePendingTransition(R.anim.slide_alpha_in, R.anim.slide_alpha_out);
+                }
 
-                showFileChooser();
+                //showFileChooser();
                 break;
             }
             default:

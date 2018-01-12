@@ -17,13 +17,18 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.cheng.consult.R;
+import com.cheng.consult.ui.common.PostCommonHead;
 import com.cheng.consult.ui.common.Urls;
 import com.cheng.consult.utils.OkHttpUtils;
 import com.cheng.consult.utils.PreUtils;
+import com.google.gson.Gson;
 
 import java.lang.reflect.Array;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class AskExpertActivity extends BaseActivity {
@@ -69,21 +74,22 @@ public class AskExpertActivity extends BaseActivity {
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                paramList = new ArrayList<>();
-//                //add user id
-//                String id = String.valueOf(mApplication.mUserId);
-//                OkHttpUtils.Param userId = new OkHttpUtils.Param("userId", id);
-//                paramList.add(userId);
-                //add post parameter question title
-                qTitle = mQuestionTitle.getText().toString().trim();
-//                OkHttpUtils.Param param = new OkHttpUtils.Param("questionTitle", qTitle);
-//                paramList.add(param);
-                //add post parameter question des
-                qDes = mQuestionDes.getText().toString().trim();
-//                OkHttpUtils.Param param1 = new OkHttpUtils.Param("questionDes", qDes);
-//                paramList.add(param1);
+                OkHttpUtils.ResultCallback<String> submitQuestionCallback = new OkHttpUtils.ResultCallback<String>() {
+                    @Override
+                    public void onSuccess(String response) {
 
-                if(-1 == questionCate/* || 0 == questionCate*/){
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+
+                    }
+                };
+
+                qTitle = mQuestionTitle.getText().toString().trim();
+                qDes = mQuestionDes.getText().toString().trim();
+
+                if(-1 == questionCate){
                     Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_question_cate_error_toast), Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
@@ -95,29 +101,21 @@ public class AskExpertActivity extends BaseActivity {
                     Toast toast = Toast.makeText(mContext, mContext.getResources().getText(R.string.my_question_des_error_toast), Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
-                } else{
-                    //TODO submit question
-                    String url = Urls.HOST_TEST + Urls.QUESTION;
-                    //add user id
-                    String id = String.valueOf(mApplication.mUserId);
-                    OkHttpUtils.Param userId = new OkHttpUtils.Param("userId", id);
-                    OkHttpUtils.Param expertid = new OkHttpUtils.Param("expertId", String.valueOf(mExpertId));
-                    OkHttpUtils.Param title = new OkHttpUtils.Param("questionTitle", qTitle);
-                    OkHttpUtils.Param des = new OkHttpUtils.Param("questionDes", qDes);
-                    OkHttpUtils.Param qesCate = new OkHttpUtils.Param("questionCate", String.valueOf(questionCate));
-                    OkHttpUtils.Param mothed = new OkHttpUtils.Param("method","save");
+                } else {
+                    //json格式post参数
+                    Date date = new Date();
+                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String dateStr = dateFormat.format(date).toString();
 
-                    paramList.add(userId);
-                    paramList.add(expertid);
-                    paramList.add(title);
-                    paramList.add(des);
-                    paramList.add(qesCate);
-                    paramList.add(mothed);
-                    OkHttpUtils.post(url, null, paramList);
-                    //finish self
+                    PostCommonHead.HEAD postHead = new PostCommonHead.HEAD("1", "saveSubject", mApplication.mAppSignature, dateStr, "9000");
+                    QuestionSubmitParam postParam = new QuestionSubmitParam(postHead, String.valueOf(mApplication.mUserId), String.valueOf(mExpertId),
+                            String.valueOf(questionCate), qTitle, qDes);
+
+                    String param = new Gson().toJson(postParam);
+                    String url = Urls.HOST_TEST + Urls.FORUM;
+                    OkHttpUtils.postJson(url, submitQuestionCallback, param);
                     finish();
                 }
-
             }
         });
 
@@ -150,6 +148,33 @@ public class AskExpertActivity extends BaseActivity {
             }
         });
 
+    }
+
+    class QuestionSubmitParam{
+        private PostCommonHead.HEAD head;
+        private QuestionBody body;
+
+        public QuestionSubmitParam(PostCommonHead.HEAD head,
+                                   String userId, String expertId, String questionCate, String questionTitle, String questionDes) {
+            this.head = head;
+            this.body = new QuestionBody(userId, expertId, questionCate, questionTitle, questionDes);
+        }
+
+        class QuestionBody{
+            private String userId;
+            private String expertId;
+            private String questionCate;
+            private String questionTitle;
+            private String questionDes;
+
+            public QuestionBody(String userId, String expertId, String questionCate, String questionTitle, String questionDes) {
+                this.userId = userId;
+                this.expertId = expertId;
+                this.questionCate = questionCate;
+                this.questionTitle = questionTitle;
+                this.questionDes = questionDes;
+            }
+        }
     }
 
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cheng.consult.R;
@@ -25,29 +26,50 @@ public class MyQuestionDetailAdapter extends RecyclerView.Adapter {
     private List<SubjectItem> mData;
     private onAnswerItemClickListener mItemClickListener;
 
+    public static final int TYPE_QUESTION = 0;  //问题
+    public static final int TYPE_ANSWER = 1;  //回答
+
     public MyQuestionDetailAdapter(Context context, List<SubjectItem> data) {
         this.mContext = context;
         this.mData = data;
     }
 
     @Override
+    public int getItemViewType(int position) {
+        SubjectItem item = mData.get(position);
+        if(0 == item.getItemType()){
+            return TYPE_QUESTION;
+        } else if(1 == item.getItemType()){
+            return TYPE_ANSWER;
+        }
+        return TYPE_ANSWER;
+    }
+
+    @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        if(TYPE_QUESTION == viewType){
+//            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.question_answer_item, parent, false);
+//            ItemViewHolder vh = new ItemViewHolder(view, viewType);
+//        }
+//        if(TYPE_ANSWER == viewType){
+//
+//        }
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.question_answer_item, parent, false);
-        ItemViewHolder vh = new ItemViewHolder(view);
+        ItemViewHolder vh = new ItemViewHolder(view, viewType);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof ItemViewHolder){
-
-            //((ItemViewHolder) holder).mImg.setBackgroundResource(R.drawable.ic_answer);
-
-            ((ItemViewHolder) holder).mDesc.setText(mData.get(position).getContent());
-
-            //((ItemViewHolder) holder).mTitle.setText(exp.getName());
-            //((ItemViewHolder) holder).mDesc.setText(exp.getDes());
-            //ImageLoaderUtils.display(mContext, (((ItemViewHolder) holder).mImg), exp.getImgSrc());
+            SubjectItem item = mData.get(position);
+            if(TYPE_QUESTION == item.getItemType()){
+                //((ItemViewHolder) holder).mQuestionLayout.setVisibility(View.VISIBLE);
+                ((ItemViewHolder) holder).mQuestionDesc.setText(item.getContent());
+            } else if(TYPE_ANSWER == item.getItemType()){
+                //((ItemViewHolder) holder).mAnswerLayout.setVisibility(View.VISIBLE);
+                ((ItemViewHolder) holder).mAnswerDesc.setText(item.getContent());
+            }
         }
     }
 
@@ -65,14 +87,29 @@ public class MyQuestionDetailAdapter extends RecyclerView.Adapter {
     }
 
     private class ItemViewHolder extends RecyclerView.ViewHolder{
-        public ImageView mImg;
-//        public TextView mTitle;
-        public TextView mDesc;
-        public ItemViewHolder(final View itemView) {
+        public LinearLayout mQuestionLayout;
+        public ImageView mQuestionImg;
+        public TextView mQuestionDesc;
+        public LinearLayout mAnswerLayout;
+        public ImageView mAnswerImg;
+        public TextView mAnswerDesc;
+        public ItemViewHolder(final View itemView, int viewType) {
             super(itemView);
-            mImg = (ImageView)itemView.findViewById(R.id.ivSubject);
-//            mTitle = (TextView)itemView.findViewById(R.id.tvTitle);
-            mDesc = (TextView)itemView.findViewById(R.id.tvDesc);
+
+            mQuestionLayout = (LinearLayout)itemView.findViewById(R.id.question_parent);
+            mAnswerLayout = (LinearLayout)itemView.findViewById(R.id.answer_parent);
+            if(TYPE_QUESTION == viewType){
+                mQuestionLayout.setVisibility(View.VISIBLE);
+                mAnswerLayout.setVisibility(View.GONE);
+                mQuestionImg = (ImageView)itemView.findViewById(R.id.ivQuestionSubject);
+                mQuestionDesc = (TextView)itemView.findViewById(R.id.tvQuestionDesc);
+            } else if(TYPE_ANSWER == viewType){
+                mAnswerLayout.setVisibility(View.VISIBLE);
+                mQuestionLayout.setVisibility(View.GONE);
+                mAnswerImg = (ImageView)itemView.findViewById(R.id.ivAnswerSubject);
+                mAnswerDesc = (TextView)itemView.findViewById(R.id.tvAnswerDesc);
+            }
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

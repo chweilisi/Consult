@@ -140,31 +140,6 @@ public class ExpertDetailActivity extends BaseActivity {
 
                 String sUrl = Urls.HOST_TEST + Urls.EXPERT;
                 OkHttpUtils.postJson(sUrl, focusCallback, strParam);
-/*
-                List<OkHttpUtils.Param> params = new ArrayList<>();
-                try {
-                    Long expId = Long.parseLong(mExpert.getUserId());
-                    OkHttpUtils.Param expid = new OkHttpUtils.Param("focusExpertId", String.valueOf(expId));
-                    OkHttpUtils.Param mothed = new OkHttpUtils.Param("method", "relation");
-                    OkHttpUtils.Param userid = new OkHttpUtils.Param("userid", String.valueOf(mUserId));
-
-                    if(isFocused == 1){
-                        OkHttpUtils.Param isfocus = new OkHttpUtils.Param("isfocused", "1");
-                        params.add(isfocus);
-                    }else {
-                        OkHttpUtils.Param isfocus = new OkHttpUtils.Param("isfocused","0");
-                        params.add(isfocus);
-                    }
-                    params.add(userid);
-                    params.add(expid);
-                    params.add(mothed);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                //更新关注状态
-                String sUrl = Urls.HOST_TEST + Urls.EXPERT;
-                OkHttpUtils.post(sUrl, focusCallback, params);
-*/
             }
         });
 

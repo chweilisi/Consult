@@ -13,6 +13,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:background="@drawable/list_selector">
@@ -27,12 +28,43 @@
             android:scaleType="centerCrop"
             android:src="@drawable/icon_category_12"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:orientation="vertical">
             <TextView
-                android:id="@+id/tvDesc"
+                android:id="@+id/question_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="@string/regist_user"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sn_16sp"/>
+            <TextView
+                android:id="@+id/question_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="@string/expert_love_opertion_hint_server_error"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sn_20sp"/>
+            <TextView
+                android:id="@+id/question_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
                 android:textColor="@color/secondary_text"
-                android:textSize="@dimen/sn_16sp"/>
+                android:textSize="@dimen/sn_16sp"
+                android:layout_gravity="right"
+                android:text="2018-01-11 12:12:12"
+                />
+        </LinearLayout>
+
 
     </LinearLayout>
 </LinearLayout>
