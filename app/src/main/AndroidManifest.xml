@@ -68,9 +68,7 @@
             android:name=".ui.view.AnswerItemDetailActivity"
             android:label="@string/title_activity_answer_item_detail"
             android:theme="@style/AppTheme2" />
-        <!--<activity-->
-            <!--android:name=".RegistUserActivity"-->
-            <!--android:label="@string/title_activity_regist_user" />-->
+
         <activity android:name=".ui.view.RegistActivity" />
 
         <activity android:name=".SplashActivity">
