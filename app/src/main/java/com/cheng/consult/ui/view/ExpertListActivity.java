@@ -63,7 +63,7 @@ public class ExpertListActivity extends BaseActivity implements IExpertListView,
 
         mUserId = new Long(mApplication.mUserId).intValue();
         mToolbarTitle = getIntent().getStringExtra("cat");
-        mExpertCategory     = getIntent().getIntExtra("position", 0);
+        mExpertCategory = getIntent().getIntExtra("position", 0) + 10;
 
         mPresenter = new ExpertListPresenterImpl(this);
 

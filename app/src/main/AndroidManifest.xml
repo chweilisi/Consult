@@ -48,11 +48,13 @@
         <activity android:name=".ui.view.MyLoveExpertListActivity" />
         <activity android:name=".ui.view.MyConsultQuestionActivity" />
         <activity android:name=".ui.view.LoginActivity">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <!-- <activity -->
         <!-- android:name=".ui.view.BaseActivity" -->
@@ -68,16 +70,15 @@
             android:name=".ui.view.AnswerItemDetailActivity"
             android:label="@string/title_activity_answer_item_detail"
             android:theme="@style/AppTheme2" />
-
         <activity android:name=".ui.view.RegistActivity" />
-
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ui.view.AskExpertAgainActivity"></activity>
     </application>
 
 </manifest>

@@ -1,98 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.cheng.consult.ui.view.MyQuestionDetailActivity">
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--tools:context="com.cheng.consult.ui.view.MyQuestionDetailActivity">-->
 
-    <LinearLayout
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="@dimen/card_margin"
-        android:layout_marginRight="@dimen/card_margin"
-        android:id="@+id/question"
-        android:orientation="horizontal">
-        <com.cheng.consult.widget.CircularImage
-            android:id="@+id/ivSubject"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginLeft="9dp"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="7dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_question"/>
+        android:theme="@style/AppTheme2.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme2.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <RelativeLayout
+        android:id="@+id/question_detail_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="?actionBarSize"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/tvTitle"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin"
+            android:id="@+id/question"
+            android:orientation="horizontal">
+            <com.cheng.consult.widget.CircularImage
+                android:id="@+id/ivSubject"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_question"/>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/card_margin"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin"
-                android:textColor="@color/secondary_text"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:textSize="@dimen/sn_16sp" />
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginBottom="@dimen/card_margin"
-                android:layout_marginLeft="@dimen/card_margin"
-                android:layout_marginRight="@dimen/card_margin"
-                android:scrollbars="vertical"
-                android:fadingEdge="vertical">
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/tvDesc"
+                    android:id="@+id/tvTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/card_margin"
+                    android:layout_marginLeft="@dimen/card_margin"
+                    android:layout_marginRight="@dimen/card_margin"
                     android:textColor="@color/secondary_text"
-                    android:maxLines="5"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/sn_16sp" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="@dimen/card_margin"
+                    android:layout_marginLeft="@dimen/card_margin"
+                    android:layout_marginRight="@dimen/card_margin"
                     android:scrollbars="vertical"
-                    android:textSize="@dimen/sn_16sp"/>
-            </ScrollView>
+                    android:fadingEdge="vertical">
+                    <TextView
+                        android:id="@+id/tvDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/secondary_text"
+                        android:maxLines="5"
+                        android:scrollbars="vertical"
+                        android:textSize="@dimen/sn_16sp"/>
+                </ScrollView>
 
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/question"
-        android:layout_marginBottom="51dp"
-        android:id="@+id/recycle_view">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/question"
+            android:layout_marginBottom="40dp"
+            android:id="@+id/recycle_view">
 
-    </android.support.v7.widget.RecyclerView>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_above="@+id/question_detail_page_bottom_bar"
-        android:background="#979797"/>
-    <LinearLayout
-        android:id="@+id/question_detail_page_bottom_bar"
-        android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:background="@color/white">
+        </android.support.v7.widget.RecyclerView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/question_detail_page_bottom_bar"
+            android:background="#979797"/>
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/question_detail_page_bottom_bar"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:orientation="horizontal"
+            android:background="@color/white">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/btn_question_detail_bottombar_ask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="25dp"
+                android:background="@null"
+                android:src="@drawable/ic_question_detail_ask_again_red"/>
         </LinearLayout>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginRight="25dp"
-            android:background="@null"
-            android:src="@drawable/ic_question_detail_ask_again_red"/>
-    </LinearLayout>
-</RelativeLayout>
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+<!--</RelativeLayout>-->

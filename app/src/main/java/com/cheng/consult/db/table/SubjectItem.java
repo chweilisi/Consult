@@ -11,14 +11,11 @@ import java.util.List;
 public class SubjectItem implements Serializable {
     //@Id(autoincrement = true)
     private Long SubjectItemId;//内容id
+    private int expertId;//此条回答专家的id
     private int ItemType;//0:问题   1:回答
     private Long OwnerSubjectId;//内容所属问题id 关联Subject表的SubjectId
     private Date Date;//日期
-
-    //@Convert(columnType = String.class, converter = StringConvertListUtils.class)
     private String Content;//问题
-    //@Convert(columnType = String.class, converter = StringConvertListUtils.class)
-    //private List<String> Answers;//回答
 
     public Long getSubjectItemId() {
         return SubjectItemId;
@@ -26,6 +23,14 @@ public class SubjectItem implements Serializable {
 
     public void setSubjectItemId(Long subjectItemId) {
         SubjectItemId = subjectItemId;
+    }
+
+    public int getExpertId() {
+        return expertId;
+    }
+
+    public void setExpertId(int expertId) {
+        this.expertId = expertId;
     }
 
     public int getItemType() {

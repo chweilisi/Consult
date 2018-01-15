@@ -151,9 +151,9 @@ public class ExpertDetailActivity extends BaseActivity {
         StringBuilder sb = new StringBuilder();
         String expertGoodat = mExpert.getGoodField();
 
-        for (int i = 0; i < good.length; i++){
-            if(expertGoodat.indexOf(String.valueOf(i)) > 0){
-                sb.append(good[i]).append("  ");
+        for (int i = 10; i < 23; i++){
+            if(expertGoodat.indexOf(String.valueOf(i)) >= 0){
+                sb.append(good[i - 10]).append("  ");
             }
         }
 

@@ -53,9 +53,9 @@ public class MyConsultQuestionAdapter extends RecyclerView.Adapter {
 
             //(((ItemViewHolder) holder).mImg).setBackgroundResource(R.drawable.icon_category_6);
             String[] good = mContext.getResources().getStringArray(R.array.consult_category);
-            for (int i = 0; i < good.length; i++){
+            for (int i = 10; i < 23; i++){
                 if(item.getQuestionCateId().trim().equalsIgnoreCase(String.valueOf(i))){
-                    ((ItemViewHolder) holder).mCate.setText(good[i]);
+                    ((ItemViewHolder) holder).mCate.setText(good[i - 10]);
                     break;
                 }
             }

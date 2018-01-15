@@ -136,7 +136,7 @@ public class AskExpertActivity extends BaseActivity {
                 if(isFirstSelect){
                     isFirstSelect = false;
                 } else {
-                    questionCate = position - 1;
+                    questionCate = position - 1 + 10;
                 }
             }
 

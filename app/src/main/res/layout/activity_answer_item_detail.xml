@@ -20,7 +20,47 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_answer_item_detail" />
+    <!--<include layout="@layout/content_answer_item_detail" />-->
+    <LinearLayout
+        android:id="@+id/answer_item_detail_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="?actionBarSize">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="aaaaaaaaaaa"
+            android:textSize="@dimen/sn_16sp"
+            android:id="@+id/tv_answer_item_detail_page"/>
+
+        <LinearLayout
+            android:id="@+id/question_detail_page_bottom_bar"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/btn_question_detail_bottombar_ask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="25dp"
+                android:background="@null"
+                android:src="@drawable/ic_question_detail_ask_again_red"/>
+        </LinearLayout>
+    </LinearLayout>
+
 
 
 </android.support.design.widget.CoordinatorLayout>

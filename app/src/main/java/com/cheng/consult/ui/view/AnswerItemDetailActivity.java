@@ -10,7 +10,9 @@ import android.widget.TextView;
 
 import com.cheng.consult.R;
 import com.cheng.consult.db.table.Subject;
+import com.cheng.consult.db.table.SubjectItem;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class AnswerItemDetailActivity extends BaseActivity {
 
@@ -18,6 +20,7 @@ public class AnswerItemDetailActivity extends BaseActivity {
     private String mAnswer;
     private int mItemType;
     private Subject mSubject;
+    private SubjectItem mAnswerItem;
     @Override
     protected int getContentViewLayoutId() {
         return R.layout.activity_answer_item_detail;
@@ -25,10 +28,19 @@ public class AnswerItemDetailActivity extends BaseActivity {
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
+        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         mAnswerDetail = (TextView)findViewById(R.id.tv_answer_item_detail_page);
-        mAnswer = getIntent().getStringExtra("answer_content");
-        mItemType = getIntent().getIntExtra("item_type", -1);
+
+        String answerItem = getIntent().getStringExtra("answer_item");
+        mAnswerItem = gson.fromJson(answerItem, SubjectItem.class);
+
+        mAnswer = mAnswerItem.getContent();
+        mItemType = mAnswerItem.getItemType();
+
+//        mAnswer = getIntent().getStringExtra("answer_content");
+//        mItemType = getIntent().getIntExtra("item_type", -1);
 
         mAnswerDetail.setText(mAnswer);
         setSupportActionBar(toolbar);
