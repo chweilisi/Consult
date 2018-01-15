@@ -32,63 +32,49 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MyConsultQuestionActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyConsultQuestionActivity.java">
+      <file leaf-file-name="MyQuestionDetailActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyQuestionDetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="37" column="29" lean-forward="false" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
+            <state relative-caret-position="183">
+              <caret line="222" column="0" lean-forward="false" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
+              <folding>
+                <element signature="e#8642#9272#0" expanded="true" />
+                <element signature="e#9271#9272#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnswerItemDetailActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AnswerItemDetailActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="127">
+              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyConsultQuestionAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/adapter/MyConsultQuestionAdapter.java">
+      <file leaf-file-name="MyQuestionDetailAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/adapter/MyQuestionDetailAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="59" column="17" lean-forward="true" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
+            <state relative-caret-position="399">
+              <caret line="196" column="47" lean-forward="false" selection-start-line="196" selection-start-column="47" selection-end-line="196" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InfoFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/fragment/InfoFragment.java">
+      <file leaf-file-name="activity_my_question_detail.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_question_detail.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="105" column="122" lean-forward="true" selection-start-line="105" selection-start-column="122" selection-end-line="105" selection-end-column="122" />
+            <state relative-caret-position="256">
+              <caret line="80" column="47" lean-forward="false" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="47" />
               <folding />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExpertDetailActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/ExpertDetailActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="149" column="62" lean-forward="true" selection-start-line="149" selection-start-column="62" selection-end-line="149" selection-end-column="78" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/fragment/HomeFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="107" column="72" lean-forward="false" selection-start-line="107" selection-start-column="72" selection-end-line="107" selection-end-column="72" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AskExpertActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="543">
-              <caret line="164" column="36" lean-forward="false" selection-start-line="164" selection-start-column="36" selection-end-line="164" selection-end-column="36" />
-              <folding />
-            </state>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
@@ -103,7 +89,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>saleArea</find>
       <find>getuserLOg</find>
       <find>loginname</find>
       <find>isConsultCheckListener</find>
@@ -133,6 +118,7 @@
       <find>mExpertCategory</find>
       <find>consult_category</find>
       <find>questionCate</find>
+      <find>question_des_parent</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -2008,15 +1994,15 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/common/Urls.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/db/table/SubjectItem.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertAgainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AnswerItemDetailActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_answer_item_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/question_answer_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_my_question_detail.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyQuestionDetailActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/ExpertListActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/ExpertDetailActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/adapter/MyConsultQuestionAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_my_question_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyQuestionDetailActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AnswerItemDetailActivity.java" />
       </list>
     </option>
   </component>
@@ -2463,7 +2449,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516002879995" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516004820835" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2511,7 +2497,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516002879995" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516004820835" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2694,7 +2680,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516002879996" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516004820837" />
       </method>
     </configuration>
     <list size="1">
@@ -2756,7 +2742,7 @@
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284553" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3821138" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32682925" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11129568" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2796,14 +2782,8 @@
           <properties />
           <option name="timeStamp" value="177" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertActivity.java</url>
-          <line>116</line>
-          <properties />
-          <option name="timeStamp" value="187" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="208" />
+      <option name="time" value="210" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
@@ -2965,14 +2945,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-25/android/app/ActivityThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="2709" column="0" lean-forward="false" selection-start-line="2709" selection-start-column="0" selection-end-line="2709" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/BaseActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
@@ -3053,14 +3025,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AnswerItemDetailActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="47" column="12" lean-forward="false" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_answer_item_detail.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -3085,14 +3049,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/adapter/MyQuestionDetailAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2556">
-          <caret line="196" column="42" lean-forward="false" selection-start-line="196" selection-start-column="42" selection-end-line="196" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_expert_list.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
@@ -3114,17 +3070,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_question_detail.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="92" column="47" lean-forward="false" selection-start-line="92" selection-start-column="47" selection-end-line="92" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertAgainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="113">
@@ -3143,26 +3088,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyQuestionDetailActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="109" column="29" lean-forward="true" selection-start-line="109" selection-start-column="29" selection-end-line="109" selection-end-column="29" />
-          <folding>
-            <element signature="e#6338#6403#0" expanded="true" />
-            <element signature="e#6831#6899#0" expanded="true" />
-            <element signature="e#8775#9405#0" expanded="true" />
-            <element signature="e#9404#9405#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/adapter/ExpertCategoryActivityAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-353">
           <caret line="52" column="115" lean-forward="false" selection-start-line="52" selection-start-column="100" selection-end-line="52" selection-end-column="115" />
           <folding>
-            <element signature="e#681#682#0" expanded="true" />
-            <element signature="e#709#710#0" expanded="true" />
+            <element signature="e#681#682#0" expanded="false" />
+            <element signature="e#709#710#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3221,22 +3153,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="164" column="36" lean-forward="false" selection-start-line="164" selection-start-column="36" selection-end-line="164" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/fragment/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="107" column="72" lean-forward="false" selection-start-line="107" selection-start-column="72" selection-end-line="107" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyConsultQuestionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -3250,7 +3166,7 @@
         <state relative-caret-position="280">
           <caret line="42" column="50" lean-forward="true" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
           <folding>
-            <element signature="e#1725#1746#0" expanded="true" />
+            <element signature="e#1725#1746#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3276,8 +3192,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/fragment/InfoFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="105" column="122" lean-forward="true" selection-start-line="105" selection-start-column="122" selection-end-line="105" selection-end-column="122" />
+        <state relative-caret-position="341">
+          <caret line="109" column="62" lean-forward="true" selection-start-line="109" selection-start-column="62" selection-end-line="109" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/fragment/HomeFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="107" column="72" lean-forward="false" selection-start-line="107" selection-start-column="72" selection-end-line="107" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/adapter/MyQuestionDetailAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="196" column="47" lean-forward="false" selection-start-line="196" selection-start-column="47" selection-end-line="196" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_question_detail.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="80" column="47" lean-forward="false" selection-start-line="80" selection-start-column="41" selection-end-line="80" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyQuestionDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="222" column="0" lean-forward="false" selection-start-line="222" selection-start-column="0" selection-end-line="222" selection-end-column="0" />
+          <folding>
+            <element signature="e#8642#9272#0" expanded="true" />
+            <element signature="e#9271#9272#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-25/android/app/ActivityThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="2709" column="0" lean-forward="false" selection-start-line="2709" selection-start-column="0" selection-end-line="2709" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AnswerItemDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding />
         </state>
       </provider>

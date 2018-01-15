@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.cheng.consult.R;
@@ -18,9 +19,10 @@ public class AnswerItemDetailActivity extends BaseActivity {
 
     private TextView mAnswerDetail;
     private String mAnswer;
-    private int mItemType;
+    private int mItemType = -1;
     private Subject mSubject;
     private SubjectItem mAnswerItem;
+    private String mQuestionDes;
     @Override
     protected int getContentViewLayoutId() {
         return R.layout.activity_answer_item_detail;
@@ -31,24 +33,34 @@ public class AnswerItemDetailActivity extends BaseActivity {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         mAnswerDetail = (TextView)findViewById(R.id.tv_answer_item_detail_page);
 
         String answerItem = getIntent().getStringExtra("answer_item");
-        mAnswerItem = gson.fromJson(answerItem, SubjectItem.class);
+        if(answerItem != null && !answerItem.isEmpty()){
+            mAnswerItem = gson.fromJson(answerItem, SubjectItem.class);
 
-        mAnswer = mAnswerItem.getContent();
-        mItemType = mAnswerItem.getItemType();
+            mAnswer = mAnswerItem.getContent();
+            if(mAnswer != null && !mAnswer.isEmpty()){
+                mAnswerDetail.setText(mAnswer);
+            }
 
-//        mAnswer = getIntent().getStringExtra("answer_content");
-//        mItemType = getIntent().getIntExtra("item_type", -1);
-
-        mAnswerDetail.setText(mAnswer);
-        setSupportActionBar(toolbar);
-        if(0 == mItemType){
-            getSupportActionBar().setTitle("问题详情");
-        } else {
-            getSupportActionBar().setTitle("回答详情");
+            mItemType = mAnswerItem.getItemType();
+            if(0 == mItemType){
+                getSupportActionBar().setTitle("问题详情");
+            } else {
+                getSupportActionBar().setTitle("回答详情");
+            }
         }
+
+        mQuestionDes = getIntent().getStringExtra("question_description");
+
+        if(mQuestionDes != null && !mQuestionDes.isEmpty()){
+            getSupportActionBar().setTitle("问题详情");
+            mAnswerDetail.setText(mQuestionDes);
+        }
+
     }
 
 }

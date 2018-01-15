@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,11 +69,9 @@ public class MyQuestionDetailActivity extends BaseActivity implements View.OnCli
         mRecyclerView = (RecyclerView) findViewById(R.id.recycle_view);
         mSubjectTitle = (TextView)findViewById(R.id.tvTitle);
         mSubjectDes = (TextView)findViewById(R.id.tvDesc);
-        //mListView = (ListView)findViewById(R.id.list_view);
 
         //获取activity传递数据
         mSubjectData = getIntent().getStringExtra("questiondetail");
-        //int indexAnsweredBegin = mSubjectData.indexOf()
 
         mSubject = gson.fromJson(mSubjectData, Subject.class);
         mQContent = mSubject.getItems();
@@ -80,14 +79,10 @@ public class MyQuestionDetailActivity extends BaseActivity implements View.OnCli
         //设置问题标题 正文
         mSubjectTitle.setText(mSubject.getTitle());
         mSubjectDes.setText(mSubject.getContent());
-
-//        mLvAdapter = new AnswerAdapter();
-//
-//        mListView.setAdapter(mLvAdapter);
+        mSubjectDes.setOnClickListener(this);
 
         layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
-
 
         mQContent = mSubject.getItems();
         if(null != mQContent && mQContent.size() != 0) {
@@ -233,6 +228,14 @@ public class MyQuestionDetailActivity extends BaseActivity implements View.OnCli
                 Intent intent = new Intent(MyQuestionDetailActivity.this, AskExpertAgainActivity.class);
                 intent.putExtra("expertid", mSubject.getExpertId());
                 intent.putExtra("subjectid", mSubject.getSubjectId());
+                startActivity(intent);
+                break;
+            }
+            case R.id.tvDesc:
+            {
+                Intent intent = new Intent(mContext, AnswerItemDetailActivity.class);
+                String questionDes = mSubject.getContent();
+                intent.putExtra("question_description", questionDes);
                 startActivity(intent);
                 break;
             }

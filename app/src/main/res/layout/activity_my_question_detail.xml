@@ -69,6 +69,7 @@
                     android:textSize="@dimen/sn_16sp" />
 
                 <ScrollView
+                    android:id="@+id/question_des_parent"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_marginBottom="@dimen/card_margin"
