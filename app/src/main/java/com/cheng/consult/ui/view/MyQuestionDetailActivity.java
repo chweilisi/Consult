@@ -84,7 +84,7 @@ public class MyQuestionDetailActivity extends BaseActivity implements View.OnCli
         layoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        mQContent = mSubject.getItems();
+        //mQContent = mSubject.getItems();
         if(null != mQContent && mQContent.size() != 0) {
             mAdapter = new MyQuestionDetailAdapter(this, mQContent);
             mRecyclerView.setAdapter(mAdapter);
