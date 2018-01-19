@@ -24,6 +24,7 @@
     <color name="common_line_bg">#FFCDCDCD</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#727272</color>
+    <color name="base_color_text_grey">#ff777777</color>
 
     <color name="color_title_explanation">#b30e1a3e</color>
     <color name="edittext_input_text">#4A4A4A</color>

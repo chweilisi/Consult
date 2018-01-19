@@ -161,7 +161,7 @@ public class OkHttpUtils {
                 builder.addFormDataPart(key, object.toString());
             } else {
                 File file = (File) object;
-                builder.addFormDataPart(key, file.getName(), RequestBody.create(null, file));
+                builder.addFormDataPart(key, file.getName(), RequestBody.create(MediaType.parse("image/jpg"), file));
             }
         }
 

@@ -1,5 +1,9 @@
 package com.cheng.consult.ui.common;
 
+import android.os.Environment;
+
+import java.io.File;
+
 /**
  * Created by cheng on 2017/12/5.
  */
@@ -10,6 +14,16 @@ public class Constants {
     public static final String SYSTEM_ERROR_PROGRAM = "500";
     public static final String SYSTEM_ERROR_SERVER = "100";
     public static final String LOGIN_OR_POST_SUCCESS = "200";
+
+
+    private static final String BASE_CACHE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "wencegu" + File.separator;
+
+    //声音的缓存目录
+    public static final String VOICE_CACHE_DIR = BASE_CACHE_DIR + "voice" + File.separator;
+
+    public static final String IMAGE_CACHE_DIR = BASE_CACHE_DIR + "image" + File.separator;
+    public static final int REQUEST_CODE_TAKE_PICTURE = 10;
+    public static final int REQUEST_CODE_SELECT_FROM_LOCAL = 20;
 
     //13个领域
     public static final int CATEGORY_1  = 0x01;
