@@ -23,6 +23,7 @@ public class AnswerItemDetailActivity extends BaseActivity {
     private Subject mSubject;
     private SubjectItem mAnswerItem;
     private String mQuestionDes;
+    private String mAttachmentPath;
     @Override
     protected int getContentViewLayoutId() {
         return R.layout.activity_answer_item_detail;

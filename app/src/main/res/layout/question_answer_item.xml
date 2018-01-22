@@ -26,17 +26,25 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_question"/>
 
-            <TextView
-                android:id="@+id/tvQuestionDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="100dp"
-                android:padding="5dp"
-                android:maxLines="4"
-                android:text="问题内容示例"
-                android:textColor="@color/secondary_text"
-                android:scrollbars="vertical"
-                android:textSize="@dimen/sn_16sp"/>
+        <TextView
+            android:id="@+id/tvQuestionDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="100dp"
+            android:padding="5dp"
+            android:maxLines="4"
+            android:text="问题内容示例"
+            android:textColor="@color/secondary_text"
+            android:scrollbars="vertical"
+            android:textSize="@dimen/sn_16sp"/>
+        <ImageView
+            android:id="@+id/img_attachment"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/iocn_enclosure_n"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
     <LinearLayout

@@ -16,6 +16,7 @@ public class SubjectItem implements Serializable {
     private Long OwnerSubjectId;//内容所属问题id 关联Subject表的SubjectId
     private Date Date;//日期
     private String Content;//问题
+    private String filePath = null;
 
     public Long getSubjectItemId() {
         return SubjectItemId;
@@ -63,5 +64,13 @@ public class SubjectItem implements Serializable {
 
     public void setContent(String content) {
         Content = content;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 }

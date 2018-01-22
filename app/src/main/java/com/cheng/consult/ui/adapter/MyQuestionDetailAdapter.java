@@ -136,6 +136,12 @@ public class MyQuestionDetailAdapter extends RecyclerView.Adapter {
                 if(TYPE_QUESTION == item.getItemType()){
                     //((ItemViewHolder) holder).mQuestionLayout.setVisibility(View.VISIBLE);
                     ((ItemViewHolder) holder).mQuestionDesc.setText(item.getContent());
+                    String attach = item.getFilePath();
+                    if(null != attach){
+                        ((ItemViewHolder) holder).mQuestionAttachment.setVisibility(View.VISIBLE);
+                    } else {
+                        ((ItemViewHolder) holder).mQuestionAttachment.setVisibility(View.INVISIBLE);
+                    }
                 } else if(TYPE_ANSWER == item.getItemType()){
                     //((ItemViewHolder) holder).mAnswerLayout.setVisibility(View.VISIBLE);
                     ((ItemViewHolder) holder).mAnswerDesc.setText(item.getContent());
@@ -171,6 +177,7 @@ public class MyQuestionDetailAdapter extends RecyclerView.Adapter {
         public LinearLayout mQuestionLayout;
         public ImageView mQuestionImg;
         public TextView mQuestionDesc;
+        public ImageView mQuestionAttachment;
         public LinearLayout mAnswerLayout;
         public ImageView mAnswerImg;
         public TextView mAnswerDesc;
@@ -184,6 +191,7 @@ public class MyQuestionDetailAdapter extends RecyclerView.Adapter {
                 mAnswerLayout.setVisibility(View.GONE);
                 mQuestionImg = (ImageView)itemView.findViewById(R.id.ivQuestionSubject);
                 mQuestionDesc = (TextView)itemView.findViewById(R.id.tvQuestionDesc);
+                mQuestionAttachment = (ImageView)itemView.findViewById(R.id.img_attachment);
             } else if(TYPE_ANSWER == viewType){
                 mAnswerLayout.setVisibility(View.VISIBLE);
                 mQuestionLayout.setVisibility(View.GONE);

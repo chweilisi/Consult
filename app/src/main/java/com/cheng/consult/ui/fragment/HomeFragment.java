@@ -39,6 +39,7 @@ import com.cheng.consult.ui.view.ExpertCategoryActivity;
 import com.cheng.consult.ui.view.MyConsultQuestionActivity;
 import com.cheng.consult.ui.view.MyLoveExpertListActivity;
 import com.cheng.consult.ui.view.SearchActivity;
+import com.cheng.consult.utils.FileUtils;
 import com.cheng.consult.utils.PhotoUtils;
 import com.cheng.consult.utils.ToastUtils;
 import com.cheng.consult.utils.ToolsUtils;
@@ -158,13 +159,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
             }
             case R.id.expert_detail_ask_button:
             {
-//                Intent intent = new Intent(getActivity(), AskExpertActivity.class);
-//                startActivity(intent);
-//                if (getContext() instanceof Activity) {
-//                    ((Activity) getContext()).overridePendingTransition(R.anim.slide_alpha_in, R.anim.slide_alpha_out);
-//                }
+                Intent intent = new Intent(getActivity(), AskExpertActivity.class);
+                startActivity(intent);
+                if (getContext() instanceof Activity) {
+                    ((Activity) getContext()).overridePendingTransition(R.anim.slide_alpha_in, R.anim.slide_alpha_out);
+                }
 
-                showFileChooser();
+                //showFileChooser();
                 break;
             }
             default:
@@ -233,7 +234,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
                 }
                 requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.REQUEST_CODE_TAKE_PICTURE);
             } else {//有权限直接调用系统相机拍照
-                if (hasSdcard()) {
+                if (FileUtils.isExistSDCard()) {
                     imageUri = Uri.fromFile(mTakedPhoto);
                     //通过FileProvider创建一个content类型的Uri
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -332,10 +333,4 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
-    public static boolean hasSdcard() {
-        String state = Environment.getExternalStorageState();
-        return state.equals(Environment.MEDIA_MOUNTED);
-    }
-
 }

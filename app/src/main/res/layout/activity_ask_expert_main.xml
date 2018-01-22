@@ -72,13 +72,34 @@
             android:hint="问题描述，最多输入300字"
             android:background="@drawable/search_white_corner_shape"/>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <ImageButton
+                android:id="@+id/btn_ask_expert_attach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@null"
+                android:src="@drawable/btn_upload_h"/>
+        </LinearLayout>
+
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="提交"
             android:textColor="#ffffff"
             android:textSize="20dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/home_page_consult_button"
             android:id="@+id/submit"/>

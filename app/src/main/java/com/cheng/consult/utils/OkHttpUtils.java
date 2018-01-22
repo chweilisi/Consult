@@ -120,11 +120,7 @@ public class OkHttpUtils {
                     sendFailCallback(callback, e);
                 }
             }
-        }
-
-        );
-
-
+        });
     }
 
     private void sendFailCallback(final ResultCallback callback, final Exception e) {
