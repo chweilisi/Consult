@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class AnswerItemDetailActivity extends BaseActivity {
     private SubjectItem mAnswerItem;
     private String mQuestionDes;
     private String mAttachmentPath;
+    private ImageView mAttachImg;
     @Override
     protected int getContentViewLayoutId() {
         return R.layout.activity_answer_item_detail;
@@ -35,6 +37,8 @@ public class AnswerItemDetailActivity extends BaseActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mAttachImg = (ImageView)findViewById(R.id.answer_item_detail_attachment_img);
 
         mAnswerDetail = (TextView)findViewById(R.id.tv_answer_item_detail_page);
 
@@ -53,6 +57,12 @@ public class AnswerItemDetailActivity extends BaseActivity {
             } else {
                 getSupportActionBar().setTitle("回答详情");
             }
+        }
+
+        if(null == mAnswerItem.getFilePath()){
+            mAttachImg.setVisibility(View.INVISIBLE);
+        } else {
+
         }
 
         mQuestionDes = getIntent().getStringExtra("question_description");

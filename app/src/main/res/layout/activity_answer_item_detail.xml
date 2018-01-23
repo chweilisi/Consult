@@ -28,11 +28,12 @@
         android:orientation="vertical"
         android:layout_marginTop="?actionBarSize">
         <TextView
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+
             android:text="aaaaaaaaaaa"
-            android:textSize="@dimen/sn_16sp"
+            android:textSize="@dimen/sn_20sp"
             android:id="@+id/tv_answer_item_detail_page"/>
         <ImageView
             android:layout_width="match_parent"
