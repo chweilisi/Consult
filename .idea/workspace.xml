@@ -35,11 +35,14 @@
       <file leaf-file-name="AskExpertActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
+            <state relative-caret-position="1545">
               <caret line="160" column="20" lean-forward="false" selection-start-line="160" selection-start-column="20" selection-end-line="160" selection-end-column="83" />
               <folding>
-                <element signature="e#3166#3317#0" expanded="true" />
-                <element signature="e#3316#3317#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#2632#2633#0" expanded="false" />
+                <element signature="e#2688#2689#0" expanded="false" />
+                <element signature="e#3257#3258#0" expanded="false" />
+                <element signature="e#3306#3307#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -48,9 +51,17 @@
       <file leaf-file-name="ExpertListActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/ExpertListActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-175">
+            <state relative-caret-position="1320">
               <caret line="122" column="105" lean-forward="false" selection-start-line="122" selection-start-column="105" selection-end-line="122" selection-end-column="105" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2002#2003#0" expanded="false" />
+                <element signature="e#2054#2055#0" expanded="false" />
+                <element signature="e#8259#8260#0" expanded="false" />
+                <element signature="e#8301#8302#0" expanded="false" />
+                <element signature="e#8755#8756#0" expanded="false" />
+                <element signature="e#8798#8799#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -58,12 +69,14 @@
       <file leaf-file-name="AskExpertAgainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertAgainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
+            <state relative-caret-position="960">
               <caret line="114" column="29" lean-forward="false" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
               <folding>
-                <element signature="e#2493#2644#0" expanded="true" />
-                <element signature="e#2643#2644#0" expanded="true" />
-                <element signature="e#4147#4203#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#2117#2118#0" expanded="false" />
+                <element signature="e#2174#2175#0" expanded="false" />
+                <element signature="e#2584#2585#0" expanded="false" />
+                <element signature="e#2633#2634#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -72,9 +85,13 @@
       <file leaf-file-name="MyConsultQuestionActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyConsultQuestionActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
+            <state relative-caret-position="1635">
               <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1547#1548#0" expanded="false" />
+                <element signature="e#1607#1608#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,11 +99,12 @@
       <file leaf-file-name="MyQuestionDetailActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyQuestionDetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
+            <state relative-caret-position="675">
               <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding>
-                <element signature="e#9701#10331#0" expanded="true" />
-                <element signature="e#10330#10331#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#2933#2934#0" expanded="false" />
+                <element signature="e#2992#2993#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -97,32 +115,39 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#887#888#0" expanded="false" />
+                <element signature="e#946#947#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="activity_answer_item_detail.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_answer_item_detail.xml">
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="40" column="43" lean-forward="false" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+            <state relative-caret-position="271">
+              <caret line="38" column="47" lean-forward="false" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
               <folding />
             </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="MyQuestionDetailAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/adapter/MyQuestionDetailAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
+            <state relative-caret-position="2775">
               <caret line="204" column="48" lean-forward="false" selection-start-line="204" selection-start-column="48" selection-end-line="204" selection-end-column="48" />
               <folding>
-                <element signature="e#7368#7584#0" expanded="true" />
-                <element signature="e#7583#7584#0" expanded="true" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#1301#1302#0" expanded="false" />
+                <element signature="e#1335#1336#0" expanded="false" />
+                <element signature="e#1539#1540#0" expanded="false" />
+                <element signature="e#1573#1574#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -130,23 +155,37 @@
       </file>
       <file leaf-file-name="question_answer_item.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/question_answer_item.xml">
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
+            <state relative-caret-position="660">
               <caret line="44" column="51" lean-forward="false" selection-start-line="44" selection-start-column="51" selection-end-line="44" selection-end-column="51" />
               <folding />
             </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
       <file leaf-file-name="OkHttpUtils.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/utils/OkHttpUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
+            <state relative-caret-position="2190">
               <caret line="182" column="70" lean-forward="false" selection-start-line="182" selection-start-column="70" selection-end-line="182" selection-end-column="70" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#3251#3252#0" expanded="false" />
+                <element signature="e#3312#3313#0" expanded="false" />
+                <element signature="e#10074#10075#0" expanded="false" />
+                <element signature="e#10144#10145#0" expanded="false" />
+                <element signature="e#11127#11128#0" expanded="false" />
+                <element signature="e#11161#11162#0" expanded="false" />
+                <element signature="e#11203#11204#0" expanded="false" />
+                <element signature="e#11241#11242#0" expanded="false" />
+                <element signature="e#11277#11278#0" expanded="false" />
+                <element signature="e#11313#11314#0" expanded="false" />
+                <element signature="e#11359#11360#0" expanded="false" />
+                <element signature="e#11401#11402#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2483,7 +2522,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516617448225" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516701846059" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2531,7 +2570,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516617448225" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516701846059" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2563,27 +2602,6 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <module name="" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -2714,7 +2732,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516617448226" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516701846060" />
       </method>
     </configuration>
     <list size="1">
@@ -2867,14 +2885,13 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/common_dialog.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="64" column="14" lean-forward="false" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="14" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/widget/ImageLoader.java">
@@ -2895,7 +2912,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-712">
           <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2903,9 +2919,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="533">
           <caret line="72" column="1" lean-forward="false" selection-start-line="72" selection-start-column="1" selection-end-line="72" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2944,11 +2957,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="357" column="7" lean-forward="true" selection-start-line="357" selection-start-column="7" selection-end-line="357" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2963#2964#0" expanded="false" />
-            <element signature="e#3027#3028#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2971,10 +2979,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
           <caret line="72" column="24" lean-forward="false" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
-          <folding>
-            <element signature="e#5337#5338#0" expanded="false" />
-            <element signature="e#5372#5373#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2982,7 +2986,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="269" column="34" lean-forward="false" selection-start-line="269" selection-start-column="34" selection-end-line="269" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2990,7 +2993,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="941" column="19" lean-forward="false" selection-start-line="941" selection-start-column="19" selection-end-line="941" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2998,7 +3000,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="449" column="22" lean-forward="false" selection-start-line="449" selection-start-column="22" selection-end-line="449" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3006,7 +3007,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="48" lean-forward="false" selection-start-line="2" selection-start-column="48" selection-end-line="2" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3014,7 +3014,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="696" column="28" lean-forward="false" selection-start-line="696" selection-start-column="28" selection-end-line="696" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3033,9 +3032,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="533">
           <caret line="93" column="5" lean-forward="false" selection-start-line="93" selection-start-column="5" selection-end-line="93" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3047,21 +3043,19 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/homefrag_layout.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
           <caret line="258" column="28" lean-forward="false" selection-start-line="258" selection-start-column="28" selection-end-line="258" selection-end-column="28" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/utils/FileUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="155" column="33" lean-forward="false" selection-start-line="155" selection-start-column="33" selection-end-line="155" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3069,9 +3063,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1000">
           <caret line="334" column="5" lean-forward="false" selection-start-line="334" selection-start-column="5" selection-end-line="334" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3079,7 +3070,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3087,7 +3077,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="23" column="31" lean-forward="false" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3095,7 +3084,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
           <caret line="310" column="0" lean-forward="false" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3103,7 +3091,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="146">
           <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3111,7 +3098,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="49" column="26" lean-forward="false" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3119,7 +3105,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="60" column="52" lean-forward="false" selection-start-line="60" selection-start-column="52" selection-end-line="60" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3127,7 +3112,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="40" column="12" lean-forward="false" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3135,10 +3119,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="344" column="20" lean-forward="false" selection-start-line="344" selection-start-column="20" selection-end-line="344" selection-end-column="20" />
-          <folding>
-            <element signature="e#11403#11404#0" expanded="false" />
-            <element signature="e#11447#11448#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3146,7 +3126,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="81" column="28" lean-forward="false" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3156,73 +3135,75 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ask_expert_main.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="91" column="51" lean-forward="false" selection-start-line="91" selection-start-column="51" selection-end-line="91" selection-end-column="51" />
-          <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ask_expert_again.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="91" column="51" lean-forward="false" selection-start-line="91" selection-start-column="51" selection-end-line="91" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_question_detail.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_my_question_detail.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="119" column="27" lean-forward="true" selection-start-line="119" selection-start-column="27" selection-end-line="119" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/utils/OkHttpUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="182" column="70" lean-forward="false" selection-start-line="182" selection-start-column="70" selection-end-line="182" selection-end-column="70" />
-          <folding />
-        </state>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/ExpertListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-175">
+        <state relative-caret-position="1320">
           <caret line="122" column="105" lean-forward="false" selection-start-line="122" selection-start-column="105" selection-end-line="122" selection-end-column="105" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#2002#2003#0" expanded="false" />
+            <element signature="e#2054#2055#0" expanded="false" />
+            <element signature="e#8259#8260#0" expanded="false" />
+            <element signature="e#8301#8302#0" expanded="false" />
+            <element signature="e#8755#8756#0" expanded="false" />
+            <element signature="e#8798#8799#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
+        <state relative-caret-position="1545">
           <caret line="160" column="20" lean-forward="false" selection-start-line="160" selection-start-column="20" selection-end-line="160" selection-end-column="83" />
           <folding>
-            <element signature="e#3166#3317#0" expanded="true" />
-            <element signature="e#3316#3317#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2632#2633#0" expanded="false" />
+            <element signature="e#2688#2689#0" expanded="false" />
+            <element signature="e#3257#3258#0" expanded="false" />
+            <element signature="e#3306#3307#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/AskExpertAgainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
+        <state relative-caret-position="960">
           <caret line="114" column="29" lean-forward="false" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
           <folding>
-            <element signature="e#2493#2644#0" expanded="true" />
-            <element signature="e#2643#2644#0" expanded="true" />
-            <element signature="e#4147#4203#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2117#2118#0" expanded="false" />
+            <element signature="e#2174#2175#0" expanded="false" />
+            <element signature="e#2584#2585#0" expanded="false" />
+            <element signature="e#2633#2634#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3231,7 +3212,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3239,7 +3219,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="43" column="57" lean-forward="true" selection-start-line="43" selection-start-column="57" selection-end-line="43" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3247,45 +3226,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="20" column="36" lean-forward="false" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-          <folding>
-            <element signature="e#584#585#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
-            <element signature="e#685#686#0" expanded="true" />
-            <element signature="e#717#718#0" expanded="true" />
-            <element signature="e#748#749#0" expanded="true" />
-            <element signature="e#793#794#0" expanded="true" />
-            <element signature="e#833#834#0" expanded="true" />
-            <element signature="e#865#866#0" expanded="true" />
-            <element signature="e#896#897#0" expanded="true" />
-            <element signature="e#941#942#0" expanded="true" />
-            <element signature="e#976#977#0" expanded="true" />
-            <element signature="e#1015#1016#0" expanded="true" />
-            <element signature="e#1052#1053#0" expanded="true" />
-            <element signature="e#1110#1111#0" expanded="true" />
-            <element signature="e#1157#1158#0" expanded="true" />
-            <element signature="e#1196#1197#0" expanded="true" />
-            <element signature="e#1223#1224#0" expanded="true" />
-            <element signature="e#1271#1272#0" expanded="true" />
-            <element signature="e#1298#1299#0" expanded="true" />
-            <element signature="e#1332#1333#0" expanded="true" />
-            <element signature="e#1362#1363#0" expanded="true" />
-            <element signature="e#1408#1409#0" expanded="true" />
-            <element signature="e#1441#1442#0" expanded="true" />
-            <element signature="e#1476#1477#0" expanded="true" />
-            <element signature="e#1507#1508#0" expanded="true" />
-            <element signature="e#1555#1556#0" expanded="true" />
-            <element signature="e#1595#1596#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/adapter/MyQuestionDetailAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
+        <state relative-caret-position="2775">
           <caret line="204" column="48" lean-forward="false" selection-start-line="204" selection-start-column="48" selection-end-line="204" selection-end-column="48" />
           <folding>
-            <element signature="e#7368#7584#0" expanded="true" />
-            <element signature="e#7583#7584#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1301#1302#0" expanded="false" />
+            <element signature="e#1335#1336#0" expanded="false" />
+            <element signature="e#1539#1540#0" expanded="false" />
+            <element signature="e#1573#1574#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -3294,49 +3247,80 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#887#888#0" expanded="false" />
+            <element signature="e#946#947#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/question_answer_item.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
+        <state relative-caret-position="660">
           <caret line="44" column="51" lean-forward="false" selection-start-line="44" selection-start-column="51" selection-end-line="44" selection-end-column="51" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyConsultQuestionActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
+        <state relative-caret-position="1635">
           <caret line="138" column="0" lean-forward="false" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1547#1548#0" expanded="false" />
+            <element signature="e#1607#1608#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/ui/view/MyQuestionDetailActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
+        <state relative-caret-position="675">
           <caret line="105" column="0" lean-forward="false" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
           <folding>
-            <element signature="e#9701#10331#0" expanded="true" />
-            <element signature="e#10330#10331#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2933#2934#0" expanded="false" />
+            <element signature="e#2992#2993#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/cheng/consult/utils/OkHttpUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2190">
+          <caret line="182" column="70" lean-forward="false" selection-start-line="182" selection-start-column="70" selection-end-line="182" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#3251#3252#0" expanded="false" />
+            <element signature="e#3312#3313#0" expanded="false" />
+            <element signature="e#10074#10075#0" expanded="false" />
+            <element signature="e#10144#10145#0" expanded="false" />
+            <element signature="e#11127#11128#0" expanded="false" />
+            <element signature="e#11161#11162#0" expanded="false" />
+            <element signature="e#11203#11204#0" expanded="false" />
+            <element signature="e#11241#11242#0" expanded="false" />
+            <element signature="e#11277#11278#0" expanded="false" />
+            <element signature="e#11313#11314#0" expanded="false" />
+            <element signature="e#11359#11360#0" expanded="false" />
+            <element signature="e#11401#11402#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_answer_item_detail.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="40" column="43" lean-forward="false" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+        <state relative-caret-position="271">
+          <caret line="38" column="47" lean-forward="false" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>
