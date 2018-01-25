@@ -87,9 +87,27 @@ public class OkHttpUtils {
         deliveryResult(callback, request);
     }
 
-    private void postDownload(String url, final ResultCallback callback, List<Param> params){
+    private void postDownload(String url, final ResultCallback callback, String params){
         Request request = buildDownloadRequest(url, params);
-        deliveryResult(callback, request);
+        deliveryDownloadResult(callback, request);
+    }
+
+    private void deliveryDownloadResult(final ResultCallback callback, Request request) {
+        mOkHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                sendFailCallback(callback, e);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    sendSuccessCallBack(callback, response);
+                } catch (final Exception e) {
+                    sendFailCallback(callback, e);
+                }
+            }
+        });
     }
 
     private void deliveryResult(final ResultCallback callback, Request request) {
@@ -102,18 +120,11 @@ public class OkHttpUtils {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
-                    boolean is = response.isSuccessful();
-                    String mes = response.message();
-                    String he = response.headers().toString();
-                    int cod = response.code();
-                    String netResp = response.networkResponse().toString();
-
-                    String str = response.body().string();
                     if (callback.mType == String.class) {
+                        String str = response.body().string();
                         sendSuccessCallBack(callback, str);
                     } else {
-                        Object object = JsonUtils.deserialize(str, callback.mType);
-                        sendSuccessCallBack(callback, object);
+                        sendSuccessCallBack(callback, response);
                     }
                 } catch (final Exception e) {
                     LogUtils.e(TAG, "convert json failure", e);
@@ -168,15 +179,15 @@ public class OkHttpUtils {
         return request;
     }
 
-    private Request buildDownloadRequest(String url, List<Param> params){
+    private Request buildDownloadRequest(String url, String params){
 
-        FormBody.Builder fbb = new FormBody.Builder();
-        //追加参数
-        for (Param param : params) {
-            fbb.add(param.key, param.value);
-        }
+//        FormBody.Builder fbb = new FormBody.Builder();
+//        //追加参数
+//        for (Param param : params) {
+//            fbb.add(param.key, param.value);
+//        }
 
-        Request request = new Request.Builder().url(url).post(fbb.build()).build();
+        Request request = new Request.Builder().url(url).build();
         return request;
     }
 
@@ -236,66 +247,60 @@ public class OkHttpUtils {
     /**
      *
      * @param url
-     * @param fileUrl
-     * @param destFileDir
      * @param callback
      * @param params
      */
-    public static void downloadFile(String url, String fileUrl, final String destFileDir, final ResultCallback callback, List<Param> params){
-        //getmInstance().postDownload(url, callback, params);
+    public static void downloadFile(String url, final ResultCallback callback, String params){
+        getmInstance().postDownload(url, callback, params);
 
-        final File file = new File(destFileDir, fileUrl);
-        if (file.exists()) {
-            return;
-        }
 
-        Request request = getmInstance().buildDownloadRequest(url, params);
-
-        final Call call = mInstance.mOkHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                LogUtils.e(TAG, e.toString());
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                InputStream is = null;
-                byte[] buf = new byte[2048];
-                int len = 0;
-                FileOutputStream fos = null;
-                try {
-                    long total = response.body().contentLength();
-                    LogUtils.e(TAG, "total------>" + total);
-                    long current = 0;
-                    is = response.body().byteStream();
-                    fos = new FileOutputStream(file);
-                    while ((len = is.read(buf)) != -1) {
-                        current += len;
-                        fos.write(buf, 0, len);
-                        LogUtils.e(TAG, "current------>" + current);
-
-                    }
-                    fos.flush();
-
-                } catch (IOException e) {
-                    LogUtils.e(TAG, e.toString());
-
-                } finally {
-                    try {
-                        if (is != null) {
-                            is.close();
-                        }
-                        if (fos != null) {
-                            fos.close();
-                        }
-                    } catch (IOException e) {
-                        LogUtils.e(TAG, e.toString());
-                    }
-                }
-            }
-        });
+//        Request request = getmInstance().buildDownloadRequest(url, params);
+//
+//        final Call call = mInstance.mOkHttpClient.newCall(request);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                LogUtils.e(TAG, e.toString());
+//
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                InputStream is = null;
+//                byte[] buf = new byte[2048];
+//                int len = 0;
+//                FileOutputStream fos = null;
+//                try {
+//                    long total = response.body().contentLength();
+//                    LogUtils.e(TAG, "total------>" + total);
+//                    long current = 0;
+//                    is = response.body().byteStream();
+//                    fos = new FileOutputStream(file);
+//                    while ((len = is.read(buf)) != -1) {
+//                        current += len;
+//                        fos.write(buf, 0, len);
+//                        LogUtils.e(TAG, "current------>" + current);
+//
+//                    }
+//                    fos.flush();
+//
+//                } catch (IOException e) {
+//                    LogUtils.e(TAG, e.toString());
+//
+//                } finally {
+//                    try {
+//                        if (is != null) {
+//                            is.close();
+//                        }
+//                        if (fos != null) {
+//                            fos.close();
+//                        }
+//                    } catch (IOException e) {
+//                        LogUtils.e(TAG, e.toString());
+//                    }
+//                }
+//            }
+//        });
     }
 
     /**

@@ -66,7 +66,7 @@ public class AskExpertActivity extends BaseActivity implements AdapterView.OnIte
     private Spinner cateSpinner;
     private int questionCate = -1;
     private boolean isFirstSelect = true;
-    private Long mExpertId;
+    private String mExpertId;
     private ImageButton mAttach;
     protected BaseDialogue mBaseDialog;
     private Uri imageUri;
@@ -82,7 +82,11 @@ public class AskExpertActivity extends BaseActivity implements AdapterView.OnIte
     @Override
     protected void initViews(Bundle savedInstanceState) {
         gson = new GsonBuilder().setDateFormat("yyyy-MM-dd hh:mm:ss").create();
-        mExpertId = getIntent().getLongExtra("expertid", -1);
+
+        mExpertId = getIntent().getStringExtra("expertid");
+        if(null == mExpertId){
+            mExpertId = "-1";
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -147,7 +151,7 @@ public class AskExpertActivity extends BaseActivity implements AdapterView.OnIte
                     String dateStr = dateFormat.format(date).toString();
 
                     PostCommonHead.HEAD postHead = new PostCommonHead.HEAD("1", "saveSubject", mApplication.mAppSignature, dateStr, "9000");
-                    QuestionSubmitParam postParam = new QuestionSubmitParam(postHead, String.valueOf(mApplication.mUserId), String.valueOf(mExpertId),
+                    QuestionSubmitParam postParam = new QuestionSubmitParam(postHead, String.valueOf(mApplication.mUserId), mExpertId,
                             String.valueOf(questionCate), qTitle, qDes);
 
                     String param = gson.toJson(postParam);
@@ -352,7 +356,7 @@ public class AskExpertActivity extends BaseActivity implements AdapterView.OnIte
         String dateStr = dateFormat.format(date).toString();
 
         PostCommonHead.HEAD postHead = new PostCommonHead.HEAD("1", "saveSubject", mApplication.mAppSignature, dateStr, "9000");
-        QuestionSubmitParam postParam = new QuestionSubmitParam(postHead, String.valueOf(mApplication.mUserId), String.valueOf(mExpertId),
+        QuestionSubmitParam postParam = new QuestionSubmitParam(postHead, String.valueOf(mApplication.mUserId), mExpertId,
                 String.valueOf(questionCate), qTitle, qDes);
 
         String param = gson.toJson(postParam);

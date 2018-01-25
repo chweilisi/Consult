@@ -40,6 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:id="@+id/answer_item_detail_attachment_img"
+            android:visibility="gone"
             android:layout_below="@+id/tv_answer_item_detail_page"
             android:src="@drawable/testtest"/>
 

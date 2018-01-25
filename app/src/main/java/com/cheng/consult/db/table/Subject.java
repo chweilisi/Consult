@@ -16,6 +16,7 @@ public class Subject implements Serializable {
     private String IconSrc;//问题图标ip
     private String Title;//问题title
     private String Content;//问题正文
+    private String filePath = null;
     private Date date;//问题日期
     private boolean IsAnswered;//是否已回答
     private int QuestionCate;//问题所属领域
@@ -71,6 +72,14 @@ public class Subject implements Serializable {
 
     public void setContent(String content) {
         Content = content;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public Date getDate() {

@@ -28,7 +28,7 @@ public class Urls {
 
     public static final String HOST_TEST = "http://172.31.84.124:8081/api";//"http://101.200.40.228:8080/public/api";
     public static final String HOST = "http://101.200.40.228:8080/public/api";
-    public static final String ATTACHMENT_BASE_URL = "http://172.31.84.124:8081/";
+    public static final String ATTACHMENT_BASE_URL = "http://172.31.84.124:8081/api/download?filePath=";
     public static final String USER = "/user";
     public static final String LOGIN = "/userLogin";
     public static final String QUESTION = "/case";
