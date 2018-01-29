@@ -101,6 +101,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         mSearchBar = (TextView)view.findViewById(R.id.search_expert_question);
         mStudySelf = (ImageView)view.findViewById(R.id.study_self_img);
 
+        if (ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.REQUEST_CODE_TAKE_PICTURE);
+        }
 
         return view;
     }

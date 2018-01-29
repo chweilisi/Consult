@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/cheng/Documents/GitHub/Consult/app/libs/pinyin4j-2.5.0.jar"
+        jumboMode="false"
+        min-sdk-version="22"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ae353005f973da1cd8545b54354504c2503f6865">
+        <dex dex="/Users/cheng/Documents/GitHub/Consult/app/build/intermediates/transforms/preDex/release/1/classes.dex" />
+    </item>
+
+</items>

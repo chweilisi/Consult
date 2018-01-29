@@ -1,8 +1,11 @@
 package com.cheng.consult;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +18,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.cheng.consult.app.App;
+import com.cheng.consult.ui.common.Constants;
 import com.cheng.consult.ui.view.BaseActivity;
 
 import java.io.File;
@@ -24,6 +28,7 @@ import java.io.IOException;
 public class SplashActivity extends AppCompatActivity {
     private ImageView iv_start;
 
+    //@RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +36,7 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
         iv_start = (ImageView) findViewById(R.id.iv_splash_start);
+        //requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE}, Constants.REQUEST_CODE_TAKE_PICTURE);
         initImage();
     }
 

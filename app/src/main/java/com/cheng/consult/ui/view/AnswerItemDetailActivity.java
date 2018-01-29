@@ -82,9 +82,9 @@ public class AnswerItemDetailActivity extends BaseActivity {
             }
 
             mAttachmentPath = mAnswerItem.getFilePath();
-            int pre = mAttachmentPath.lastIndexOf("/");
-            String name = mAttachmentPath.substring(pre + 1);
             if(null != mAttachmentPath && !mAttachmentPath.isEmpty()){
+                int pre = mAttachmentPath.lastIndexOf("/");
+                String name = mAttachmentPath.substring(pre + 1);
                 mDownloadImgFile = new File(Constants.IMAGE_CACHE_DIR + "take_picture/", name);
                 Thread imgThread = new GetAttachmentImage(Urls.ATTACHMENT_BASE_URL, mAttachmentPath);
                 imgThread.start();
